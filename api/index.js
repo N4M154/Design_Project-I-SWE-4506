@@ -6,6 +6,7 @@ import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import axios from "axios";
+import cors from "cors";
 dotenv.config();
 
 mongoose
@@ -34,6 +35,13 @@ app.use(cookieParser());
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Adjust this if your frontend is on a different port
+    credentials: true,
+  })
+);
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);

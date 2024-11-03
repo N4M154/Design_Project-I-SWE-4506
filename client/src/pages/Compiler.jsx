@@ -57,6 +57,9 @@ export default function Compiler() {
       setOutput("Error in executing the code.");
     }
     setLoading(false);
+
+    setInput("");
+    setInputNeeded(false);
   };
 
   // Function to define the custom theme and apply it using `onMount`
@@ -116,16 +119,6 @@ export default function Compiler() {
         onChange={handleEditorChange}
         onMount={handleEditorDidMount} // Use onMount to define the theme
       />
-
-      {/* Compile Button */}
-      <button
-        onClick={compileCode}
-        className="mt-4 p-2 bg-yellow-500 text-black rounded"
-      >
-        {loading ? "Compiling..." : "Compile & Execute"}
-      </button>
-
-      {/* Show input field under the compile button when input is needed */}
       {inputNeeded && (
         <textarea
           className="mt-4 p-2 w-1/2 bg-zinc-800 text-white"
@@ -135,6 +128,12 @@ export default function Compiler() {
           onChange={(e) => setInput(e.target.value)} // Update input state
         />
       )}
+      <button
+        onClick={compileCode}
+        className="mt-4 p-2 bg-yellow-500 text-black rounded"
+      >
+        {loading ? "Compiling..." : "Compile & Execute"}
+      </button>
 
       {/* Display Output */}
       <div className="mt-4 p-4 bg-yellow-200 border border-gray-300 rounded w-1/2">
