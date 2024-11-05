@@ -9,7 +9,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/Layout";
 import Compiler from "./components/Workspace/CodeEditor";
 import LandingPage from "./pages/Landing";
-
+import CLanguagePage from "./pages/CLanguagePage";
+import CLearningMaterial from "./pages/CLearningMaterial";
 export default function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/compiler" element={<Compiler />} />
           <Route path="/about" element={<About />} />
+          <Route path="/courses/c" element={<CLanguagePage />} />
+          <Route path="/courses/c/:lessonId" element={<CLearningMaterial />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />

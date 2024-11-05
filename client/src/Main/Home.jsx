@@ -1,25 +1,24 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "../components/Topbar/Navbar";
-import axios from "axios";
 import "./Home.css";
 import TableData from "./TableData";
 
 export default function Home() {
   const [problems, setProblems] = useState([]);
-  // const courses = ["C", "C++", "Java", "Python"];
 
   const [hoveredCourse, setHoveredCourse] = useState(null);
 
   const courses = ["C", "C++", "Java", "Python"]; // Example courses
   const courseDescriptions = {
-    C: "Learn the essentials of JavaScript, the backbone of web development.",
+    C: "Learn the essentials of C, the foundation for modern programming.",
     "C++":
-      "Dive into Python, a versatile language for web, data science, and more.",
-    Python: "Master React, the popular library for building interactive UIs.",
-    Java: "Understand CSS for styling and responsive web design.",
+      "Dive into C++, a language designed for complex system and application development.",
+    Java: "Explore Java, one of the most popular languages for backend development.",
+    Python:
+      "Master Python, a versatile language for web, data science, and more.",
   };
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function Home() {
         toast.success("Data loaded successfully");
       } catch (error) {
         console.error("Error fetching problems:", error);
-        //toast.error("Failed to load data");
+        toast.error("Failed to load data");
       }
     }
 
@@ -74,7 +73,6 @@ export default function Home() {
           />
         </div>
 
-        {/* Title and Description */}
         <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-100 to-yellow-500 mb-4">
           Welcome to DoodleDuck
         </h1>
@@ -82,7 +80,6 @@ export default function Home() {
           Quack the Code, Crack the Future!
         </p>
 
-        {/* Centered Course Links with Hover Effect */}
         <div className="flex justify-center items-center overflow-x-auto space-x-4 p-4 mb-6">
           {courses.map((course, index) => (
             <Link
@@ -97,7 +94,6 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Call-to-Action Button */}
         <button
           className="bg-gradient-to-r from-yellow-200 to-purple-500 hover:from-yellow-300 hover:to-purple-600 text-black font-bold py-2 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-500 ease-in-out mb-6"
           onClick={() => alert("Start Learning!")}
@@ -105,10 +101,8 @@ export default function Home() {
           Start Learning
         </button>
 
-        {/* TableData Component */}
         <TableData problems={problems} />
 
-        {/* Toast Notification Container */}
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -123,7 +117,6 @@ export default function Home() {
         />
       </div>
 
-      {/* Expanding Bar from Bottom Left */}
       <div
         className={`fixed mt-20 top-0 left-0 w-full bg-black text-white text-center py-2 transform ${
           hoveredCourse ? "h-80 opacity-100" : "h-0 opacity-0"
