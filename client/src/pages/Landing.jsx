@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 export default function LandingPage() {
   return (
     <div className="bg-gray-900 text-gray-200">
+      {/* Header */}
+      <header className="bg-gray-800 py-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-2xl font-bold text-yellow-400">DoodleDuck</h1>
+        </div>
+      </header>
+
       {/* Hero Section */}
       <div
         className="relative bg-cover bg-center h-screen"
@@ -96,11 +103,27 @@ export default function LandingPage() {
             </h3>
             <p className="text-gray-300">
               Learn the principles of user-centered design and create stunning
-              applications
+              applications.
             </p>
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 py-4 text-center">
+        <p className="text-gray-400">
+          All rights reserved © 2024. Visit our{" "}
+          <a
+            href="https://github.com/N4M154/Design_Project-I-SWE-4506"
+            className="text-yellow-400 underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          .
+        </p>
+      </footer>
     </div>
   );
 }
