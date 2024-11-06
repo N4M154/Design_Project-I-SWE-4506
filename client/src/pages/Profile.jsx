@@ -16,7 +16,7 @@ import {
   deleteUserFailure,
   signOut,
 } from "../redux/user/userSlice";
-import ProfileChart from "./ProfileChart"; // Import the new ProfileChart component
+import ProfileChart from "./ProfileChart";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -114,9 +114,9 @@ export default function Profile() {
 
   return (
     <div className="bg-black min-h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center w-full max-w-5xl">
+      <div className="flex flex-row items-start w-full max-w-6xl space-x-8 p-8">
         {/* Profile Section */}
-        <div className="w-full max-w-md p-8 bg-gradient-to-b from-yellow-600 via-yellow-700 to-yellow-800 rounded-lg shadow-lg mb-8">
+        <div className="flex-1 max-w-md p-8 bg-gradient-to-b from-yellow-600 via-yellow-700 to-yellow-800 rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold text-center text-yellow-100 mb-6">
             Profile
           </h1>
@@ -204,8 +204,9 @@ export default function Profile() {
             </p>
           )}
         </div>
+
         {/* Chart Section */}
-        <div className="w-full">
+        <div className="flex-1 max-w-md">
           <ProfileChart />
         </div>
       </div>

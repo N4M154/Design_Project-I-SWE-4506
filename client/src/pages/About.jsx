@@ -15,7 +15,6 @@ export default function About() {
         <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-100 to-yellow-500 mb-10 text-center">
           ABOUT DoodleDuck
         </h1>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-4">
           {/* Motivation Section */}
           <div className="bg-black border border-yellow-500 rounded-lg p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
@@ -35,6 +34,22 @@ export default function About() {
               quack at a time!
             </p>
           </div>
+          {/* Features Section */}
+          <div className="bg-black border border-yellow-500 rounded-lg p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
+            <h2 className="text-3xl font-semibold mb-6 text-yellow-400">
+              Platform Features
+            </h2>
+            <p className="text-yellow-50 text-lg mb-4">
+              Discover the key features that make DoodleDuck unique:
+            </p>
+            <ul className="list-disc pl-5 text-yellow-50 text-lg space-y-2">
+              <li>Interactive Coding Environment</li>
+              <li>Progress Tracking and Achievement Unlocks</li>
+              <li>Peer Collaboration and Community Support</li>
+              <li>Real-Time Feedback on Exercises</li>
+              <li>Customizable Learning Paths</li>
+            </ul>
+          </div>
           {/* About Us Section */}
           <div className="bg-black border border-yellow-500 rounded-lg p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
             <h2 className="text-3xl font-semibold mb-6 text-yellow-400">
@@ -50,6 +65,17 @@ export default function About() {
               <li>Namisa Najah Raisa (210042112)</li>
               <li>Ishmaam Iftekhar Khan (210042125)</li>
             </ul>
+          </div>
+          {/* Future Plans Section */}
+          <div className="bg-black border border-yellow-500 rounded-lg p-8 shadow-lg hover:shadow-2xl transform hover:scale-105 transition duration-500 ease-in-out">
+            <h2 className="text-3xl font-semibold mb-6 text-yellow-400">
+              Future Plans
+            </h2>
+            <p className="text-yellow-50 text-lg">
+              Looking ahead, DoodleDuck plans to expand with more languages,
+              sophisticated coding challenges, and a mobile app for learning on
+              the go.
+            </p>
           </div>
         </div>
       </div>
