@@ -11,6 +11,7 @@ import Compiler from "./components/Workspace/CodeEditor";
 import LandingPage from "./pages/Landing";
 import CLanguagePage from "./pages/CLanguagePage";
 import CLearningMaterial from "./pages/CLearningMaterial";
+import FloatingChatbot from "./components/Chatbot";
 export default function App() {
   return (
     <BrowserRouter>
@@ -33,6 +34,7 @@ export default function App() {
           </Route>
         </Route>
       </Routes>
+      <FloatingChatbot iconSrc="/chatbot.png" />
     </BrowserRouter>
   );
 }
