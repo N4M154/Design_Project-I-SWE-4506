@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Groq } from "groq-sdk";
 
@@ -8,6 +9,10 @@ const FloatingChatbot = () => {
   const [loading, setLoading] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const chatEndRef = useRef(null);
+
+  const location = useLocation();
+  const pathsToShowChatbot = ["/home", "/compiler"];
+  const shouldShowChatbot = pathsToShowChatbot.includes(location.pathname);
 
   const groq = new Groq({
     apiKey: import.meta.env.VITE_GROQ_API_KEY,
@@ -34,14 +39,14 @@ const FloatingChatbot = () => {
 
     try {
       const chatCompletion = await groq.chat.completions.create({
-        model: "llama-3.3-70b-versatile",
+        model: "llama-3.3-70b-versatile", //gemma2-9b-it;llama-3.1-8b-instant;llama3-70b-8192;llama3-8b-8192;mixtral-8x7b-32768
         temperature: 0.9,
         max_tokens: 2048,
         messages: [
           {
             role: "system",
             content:
-              "You are Quacky, a playful and helpful chatbot designed to assist users in learning programming in C, C++, Python, and Java. Your responses should be thorough, clear, and educational, using examples where needed to support learning. Maintain a fun and friendly tone that matches the silly duck theme of the website.For any queries outside of programming in these specific languages, politely explain that you only specialize in these areas and gently redirect the user back to relevant topics. Stay on-brand by adding a touch of duck-themed humor or quirkiness to your responses.keep in mind you only know everything about C,C++,Python and Java",
+              "You are Doodly, a playful and helpful chatbot designed to assist users in learning programming in C, C++, Python, and Java. Your responses should be thorough, clear, and educational, using examples where needed to support learning. Maintain a fun and friendly tone that matches the silly duck theme of the website.For any queries outside of programming in these specific languages, politely explain that you only specialize in these areas and gently redirect the user back to relevant topics. Stay on-brand by adding a touch of duck-themed humor or quirkiness to your responses.keep in mind you only know everything about C,C++,Python and Java",
           },
           ...updatedConversation,
         ],
@@ -62,6 +67,10 @@ const FloatingChatbot = () => {
       setLoading(false);
     }
   };
+
+  if (!shouldShowChatbot) {
+    return null;
+  }
 
   return (
     <>
