@@ -1,47 +1,115 @@
-import React, { useState, useEffect } from "react";
+//----------------------------------------------------------------------------
+
 import MonacoEditor from "@monaco-editor/react";
 import axios from "axios";
+import { Code2, Copy, Download, Play, RefreshCw, Trash2 } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import SideButtons from "../components/SideButtons";
 
-export default function Compiler() {
-  const [code, setCode] = useState("");
-  const [input, setInput] = useState(""); // Add input state for user input
+const languageExamples = {
+  c: `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    return 0;
+}`,
+  cpp: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`,
+  java: `public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}`,
+  python3: `print("Hello, World!")`,
+  javascript: `console.log("Hello, World!");`,
+  typescript: `const greeting: string = "Hello, World!";
+console.log(greeting);`,
+  rust: `fn main() {
+    println!("Hello, World!");
+}`,
+  go: `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}`,
+};
+
+export default function CodeEditor() {
+  const [code, setCode] = useState(languageExamples.python3);
+  const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("c"); // Default to C language
+  const [language, setLanguage] = useState("python3");
   const [loading, setLoading] = useState(false);
-  const [inputNeeded, setInputNeeded] = useState(false); // Track if input is needed
+  const [inputNeeded, setInputNeeded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
+  const [theme, setTheme] = useState("vs-dark");
+  const [fontSize, setFontSize] = useState(14);
+  const [autoSave, setAutoSave] = useState(true);
 
-  // Input-related keywords based on language
+  const languages = [
+    { id: "c", name: "C", icon: "🎯" },
+    { id: "cpp", name: "C++", icon: "⚡" },
+    { id: "java", name: "Java", icon: "☕" },
+    { id: "python3", name: "Python", icon: "🐍" },
+    { id: "javascript", name: "JavaScript", icon: "💛" },
+    { id: "typescript", name: "TypeScript", icon: "📘" },
+    { id: "rust", name: "Rust", icon: "🦀" },
+    { id: "go", name: "Go", icon: "🔵" },
+  ];
+
   const inputKeywords = {
     c: ["scanf"],
     cpp: ["cin"],
     java: ["Scanner"],
     python3: ["input"],
-    javascript: ["prompt"], // Example for JS
+    javascript: ["prompt"],
+    typescript: ["prompt"],
+    rust: ["stdin"],
+    go: ["Scan"],
   };
 
-  // Handle code change in the editor
+  useEffect(() => {
+    // Load saved code from localStorage
+    const savedCode = localStorage.getItem(`code-${language}`);
+    if (savedCode) {
+      setCode(savedCode);
+    } else {
+      setCode(languageExamples[language]);
+    }
+  }, [language]);
+
   const handleEditorChange = (value) => {
     setCode(value);
+    if (autoSave) {
+      localStorage.setItem(`code-${language}`, value);
+    }
+    checkForInputFunctions();
   };
 
-  // Handle language selection change
   const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
+    const newLanguage = event.target.value;
+    setLanguage(newLanguage);
+    setCode(languageExamples[newLanguage]);
+    setOutput("");
   };
 
-  // Detect if input is needed
   const checkForInputFunctions = () => {
     const keywords = inputKeywords[language] || [];
-    return keywords.some((keyword) => code.includes(keyword));
+    const needsInput = keywords.some((keyword) => code.includes(keyword));
+    setInputNeeded(needsInput);
+    return needsInput;
   };
 
-  // Function to compile and execute the code
   const compileCode = async () => {
-    const requiresInput = checkForInputFunctions(); // Check if input functions are present
-    setInputNeeded(requiresInput); // Set inputNeeded state based on check
-
-    if (requiresInput && !input) {
-      alert("This code requires input. Please enter input data.");
+    if (inputNeeded && !input) {
+      alert("This code requires input. Please provide input data.");
       return;
     }
 
@@ -49,97 +117,292 @@ export default function Compiler() {
     try {
       const response = await axios.post("/api/execute", {
         script: code,
-        language: language, // Send selected language
-        input: input, // Send the user input if available
+        language: language,
+        input: input,
       });
       setOutput(response.data.output);
     } catch (error) {
-      setOutput("Error in executing the code.");
+      setOutput("Error: Failed to execute code. Please try again.");
     }
     setLoading(false);
   };
 
-  // Function to define the custom theme and apply it using `onMount`
+  const copyCode = () => {
+    navigator.clipboard.writeText(code);
+  };
+
+  const clearOutput = () => {
+    setOutput("");
+    setInput("");
+  };
+
+  const downloadCode = () => {
+    const extensions = {
+      c: ".c",
+      cpp: ".cpp",
+      java: ".java",
+      python3: ".py",
+      javascript: ".js",
+      typescript: ".ts",
+      rust: ".rs",
+      go: ".go",
+    };
+
+    const blob = new Blob([code], { type: "text/plain" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `code${extensions[language]}`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   const handleEditorDidMount = (editor, monaco) => {
-    // Define the custom theme
-    monaco.editor.defineTheme("vscodeTheme", {
-      base: "vs-dark", // Base theme (dark theme similar to VS Code)
-      inherit: true, // Inherit base theme properties
+    // Define themes
+    monaco.editor.defineTheme("customDark", {
+      base: "vs-dark",
+      inherit: true,
       rules: [
-        { token: "comment", foreground: "6A9955", fontStyle: "italic" }, // Green comments
-        { token: "keyword", foreground: "569CD6" }, // Blue keywords
-        { token: "string", foreground: "CE9178" }, // Orange strings
-        { token: "function", foreground: "DCDCAA" }, // Light yellow function names
-        { token: "variable", foreground: "9CDCFE" }, // Light blue variables
-        { token: "number", foreground: "B5CEA8" }, // Light green numbers
-        { token: "operator", foreground: "D4D4D4" }, // Light grey operators
+        { token: "comment", foreground: "6A9955", fontStyle: "italic" },
+        { token: "keyword", foreground: "569CD6", fontStyle: "bold" },
+        { token: "string", foreground: "CE9178" },
+        { token: "function", foreground: "DCDCAA" },
+        { token: "variable", foreground: "9CDCFE" },
+        { token: "number", foreground: "B5CEA8" },
       ],
       colors: {
-        "editor.background": "#1E1E1E", // Dark grey background (VS Code default)
-        "editor.foreground": "#D4D4D4", // Light grey default text color
-        "editorCursor.foreground": "#AEAFAD", // Light grey cursor color
-        "editor.lineHighlightBackground": "#5c5a3b", // Blue line highlight background
-        "editorLineNumber.foreground": "#858585", // Light grey line numbers
-        "editor.selectionBackground": "#264F78", // Blue selection background
-        "editorIndentGuide.background": "#404040", // Light grey indent guide
-        "editorWhitespace.foreground": "#404040", // Light grey whitespace characters
+        "editor.background": "#1E1E1E",
+        "editor.foreground": "#D4D4D4",
+        "editor.lineHighlightBackground": "#2F3139",
+        "editorLineNumber.foreground": "#858585",
       },
     });
 
-    // Apply the custom theme
-    monaco.editor.setTheme("vscodeTheme");
+    monaco.editor.defineTheme("customLight", {
+      base: "vs",
+      inherit: true,
+      rules: [
+        { token: "comment", foreground: "008000", fontStyle: "italic" },
+        { token: "keyword", foreground: "0000FF", fontStyle: "bold" },
+        { token: "string", foreground: "A31515" },
+        { token: "function", foreground: "795E26" },
+      ],
+      colors: {
+        "editor.background": "#FFFFFF",
+        "editor.foreground": "#000000",
+        "editor.lineHighlightBackground": "#F7F7F7",
+        "editorLineNumber.foreground": "#237893",
+      },
+    });
+
+    monaco.editor.setTheme(theme === "vs-dark" ? "customDark" : "customLight");
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-700 p-4">
-      <h1 className="text-2xl font-bold mb-4">Code Compiler</h1>
-
-      <select
-        value={language}
-        onChange={handleLanguageChange}
-        className="mb-4 p-2 border rounded bg-yellow-200"
+    <div className="flex min-h-screen bg-[#1E1E1E] font-['Poppins'] overflow-hidden">
+      <SideButtons />
+      <div
+        id="main-content"
+        className="flex-1 transition-all duration-300"
+        style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
-        <option value="c">C</option>
-        <option value="cpp">C++</option>
-        <option value="java">Java</option>
-        <option value="python3">Python</option>
-        <option value="javascript">JavaScript</option>
-      </select>
+        <div className="min-h-screen flex flex-col ">
+          {/* Header */}
+          <div
+            className={`${
+              theme === "vs-dark"
+                ? "bg-[#2D2D2D] border-[#404040]"
+                : "bg-white border-gray-200"
+            } p-4 border-b`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Code2 className="text-yellow-500" size={24} />
+                <h1
+                  className={`text-xl font-semibold ${
+                    theme === "vs-dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  Online Code Compiler
+                </h1>
+              </div>
+              <div className="flex items-center space-x-4">
+                <select
+                  value={language}
+                  onChange={handleLanguageChange}
+                  className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white border-[#505050]"
+                      : "bg-white text-gray-800 border-gray-300"
+                  }`}
+                >
+                  {languages.map((lang) => (
+                    <option key={lang.id} value={lang.id}>
+                      {lang.icon} {lang.name}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  onClick={() =>
+                    setTheme(theme === "vs-dark" ? "vs" : "vs-dark")
+                  }
+                  className={`p-2 rounded-lg transition-colors ${
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  <RefreshCw size={20} />
+                </button>
+                <button
+                  onClick={downloadCode}
+                  className={`p-2 rounded-lg transition-colors ${
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
+                  title="Download Code"
+                >
+                  <Download size={20} />
+                </button>
+              </div>
+            </div>
+          </div>
 
-      {/* Code Editor */}
-      <MonacoEditor
-        height="50vh"
-        width="200vh"
-        defaultLanguage={language}
-        theme="vscodeTheme" // Use the custom theme
-        value={code}
-        onChange={handleEditorChange}
-        onMount={handleEditorDidMount} // Use onMount to define the theme
-      />
+          {/* Editor Section */}
+          <div className="flex-1 flex">
+            <div className="flex-1 flex flex-col">
+              <div className="flex-1 relative">
+                <MonacoEditor
+                  height="100%"
+                  defaultLanguage={language}
+                  language={language}
+                  theme={theme === "vs-dark" ? "customDark" : "customLight"}
+                  value={code}
+                  onChange={handleEditorChange}
+                  onMount={handleEditorDidMount}
+                  options={{
+                    fontSize: fontSize,
+                    minimap: { enabled: true },
+                    scrollBeyondLastLine: false,
+                    lineNumbers: "on",
+                    roundedSelection: false,
+                    wordWrap: "on",
+                    folding: true,
+                    automaticLayout: true,
+                    lineHeight: 21,
+                    suggestOnTriggerCharacters: true,
+                    formatOnPaste: true,
+                    formatOnType: true,
+                  }}
+                />
+                <div className="absolute bottom-4 right-4 flex space-x-2">
+                  <button
+                    onClick={copyCode}
+                    className={`p-2 rounded-lg transition-colors ${
+                      theme === "vs-dark"
+                        ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                    title="Copy Code"
+                  >
+                    <Copy size={20} />
+                  </button>
+                  <button
+                    onClick={compileCode}
+                    disabled={loading}
+                    className={`p-2 rounded-lg ${
+                      loading
+                        ? "bg-yellow-600 cursor-not-allowed"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    } text-black transition-colors flex items-center space-x-2`}
+                    title="Run Code"
+                  >
+                    <Play size={20} />
+                    <span>{loading ? "Running..." : "Run"}</span>
+                  </button>
+                </div>
+              </div>
 
-      {/* Compile Button */}
-      <button
-        onClick={compileCode}
-        className="mt-4 p-2 bg-yellow-500 text-black rounded"
-      >
-        {loading ? "Compiling..." : "Compile & Execute"}
-      </button>
+              {/* Input/Output Section */}
+              <div
+                className={`h-1/3 ${
+                  theme === "vs-dark"
+                    ? "bg-[#2D2D2D] border-[#404040]"
+                    : "bg-gray-50 border-gray-200"
+                } border-t`}
+              >
+                <div className="flex h-full">
+                  {/* Input Panel */}
+                  {inputNeeded && (
+                    <div
+                      className={`w-1/2 ${
+                        theme === "vs-dark"
+                          ? "border-[#404040]"
+                          : "border-gray-200"
+                      } border-r p-4`}
+                    >
+                      <div className="flex justify-between items-center mb-2">
+                        <h2
+                          className={`font-medium ${
+                            theme === "vs-dark" ? "text-white" : "text-gray-800"
+                          }`}
+                        >
+                          Input
+                        </h2>
+                      </div>
+                      <textarea
+                        className={`w-full h-[calc(100%-2rem)] p-2 rounded border resize-none focus:outline-none focus:border-yellow-500 ${
+                          theme === "vs-dark"
+                            ? "bg-[#1E1E1E] text-white border-[#404040]"
+                            : "bg-white text-gray-800 border-gray-300"
+                        }`}
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="Enter input for your program..."
+                      />
+                    </div>
+                  )}
 
-      {/* Show input field under the compile button when input is needed */}
-      {inputNeeded && (
-        <textarea
-          className="mt-4 p-2 w-1/2 bg-zinc-800 text-white"
-          rows="5"
-          placeholder="Enter input for your program"
-          value={input}
-          onChange={(e) => setInput(e.target.value)} // Update input state
-        />
-      )}
-
-      {/* Display Output */}
-      <div className="mt-4 p-4 bg-yellow-200 border border-gray-300 rounded w-1/2">
-        <h2 className="text-xl font-semibold mb-2">Output:</h2>
-        <pre className="whitespace-pre-wrap">{output}</pre>
+                  {/* Output Panel */}
+                  <div className={`${inputNeeded ? "w-1/2" : "w-full"} p-4`}>
+                    <div className="flex justify-between items-center mb-2">
+                      <h2
+                        className={`font-medium ${
+                          theme === "vs-dark" ? "text-white" : "text-gray-800"
+                        }`}
+                      >
+                        Output
+                      </h2>
+                      <button
+                        onClick={clearOutput}
+                        className={`p-1 rounded ${
+                          theme === "vs-dark"
+                            ? "text-gray-400 hover:text-white"
+                            : "text-gray-500 hover:text-gray-700"
+                        } transition-colors`}
+                        title="Clear Output"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                    <div
+                      className={`h-[calc(100%-2rem)] p-2 rounded border overflow-auto ${
+                        theme === "vs-dark"
+                          ? "bg-[#1E1E1E] text-white border-[#404040]"
+                          : "bg-white text-gray-800 border-gray-300"
+                      }`}
+                    >
+                      <pre className="whitespace-pre-wrap font-mono text-sm">
+                        {output || "Output................."}
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

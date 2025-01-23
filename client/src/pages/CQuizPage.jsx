@@ -1,13 +1,38 @@
 // src/pages/CQuizPage.jsx
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const questions = [
-  { id: 1, question: "What does 'C' in C language stand for?", options: ["Code", "Compiled", "Computer", "Circuit"], answer: "Compiled" },
-  { id: 2, question: "Which operator is used to include a header file in C?", options: ["#", "include", ":", "->"], answer: "#" },
-  { id: 3, question: "What is the correct syntax for declaring an integer?", options: ["int x;", "integer x;", "num x;", "x int;"], answer: "int x;" },
-  { id: 4, question: "Which keyword is used to return a value from a function?", options: ["give", "return", "break", "exit"], answer: "return" },
-  { id: 5, question: "What is the standard method for outputting data in C?", options: ["cout", "System.out.println", "printf", "print"], answer: "printf" }
+  {
+    id: 1,
+    question: "What does 'C' in C language stand for?",
+    options: ["Code", "Compiled", "Computer", "Circuit"],
+    answer: "Compiled",
+  },
+  {
+    id: 2,
+    question: "Which operator is used to include a header file in C?",
+    options: ["#", "include", ":", "->"],
+    answer: "#",
+  },
+  {
+    id: 3,
+    question: "What is the correct syntax for declaring an integer?",
+    options: ["int x;", "integer x;", "num x;", "x int;"],
+    answer: "int x;",
+  },
+  {
+    id: 4,
+    question: "Which keyword is used to return a value from a function?",
+    options: ["give", "return", "break", "exit"],
+    answer: "return",
+  },
+  {
+    id: 5,
+    question: "What is the standard method for outputting data in C?",
+    options: ["cout", "System.out.println", "printf", "print"],
+    answer: "printf",
+  },
 ];
 
 function CQuizPage() {
@@ -46,27 +71,39 @@ function CQuizPage() {
   };
 
   return (
-    <div className="quiz-container">
-      <h1 className="text-center">Quiz for {lessonId}</h1>
-      <div className="timer">Time Remaining: {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</div>
-      {questions.map((question) => (
-        <div key={question.id}>
-          <h3>{question.question}</h3>
-          {question.options.map((option) => (
-            <label key={option}>
-              <input
-                type="radio"
-                name={`question-${question.id}`}
-                value={option}
-                onChange={() => handleOptionChange(question.id, option)}
-                checked={answers[question.id] === option}
-              />
-              {option}
-            </label>
+    <div className="flex min-h-screen bg-white font-['Poppins']">
+      <SideButtons />
+      <div
+        id="main-content"
+        className="flex-1 transition-all duration-300"
+        style={{ marginLeft: isExpanded ? "260px" : "80px" }}
+      >
+        <div className="quiz-container">
+          <h1 className="text-center">Quiz for {lessonId}</h1>
+          <div className="timer">
+            Time Remaining: {Math.floor(seconds / 60)}:
+            {String(seconds % 60).padStart(2, "0")}
+          </div>
+          {questions.map((question) => (
+            <div key={question.id}>
+              <h3>{question.question}</h3>
+              {question.options.map((option) => (
+                <label key={option}>
+                  <input
+                    type="radio"
+                    name={`question-${question.id}`}
+                    value={option}
+                    onChange={() => handleOptionChange(question.id, option)}
+                    checked={answers[question.id] === option}
+                  />
+                  {option}
+                </label>
+              ))}
+            </div>
           ))}
+          <button onClick={submitQuiz}>Submit Quiz</button>
         </div>
-      ))}
-      <button onClick={submitQuiz}>Submit Quiz</button>
+      </div>
     </div>
   );
 }

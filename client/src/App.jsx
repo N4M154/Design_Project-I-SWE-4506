@@ -1,17 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import FloatingChatbot from "./components/Chatbot";
+import Layout from "./components/Layout";
+import PrivateRoute from "./components/PrivateRoute";
+//import Compiler from "./components/Workspace/CodeEditor";
 import Home from "./Main/Home";
 import About from "./pages/About";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import Profile from "./pages/Profile";
-import Header from "./components/Header";
-import PrivateRoute from "./components/PrivateRoute";
-import Layout from "./components/Layout";
-import Compiler from "./components/Workspace/CodeEditor";
-import LandingPage from "./pages/Landing";
 import CLanguagePage from "./pages/CLanguagePage";
 import CLearningMaterial from "./pages/CLearningMaterial";
-import FloatingChatbot from "./components/Chatbot";
+import Community from "./pages/CommunityPage";
+import Compiler from "./pages/Compiler.jsx";
+import LandingPage from "./pages/Landing.jsx";
+import Notes from "./pages/Notes.tsx";
+import Problems from "./pages/Problems.tsx";
+import Profile from "./pages/Profile";
+import Progress from "./pages/Progress.tsx";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -19,14 +24,19 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<LandingPage />} />
+
         <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />\
+        <Route path="/sign-up" element={<SignUp />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<Home />} />
+          <Route path="/practice" element={<Problems />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/progress" element={<Progress />} />
           <Route path="/about" element={<About />} />
           <Route path="/compiler" element={<Compiler />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/courses/c/:lessonId" element={<CLearningMaterial />} />
 
           <Route element={<PrivateRoute />}>

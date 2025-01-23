@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
-    <div className="bg-gray-900 text-white shadow-md">
+    <div className="bg-black text-white shadow-md">
       <div className="container mx-auto flex justify-between items-center p-4">
         <Link to="/home">
-          <h1 className="font-bold text-yellow-400 text-2xl">DoodleDuck</h1>
+          <h1 className="font-bold text-yellow-400 text-2xl"></h1>
         </Link>
         <ul className="flex gap-4">
           {currentUser && (
@@ -26,6 +26,7 @@ export default function Header() {
               <li>Try it yourself</li>
             </Link>
           )}
+
           {currentUser && (
             <Link
               to="/about"
