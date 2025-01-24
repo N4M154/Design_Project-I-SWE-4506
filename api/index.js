@@ -7,14 +7,13 @@ import authRoutes from "./routes/auth.route.js";
 //t
 import { problemDetails } from "./routes/problemDetails.route.js";
 //t
-import{ problemsTable  } from "./routes/problemsTable.route.js";
-;
+import { problemsTable } from "./routes/problemsTable.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 import axios from "axios";
 import cors from "cors";
 dotenv.config();
-
+const app = express();
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
@@ -25,8 +24,6 @@ mongoose
   });
 
 const __dirname = path.resolve();
-
-const app = express();
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 
@@ -41,17 +38,10 @@ app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });
 
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174'], // Allowed origins
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  credentials: true, // Allow cookies to be sent
-}));
-
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
-
 
 app.post("/api/execute", async (req, res) => {
   const { script, language, input } = req.body; // Get the C code from the request

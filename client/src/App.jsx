@@ -7,7 +7,6 @@ import Home from "./Main/Home";
 import About from "./pages/About";
 import CLanguagePage from "./pages/CLanguagePage";
 import CLearningMaterial from "./pages/CLearningMaterial";
-import Community from "./pages/CommunityPage";
 import Compiler from "./pages/Compiler.jsx";
 import LandingPage from "./pages/Landing.jsx";
 import Notes from "./pages/Notes.tsx";
@@ -36,7 +35,6 @@ export default function App() {
           <Route path="/compiler" element={<Compiler />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
-          <Route path="/community" element={<Community />} />
           <Route path="/courses/c/:lessonId" element={<CLearningMaterial />} />
 
           <Route element={<PrivateRoute />}>

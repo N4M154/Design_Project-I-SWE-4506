@@ -12,6 +12,7 @@ import {
   Trophy,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -21,7 +22,7 @@ export default function Home() {
   const [problems, setProblems] = useState([]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(1);
-  const username = "Faiza!";
+  const { currentUser } = useSelector((state) => state.user);
 
   const languages = [
     {
@@ -139,7 +140,7 @@ export default function Home() {
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                 Welcome back,{" "}
-                <span className="text-yellow-600">{username}</span>
+                <span className="text-yellow-600">{currentUser.username}</span>
               </h1>
               <p className="text-xl md:text-2xl mb-6 text-white leading-relaxed">
                 Ready to continue your coding journey?
