@@ -86,9 +86,9 @@ const FloatingChatbot = () => {
 
       {/* Chatbot Popup */}
       {isChatOpen && (
-        <div className="fixed bottom-12 right-12 w-[450px] h-[33rem] bg-black rounded-lg shadow-lg flex flex-col z-50">
+        <div className="fixed bottom-12 right-12 w-[450px] h-[33rem] bg-white dark:bg-black rounded-lg shadow-lg flex flex-col z-50">
           {/* Chat Header */}
-          <div className="flex items-center justify-between bg-yellow-500 text-black p-3 rounded-t-lg">
+          <div className="flex items-center justify-between bg-yellow-100 dark:bg-yellow-500 text-black p-3 rounded-t-lg">
             <div className="flex items-center">
               <img
                 src="/chatbot.png"
@@ -134,8 +134,8 @@ const FloatingChatbot = () => {
                 <div
                   className={`inline-block p-3 rounded-lg shadow-sm ${
                     message.role === "user"
-                      ? "bg-yellow-500 text-black"
-                      : "bg-black text-yellow-200 text-sm border border-yellow-200"
+                      ? "bg-yellow-200 dark:bg-yellow-500 dark:text-black"
+                      : "bg-yellow-50 border-black dark:bg-black text-black dark:text-yellow-200 text-sm border dark:border-yellow-200"
                   }`}
                 >
                   <ReactMarkdown>{message.content}</ReactMarkdown>
@@ -148,19 +148,19 @@ const FloatingChatbot = () => {
           {/* Chat Input */}
           <form
             onSubmit={handleSubmit}
-            className="p-3 border-t border-yellow-200"
+            className="p-3 border-t border-black dark:border-yellow-200"
           >
             <textarea
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Type your message here..."
               rows="2"
-              className="w-full p-2 border bg-black text-white border-yellow-200 rounded-lg focus:outline-none focus:ring focus:ring-yellow-200"
+              className="w-full p-2 border bg-yellow-50 dark:bg-black text-black dark:text-white border-black dark:border-yellow-200 rounded-lg focus:outline-none focus:ring focus:ring-yellow-200"
             />
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full bg-yellow-600 text-black font-semibold py-2 rounded-lg hover:bg-yellow-700 disabled:opacity-50"
+              className="mt-2 w-full bg-black dark:bg-yellow-600 text-yellow-50 dark:text-black font-semibold py-2 rounded-lg hover:opacity-70 dark:hover:bg-yellow-700 disabled:opacity-50"
             >
               {loading ? "Thinking..." : "Send"}
             </button>
