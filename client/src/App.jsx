@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import Progress from "./pages/Progress.tsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import Community from "./pages/CommunityPage.jsx";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/compiler" element={<Compiler />} />
           <Route path="/about" element={<About />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
           <Route path="/courses/c/:lessonId" element={<CLearningMaterial />} />
 
