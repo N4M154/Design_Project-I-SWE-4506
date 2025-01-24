@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -47,6 +48,7 @@ export default function Header() {
               <li>Sign In</li>
             )}
           </Link>
+          <ThemeToggle />
         </ul>
       </div>
     </div>
