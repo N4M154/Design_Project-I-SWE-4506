@@ -239,10 +239,10 @@ const CommunityPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-yellow-50">
+      <div className="min-h-screen flex items-center justify-center bg-yellow-50 dark:bg-[#18181b]">
         <div className="space-y-4 text-center">
           <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-lg text-yellow-800 font-medium">
+          <p className="text-lg text-yellow-800 dark:text-yellow-200 font-medium">
             Loading amazing content...
           </p>
         </div>
@@ -252,20 +252,20 @@ const CommunityPage = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-red-50">
-        <div className="bg-white p-8 rounded-xl shadow-lg text-center max-w-md">
+      <div className="min-h-screen flex items-center justify-center bg-red-50 dark:bg-[#18181b]">
+        <div className="bg-white dark:bg-red-950 p-8 rounded-xl shadow-lg dark:shadow-red-950 text-center max-w-md">
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <X className="w-8 h-8 text-red-500" />
           </div>
           <h2 className="text-2xl font-bold text-red-700 mb-2">Oops!</h2>
-          <p className="text-gray-600">{error}</p>
+          <p className="text-gray-600 dark:text-gray-100">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen bg-white">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b]">
       <SideButtons />
       <div
         id="main-content"
@@ -273,7 +273,7 @@ const CommunityPage = () => {
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
         {/* Hero Section */}
-        <div className="relative overflow-hidden bg-gradient-to-r from-black to-yellow-400 py-16 px-8 rounded-2xl shadow-lg mx-4 mt-6">
+        <div className="relative overflow-hidden bg-gradient-to-r from-black to-yellow-600/20 py-16 px-8 rounded-2xl shadow-lg mx-4 mt-6">
           <div className="relative z-10">
             <h1 className="text-5xl font-bold mb-4 leading-tight text-yellow-300">
               Share Your Story
@@ -296,7 +296,7 @@ const CommunityPage = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowForm(!showForm)}
-            className="flex items-center gap-2 bg-black text-white px-8 py-4 rounded-xl shadow-lg hover:bg-yellow-500 transition-all duration-300"
+            className="flex items-center gap-2 bg-black dark:bg-yellow-900 text-white px-8 py-4 rounded-xl shadow-lg hover:bg-yellow-500 transition-all duration-300"
           >
             {showForm ? (
               <X className="w-5 h-5" />
@@ -326,8 +326,8 @@ const CommunityPage = () => {
               exit={{ opacity: 0, y: -20 }}
               className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 px-4"
             >
-              <div className="bg-white p-8 rounded-2xl shadow-lg">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+              <div className="bg-white dark:bg-transparent dark:border dark:border-yellow-500 p-8 rounded-2xl shadow-lg dark:shadow-yellow-300/20">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-yellow-100 mb-6 flex items-center gap-2">
                   <PenSquare className="w-6 h-6 text-yellow-500" />
                   Create Your Blog
                 </h2>
@@ -339,7 +339,7 @@ const CommunityPage = () => {
                       value={newBlog.title}
                       onChange={handleChange}
                       placeholder="Give your blog a catchy title"
-                      className="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
+                      className="w-full p-4 border dark:bg-yellow-100 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
                       required
                     />
                     <textarea
@@ -348,7 +348,7 @@ const CommunityPage = () => {
                       onChange={handleChange}
                       placeholder="Share your thoughts..."
                       rows="6"
-                      className="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
+                      className="w-full p-4 border dark:bg-yellow-100 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
                       required
                     ></textarea>
                     <input
@@ -357,7 +357,7 @@ const CommunityPage = () => {
                       value={newBlog.author}
                       onChange={handleChange}
                       placeholder="Your name"
-                      className="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
+                      className="w-full p-4 border dark:bg-yellow-100 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
                       required
                     />
                     <div className="relative">
@@ -392,18 +392,18 @@ const CommunityPage = () => {
                 </form>
               </div>
 
-              <div className="bg-white p-8 rounded-2xl shadow-lg">
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">
+              <div className="bg-white dark:bg-yellow-400/20 p-8 rounded-2xl shadow-lg dark:shadow-yellow-300/20">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-yellow-50 mb-6">
                   Preview
                 </h2>
                 <div className="prose max-w-none">
-                  <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                  <h3 className="text-3xl font-bold text-gray-800 dark:text-[#f5f5f5] mb-4">
                     {newBlog.title || "Your Title Will Appear Here"}
                   </h3>
-                  <p className="text-gray-600 mb-4 whitespace-pre-wrap">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 whitespace-pre-wrap">
                     {newBlog.content || "Your content will appear here..."}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 dark:text-gray-200">
                     By {newBlog.author || "Your Name"}
                   </p>
                   {mediaPreview && (
@@ -429,7 +429,7 @@ const CommunityPage = () => {
 
         {/* Blog Posts */}
         <div id="latest-blogs" className="mt-16 px-4 pb-16">
-          <h2 className="text-4xl font-bold mb-12 text-gray-800 text-center">
+          <h2 className="text-4xl font-bold mb-12 text-gray-800 dark:text-yellow-200 text-center">
             Latest Stories
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -439,7 +439,7 @@ const CommunityPage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                className="bg-white dark:bg-transparent dark:border-yellow-300 dark:border rounded-2xl shadow-lg dark:hover:shadow-yellow-300/20 overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 {blog.media && (
                   <div className="aspect-video overflow-hidden">
@@ -457,10 +457,10 @@ const CommunityPage = () => {
                   </div>
                 )}
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4 line-clamp-2">
+                  <h3 className="text-2xl font-bold text-gray-800 dark:text-yellow-300 mb-4 line-clamp-2">
                     {blog.title}
                   </h3>
-                  <p className="text-gray-600 mb-6 line-clamp-3">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3">
                     {blog.content}
                   </p>
                   <button

@@ -92,7 +92,7 @@ function Problems() {
   const stats = getStats();
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
@@ -100,17 +100,23 @@ function Problems() {
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
         {/* Stats Section */}
-        <div className="mb-8 p-6 bg-yellow-50 rounded-lg shadow-sm">
-          <h2 className="text-2xl font-bold mb-4">Your Progress</h2>
+        <div className="mb-8 p-6 ml-10 mr-10 bg-yellow-50 dark:bg-transparent dark:border dark:border-yellow-200 rounded-lg shadow-lg dark:shadow-yellow-200/20">
+          <h2 className="text-2xl font-bold mb-4 dark:text-yellow-50">
+            Your Progress
+          </h2>
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-white rounded-lg">
-              <p className="text-gray-600">Problems Solved</p>
+            <div className="p-4 bg-white dark:bg-yellow-200/20 rounded-lg">
+              <p className="text-gray-600 dark:text-gray-300">
+                Problems Solved
+              </p>
               <p className="text-3xl font-bold text-green-600">
                 {stats.solved}
               </p>
             </div>
-            <div className="p-4 bg-white rounded-lg">
-              <p className="text-gray-600">Problems Attempted</p>
+            <div className="p-4 bg-white dark:bg-yellow-200/20 rounded-lg">
+              <p className="text-gray-600 dark:text-gray-300">
+                Problems Attempted
+              </p>
               <p className="text-3xl font-bold text-blue-600">
                 {stats.attempted}
               </p>
@@ -119,30 +125,32 @@ function Problems() {
         </div>
 
         {/* Problems List */}
-        <div className="bg-white rounded-lg shadow-sm">
+        <div className="bg-white dark:bg-black ml-10 mr-10 rounded-lg shadow-lg dark:shadow-yellow-200/20">
           <div className="p-6">
-            <h2 className="text-2xl font-bold mb-6">Programming Problems</h2>
+            <h2 className="text-2xl font-bold dark:text-white mb-6">
+              Programming Problems
+            </h2>
             <div className="space-y-4">
               {problems.map((problem) => (
                 <div
                   key={problem.id}
-                  className="border rounded-lg p-4 hover:bg-yellow-50 transition-colors cursor-pointer"
+                  className="border rounded-lg p-4 hover:bg-yellow-50 dark:hover:bg-yellow-200/20 transition-colors cursor-pointer"
                   onClick={() => setSelectedProblem(problem)}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold flex items-center gap-2">
+                      <h3 className="text-lg font-semibold dark:text-yellow-50 flex items-center gap-2">
                         <Code size={20} />
                         {problem.title}
                       </h3>
-                      <div className="flex gap-4 mt-2 text-sm text-gray-600">
+                      <div className="flex gap-4 mt-2 text-sm text-gray-600 dark:text-gray-300">
                         <span>Time: {problem.timeLimit}</span>
                         <span>Memory: {problem.memoryLimit}</span>
                         <span
                           className={`
                             ${
                               problem.difficulty === "Easy"
-                                ? "text-green-600"
+                                ? "text-green-600 dark:text-green-400"
                                 : ""
                             }
                             ${
@@ -176,31 +184,37 @@ function Problems() {
 
         {/* Selected Problem View */}
         {selectedProblem && (
-          <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-bold mb-4">{selectedProblem.title}</h2>
+          <div className="mt-8 ml-10 mr-10 bg-white dark:bg-transparent dark:border dark:border-yellow-200 rounded-lg shadow-lg dark:shadow-yellow-200/20 p-6">
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">
+              {selectedProblem.title}
+            </h2>
             <div className="space-y-4">
               <div>
-                <h3 className="font-semibold">Description</h3>
-                <p className="mt-2">{selectedProblem.description}</p>
+                <h3 className="font-semibold dark:text-yellow-50">
+                  Description
+                </h3>
+                <p className="mt-2 dark:text-white">
+                  {selectedProblem.description}
+                </p>
               </div>
               <div>
-                <h3 className="font-semibold">Sample Input</h3>
-                <pre className="mt-2 bg-gray-100 p-3 rounded">
+                <h3 className="font-semibold dark:text-white">Sample Input</h3>
+                <pre className="mt-2 bg-gray-100 dark:bg-black dark:text-white p-3 rounded">
                   {selectedProblem.sampleInput}
                 </pre>
               </div>
               <div>
-                <h3 className="font-semibold">Sample Output</h3>
-                <pre className="mt-2 bg-gray-100 p-3 rounded">
+                <h3 className="font-semibold dark:text-white">Sample Output</h3>
+                <pre className="mt-2 bg-gray-100 dark:bg-black dark:text-white p-3 rounded">
                   {selectedProblem.sampleOutput}
                 </pre>
               </div>
               <div>
-                <h3 className="font-semibold">Your Solution</h3>
+                <h3 className="font-semibold dark:text-white">Your Solution</h3>
                 <textarea
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
-                  className="w-full h-64 mt-2 p-3 font-mono text-sm border rounded"
+                  className="w-full h-64 mt-2 p-3 font-mono text-sm border rounded dark:bg-gray-700/30 dark:text-white"
                   placeholder="Write your code here..."
                 />
               </div>
@@ -216,8 +230,10 @@ function Problems() {
 
         {/* Submissions History */}
         {submissions.length > 0 && (
-          <div className="mt-8 bg-white rounded-lg shadow-sm p-6">
-            <h2 className="text-2xl font-bold mb-4">Recent Submissions</h2>
+          <div className="mt-8 ml-10 mr-10  bg-white dark:bg-yellow-200/20 rounded-lg shadow-lg dark:shadow-black p-6">
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">
+              Recent Submissions
+            </h2>
             <div className="space-y-2">
               {submissions.map((submission, index) => (
                 <div
@@ -225,8 +241,10 @@ function Problems() {
                   className="flex items-center gap-4 p-2 border-b"
                 >
                   {getStatusIcon(submission.status)}
-                  <span>Problem {submission.problemId}</span>
-                  <span className="text-gray-600">
+                  <span className="dark:text-white">
+                    Problem {submission.problemId}
+                  </span>
+                  <span className="text-gray-600 dark:text-gray-300">
                     {submission.timestamp.toLocaleTimeString()}
                   </span>
                 </div>

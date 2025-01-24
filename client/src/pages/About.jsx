@@ -93,7 +93,7 @@ export default function About() {
   const [isExpanded, setIsExpanded] = useState(true);
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-yellow-50 to-white font-['Poppins']">
+    <div className="flex min-h-screen bg-gradient-to-b from-yellow-50 to-white font-['Poppins'] dark:from-[#18181b] dark:to-[#3b3a22]">
       <SideButtons />
       <div
         id="main-content"
@@ -102,11 +102,11 @@ export default function About() {
       >
         <div className="relative flex flex-col items-center">
           {/* Background and Header */}
-          <div className="w-full bg-yellow-100 p-10 shadow-md text-center">
-            <h1 className="text-6xl font-extrabold text-yellow-600 mb-4">
+          <div className="w-full bg-yellow-100 dark:bg-yellow-400/20 rounded-3xl p-10 shadow-md dark:shadow-yellow-400/20 text-center">
+            <h1 className="text-6xl font-extrabold text-yellow-600 dark:text-yellow-100 mb-4">
               About DoodleDuck
             </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-700 dark:text-yellow-50 max-w-3xl mx-auto">
               Welcome to DoodleDuck! We are passionate about making programming
               accessible and enjoyable for everyone. Dive into our journey, our
               vision, and what makes us unique.
@@ -123,17 +123,17 @@ export default function About() {
           {/* Sections */}
           <div className="w-full max-w-screen-lg mx-auto mt-12 space-y-12 px-6">
             {/* Motivation Section */}
-            <div className="bg-white rounded-lg shadow-md p-8 flex items-center gap-8">
+            <div className="bg-white dark:bg-transparent dark:border dark:border-yellow-200 rounded-lg shadow-md p-8 flex items-center gap-8">
               <div className="w-1/3">
                 <div className="h-40 w-40 bg-yellow-200 rounded-full flex items-center justify-center text-yellow-600 text-4xl font-bold shadow">
                   Why?
                 </div>
               </div>
               <div className="flex-1">
-                <h2 className="text-3xl font-bold text-yellow-600 mb-4">
+                <h2 className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-4">
                   Our Motivation
                 </h2>
-                <p className="text-gray-700 text-lg">
+                <p className="text-gray-700 dark:text-gray-300 text-lg">
                   DoodleDuck was born from our journey through Design Project
                   Lab I, where we recognized the need for a cohesive learning
                   platform for aspiring programmers. We’re here to make coding
@@ -143,8 +143,8 @@ export default function About() {
             </div>
 
             {/* Features Section */}
-            <div className="bg-yellow-50 rounded-lg shadow-md p-8 flex flex-col gap-6">
-              <h2 className="text-3xl font-bold text-yellow-600 text-center mb-4">
+            <div className="bg-yellow-50 dark:bg-yellow-400/20 rounded-lg shadow-md p-8 flex flex-col gap-6">
+              <h2 className="text-3xl font-bold text-yellow-600 dark:text-white text-center mb-4">
                 Platform Features
               </h2>
               <div className="grid grid-cols-2 gap-6">
@@ -152,7 +152,7 @@ export default function About() {
                   <div className="h-16 w-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto shadow">
                     <span className="text-yellow-600 text-2xl">💻</span>
                   </div>
-                  <p className="mt-4 text-gray-700 font-medium">
+                  <p className="mt-4 text-gray-700 dark:text-gray-300 font-medium">
                     Interactive Coding
                   </p>
                 </div>
@@ -160,7 +160,7 @@ export default function About() {
                   <div className="h-16 w-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto shadow">
                     <span className="text-yellow-600 text-2xl">📈</span>
                   </div>
-                  <p className="mt-4 text-gray-700 font-medium">
+                  <p className="mt-4 text-gray-700 dark:text-gray-300 font-medium">
                     Progress Tracking
                   </p>
                 </div>
@@ -168,7 +168,7 @@ export default function About() {
                   <div className="h-16 w-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto shadow">
                     <span className="text-yellow-600 text-2xl">🤝</span>
                   </div>
-                  <p className="mt-4 text-gray-700 font-medium">
+                  <p className="mt-4 text-gray-700 dark:text-gray-300 font-medium">
                     Peer Collaboration
                   </p>
                 </div>
@@ -176,7 +176,7 @@ export default function About() {
                   <div className="h-16 w-16 bg-yellow-200 rounded-full flex items-center justify-center mx-auto shadow">
                     <span className="text-yellow-600 text-2xl">⏱️</span>
                   </div>
-                  <p className="mt-4 text-gray-700 font-medium">
+                  <p className="mt-4 text-gray-700 dark:text-gray-300 font-medium">
                     Real-Time Feedback
                   </p>
                 </div>
@@ -197,11 +197,11 @@ export default function About() {
             </div> */}
 
             {/* Future Plans Section */}
-            <div className="bg-yellow-100 rounded-lg shadow-md p-8">
-              <h2 className="text-3xl font-bold text-yellow-600 text-center mb-6">
+            <div className="bg-yellow-100 dark:bg-yellow-100/40 rounded-lg shadow-md p-8">
+              <h2 className="text-3xl font-bold text-yellow-600 dark:text-yellow-100 text-center mb-6">
                 Our Future Vision
               </h2>
-              <p className="text-gray-700 text-lg text-center">
+              <p className="text-gray-700 dark:text-black text-lg text-center">
                 We aim to expand with more languages, sophisticated coding
                 challenges, and a mobile app for learning on the go. Our mission
                 is to make coding education universal and enjoyable for all.

@@ -69,6 +69,16 @@ const SideButtons = () => {
 
           .side-menu {
             height: 100%;
+            background: #d1cb90;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid darkkhaki;
+          }
+            .dark .side-menu {
+            height: 100%;
             background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
@@ -85,6 +95,7 @@ const SideButtons = () => {
           .side-menu.collapsed {
             width: 80px;
             overflow: hidden;
+            
           }
 
           .toggle-button {
@@ -112,6 +123,15 @@ const SideButtons = () => {
           }
 
           .menu-header {
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid darkkhaki;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+           .dark .menu-header {
             padding: 16px;
             text-align: center;
             border-bottom: 1px solid rgba(250, 204, 21, 0.1);
@@ -154,6 +174,17 @@ const SideButtons = () => {
             display: flex;
             align-items: center;
             padding: 12px;
+            color: black;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 4px 0;
+            transition: all 0.2s ease;
+            position: relative;
+          }
+            .dark .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
             color: #e5e7eb;
             text-decoration: none;
             border-radius: 8px;
@@ -168,6 +199,10 @@ const SideButtons = () => {
           }
 
           .menu-item.active {
+            background: #f0ebc2;
+            color: #66602e;
+          }
+           .dark .menu-item.active {
             background: rgba(250, 204, 21, 0.2);
             color: #facc15;
           }
@@ -241,6 +276,20 @@ const SideButtons = () => {
           .logout-button {
             margin: 16px;
             padding: 12px;
+            background: rgba(250, 204, 21, 0.4);
+            border: none;
+            border-radius: 8px;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: calc(100% - 32px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+            .dark .logout-button {
+            margin: 16px;
+            padding: 12px;
             background: rgba(250, 204, 21, 0.1);
             border: none;
             border-radius: 8px;
@@ -257,6 +306,18 @@ const SideButtons = () => {
             background: rgba(250, 204, 21, 0.2);
             transform: translateX(4px);
           }
+            .doodle-text {
+            display: inline-block;
+          }
+
+            .single-line {
+            white-space: nowrap;
+           }
+
+           .multi-line {
+           display: block;
+           }
+
 
           #main-content {
             margin-left: 80px;
@@ -286,7 +347,26 @@ const SideButtons = () => {
 
           <div className="menu-header">
             <Link to="/home">
-              <h1 className="font-bold text-yellow-400 text-2xl">DoodleDuck</h1>
+              <h1
+                className={`font-bold text-yellow-700 dark:text-yellow-400 text-2xl ${
+                  !isExpanded ? "text-md" : "text-2xl"
+                }`}
+              >
+                <span
+                  className={`doodle-text ${
+                    isExpanded ? "single-line" : "multi-line"
+                  }`}
+                >
+                  Doodle
+                </span>
+                <span
+                  className={`doodle-text ${
+                    isExpanded ? "single-line" : "multi-line"
+                  }`}
+                >
+                  Duck
+                </span>
+              </h1>
             </Link>
           </div>
 

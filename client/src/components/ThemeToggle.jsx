@@ -89,11 +89,11 @@ const ThemeToggle = () => {
     >
       {theme === "light" ? (
         <span role="img" aria-label="Sun">
-          <FaSun className="text-2xl text-yellow-400 transition-transform duration-300 transform hover:scale-110" />
+          <FaSun className="text-2xl text-yellow-800 transition-transform duration-300 transform hover:scale-110" />
         </span>
       ) : (
         <span role="img" aria-label="Moon">
-          <BsMoonStarsFill className="text-2xl text-teal-300 transition-transform duration-300 transform hover:scale-110" />
+          <BsMoonStarsFill className="text-2xl text-yellow-200  transition-transform duration-300 transform hover:scale-110" />
         </span>
       )}
     </button>

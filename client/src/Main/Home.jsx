@@ -122,7 +122,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
@@ -130,7 +130,7 @@ export default function Home() {
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
         {/* Hero Section */}
-        <div className="relative h-[400px] bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-50">
+        <div className="relative h-[400px] bg-gradient-to-r from-yellow-50 via-yellow-100 to-yellow-50 dark:from-[#18181b] dark:tp-[#18181b]">
           <img
             src="https://images.unsplash.com/photo-1623479322729-28b25c16b011?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
             alt="Hero"
@@ -140,14 +140,14 @@ export default function Home() {
             <div className="max-w-3xl">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                 Welcome back,{" "}
-                <span className="text-yellow-600">{currentUser.username}</span>
+                <span className="text-yellow-400">{currentUser.username}</span>
               </h1>
               <p className="text-xl md:text-2xl mb-6 text-white leading-relaxed">
                 Ready to continue your coding journey?
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link to="/learning-path">
-                  <button className="bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2 rounded-xl font-bold text-base transition duration-300 transform hover:scale-105 hover:shadow-lg">
+                  <button className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-2 rounded-xl font-bold text-base transition duration-300 transform hover:scale-105 hover:shadow-lg">
                     Continue Learning
                   </button>
                 </Link>
@@ -162,9 +162,9 @@ export default function Home() {
         </div>
 
         {/* Language Cards Section - Replace the existing Language Cards section with this code */}
-        <div className="py-32 bg-white">
+        <div className="py-32 bg-white dark:bg-black">
           <div className="container mx-auto px-12">
-            <h2 className="text-2xl md:text-5xl font-bold text-center text-gray-900 mb-12">
+            <h2 className="text-2xl md:text-5xl font-bold text-center text-gray-900 dark:text-yellow-200 mb-12">
               Choose Your Path
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -174,7 +174,7 @@ export default function Home() {
                   to={language.route}
                   className="group relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-2xl"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/80 dark:bg-transparent z-10" />
                   <img
                     src={language.image}
                     alt={language.name}
@@ -203,7 +203,7 @@ export default function Home() {
                       <p className="text-white/90 mb-4 line-clamp-2">
                         {language.description}
                       </p>
-                      <div className="space-y-3">
+                      <div className="space-y-3 pb-5">
                         <div className="flex items-center justify-between text-white">
                           <span className="text-sm font-semibold">
                             Progress
@@ -228,7 +228,7 @@ export default function Home() {
           </div>
         </div>
         {/* Stats Section */}
-        <div className="bg-gradient-to-b from-white to-yellow-50 py-12">
+        <div className="bg-gradient-to-b from-white to-yellow-50 dark:from-[#18181b] dark:to-[#18181b] py-12">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {stats.map((stat, index) => {
@@ -236,15 +236,15 @@ export default function Home() {
                 return (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-yellow-50 to-white rounded-xl p-6 transform hover:scale-105 transition duration-300 shadow-md border border-yellow-200/50"
+                    className="bg-gradient-to-br from-yellow-50 to-white dark:from-transparent dark:to-transparent rounded-xl p-6 transform hover:scale-105 transition duration-300 shadow-md border border-yellow-200/50"
                   >
                     <div className="flex items-center justify-between mb-3">
                       <Icon className="text-yellow-600" size={32} />
-                      <span className="text-3xl font-bold text-gray-900">
+                      <span className="text-3xl font-bold text-gray-900 dark:text-[#f5f5f5]">
                         {stat.value}
                       </span>
                     </div>
-                    <h3 className="text-base text-gray-700 font-medium">
+                    <h3 className="text-base text-gray-700 dark:text-gray-300 font-medium">
                       {stat.label}
                     </h3>
                   </div>
@@ -255,9 +255,9 @@ export default function Home() {
         </div>
 
         {/* Features Grid */}
-        <div className="py-12 bg-yellow-50">
+        <div className="py-12 bg-yellow-50 dark:bg-[#18181b]">
           <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8 dark:text-white">
               Everything You Need
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -266,15 +266,15 @@ export default function Home() {
                 return (
                   <div
                     key={index}
-                    className="group bg-white p-6 rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-lg border border-yellow-200/50"
+                    className="group bg-white dark:bg-yellow-900/20 p-6 rounded-xl transform transition-all duration-300 hover:scale-105 hover:shadow-lg dark:hover:shadow-yellow-500 border border-yellow-200/50"
                   >
                     <div className="mb-4 transform transition-all duration-300 group-hover:scale-110">
                       <Icon className="w-10 h-10 text-yellow-600" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-[#f5f5f5] mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-gray-700">
+                    <p className="text-sm text-gray-700 dark:text-gray-400">
                       {feature.description}
                     </p>
                   </div>
@@ -285,14 +285,14 @@ export default function Home() {
         </div>
 
         {/* Progress Section */}
-        <div className="bg-white py-12">
+        <div className="bg-white dark:bg-black py-12">
           <div className="container mx-auto px-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-yellow-100 mb-8 text-center">
               Your Progress
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-yellow-50 to-white rounded-xl p-6 shadow-md border border-yellow-200/50">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <div className="bg-gradient-to-br from-yellow-50 to-white dark:from-transparent dark:to-transparent rounded-xl p-6 shadow-md border border-yellow-200/50">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-yellow-200 mb-4">
                   Latest Achievements
                 </h3>
                 <div className="space-y-3">
@@ -305,18 +305,18 @@ export default function Home() {
                   ].map((achievement, index) => (
                     <div
                       key={index}
-                      className="flex items-center space-x-3 p-3 bg-white rounded-lg transform hover:scale-102 transition duration-300 shadow-sm"
+                      className="flex items-center space-x-3 p-3 bg-white dark:bg-gray-950 rounded-lg transform hover:scale-102 transition duration-300 shadow-sm"
                     >
                       <Trophy className="text-yellow-600" size={20} />
-                      <span className="text-sm text-gray-800">
+                      <span className="text-sm text-gray-800 dark:text-gray-300">
                         {achievement}
                       </span>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-yellow-50 to-white rounded-xl p-6 shadow-md border border-yellow-200/50">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
+              <div className="bg-gradient-to-br from-yellow-50 to-white dark:from-black dark:to-[#18181b] rounded-xl p-6 shadow-lg dark:shadow-black border border-yellow-200/50">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
                   Learning Streak
                 </h3>
                 <div className="grid grid-cols-7 gap-2">
@@ -334,7 +334,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <p className="text-base text-gray-700 mt-4 text-center font-medium">
+                <p className="text-base text-gray-700 dark:text-yellow-100 mt-4 text-center font-medium">
                   🔥 Keep up the 5-day streak!
                 </p>
               </div>

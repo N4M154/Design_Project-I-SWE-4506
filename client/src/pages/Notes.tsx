@@ -31,20 +31,20 @@ function Notes() {
     .filter((word) => word.length > 0).length;
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
         className="flex-1 transition-all duration-300"
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
-        <div className="flex flex-col min-h-screen p-8 bg-yellow-50 font-['Poppins']">
+        <div className="flex flex-col min-h-screen p-8 bg-yellow-50 dark:bg-[#18181b] font-['Poppins'] dark:border dark:border-yellow-200/50 dark:rounded-xl">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-2xl font-bold">Notes</h1>
+            <h1 className="text-2xl font-bold dark:text-yellow-100">Notes</h1>
             <div className="flex items-center gap-2">
               <button
                 onClick={handleCopy}
-                className="px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                className="px-3 py-2 bg-blue-600 dark:bg-blue-400 text-white dark:text-black rounded hover:bg-blue-700 dark:hover:bg-blue-800 transition"
               >
                 <Copy size={18} />
               </button>
@@ -57,7 +57,9 @@ function Notes() {
               <button
                 onClick={() => setIsCodeMode(!isCodeMode)}
                 className={`px-3 py-2 rounded ${
-                  isCodeMode ? "bg-gray-800 text-white" : "bg-gray-200"
+                  isCodeMode
+                    ? "bg-gray-800 dark:bg-yellow-500/70 dark:text-black text-white"
+                    : "bg-gray-200"
                 }`}
               >
                 <Code size={18} />
@@ -67,7 +69,7 @@ function Notes() {
 
           <div className="flex justify-between mb-4">
             <div>
-              <label className="mr-2">Font Size:</label>
+              <label className="mr-2 dark:text-gray-300">Font Size:</label>
               <input
                 type="range"
                 min="12"
@@ -77,7 +79,7 @@ function Notes() {
                 className="cursor-pointer"
               />
             </div>
-            <p className="text-gray-700">
+            <p className="text-gray-700 dark:text-white">
               Word Count: <span className="font-bold">{wordCount}</span>
             </p>
           </div>
@@ -86,14 +88,16 @@ function Notes() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             className={`w-full h-96 p-4 border rounded ${
-              isCodeMode ? "font-mono bg-gray-100" : "bg-white"
+              isCodeMode
+                ? "font-mono bg-gray-100 dark:bg-yellow-50/10 text-white"
+                : "bg-white dark:bg-gray-400/10 dark:border dark:border-black dark:focus:ring-black text-white"
             }`}
             style={{ fontSize: `${fontSize}px` }}
             placeholder="Start typing your notes here..."
           />
 
           {isCodeMode && (
-            <div className="mt-6 p-4 bg-gray-900 text-white rounded">
+            <div className="mt-6 p-4 bg-gray-900 dark:bg-transparent dark:border dark:border-yellow-100/40 text-white  dark:text-white rounded">
               <pre>
                 <code
                   dangerouslySetInnerHTML={{

@@ -45,7 +45,7 @@ export default function CodeEditor() {
   const [code, setCode] = useState(languageExamples.python3);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("python3");
+  const [language, setLanguage] = useState("c");
   const [loading, setLoading] = useState(false);
   const [inputNeeded, setInputNeeded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -58,10 +58,6 @@ export default function CodeEditor() {
     { id: "cpp", name: "C++", icon: "⚡" },
     { id: "java", name: "Java", icon: "☕" },
     { id: "python3", name: "Python", icon: "🐍" },
-    { id: "javascript", name: "JavaScript", icon: "💛" },
-    { id: "typescript", name: "TypeScript", icon: "📘" },
-    { id: "rust", name: "Rust", icon: "🦀" },
-    { id: "go", name: "Go", icon: "🔵" },
   ];
 
   const inputKeywords = {
@@ -69,10 +65,6 @@ export default function CodeEditor() {
     cpp: ["cin"],
     java: ["Scanner"],
     python3: ["input"],
-    javascript: ["prompt"],
-    typescript: ["prompt"],
-    rust: ["stdin"],
-    go: ["Scan"],
   };
 
   useEffect(() => {
@@ -142,10 +134,6 @@ export default function CodeEditor() {
       cpp: ".cpp",
       java: ".java",
       python3: ".py",
-      javascript: ".js",
-      typescript: ".ts",
-      rust: ".rs",
-      go: ".go",
     };
 
     const blob = new Blob([code], { type: "text/plain" });

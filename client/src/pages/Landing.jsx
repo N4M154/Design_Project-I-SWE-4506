@@ -1,23 +1,24 @@
 import { Award, Book, Brain, Terminal, Timer, Users } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
-
+import ThemeToggle from "../components/ThemeToggle";
 export function Landing() {
   return (
-    <div className="bg-gray-900 text-gray-200">
+    <div>
       {/* Header */}
-      <header className="fixed w-full bg-gray-900/95 backdrop-blur-sm py-4 z-50 transition-all duration-300">
+      <header className="fixed w-full bg-yellow-50 dark:bg-[#18181b] backdrop-blur-sm py-4 z-50 transition-all duration-300">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-yellow-200 hover:text-yellow-300 transition-colors duration-300">
+          <h1 className="text-2xl font-bold text-yellow-600 dark:text-yellow-200 hover:text-yellow-500 dark:hover:text-yellow-100 transition-colors duration-300">
             DoodleDuck
           </h1>
           <nav className="hidden md:flex space-x-6"></nav>
           <div className="flex space-x-4">
             <Link to="/sign-in">
-              <button className="bg-yellow-200 hover:bg-yellow-300 text-gray-900 px-4 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-200/20">
+              <button className="bg-yellow-600 dark:bg-yellow-200 hover:bg-yellow-500 dark:hover:bg-yellow-100 text-[#f5f5f5] dark:text-black px-4 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-200/20">
                 Get Started
               </button>
             </Link>
+            <ThemeToggle />
           </div>
         </div>
       </header>
@@ -60,7 +61,7 @@ export function Landing() {
       </div>
 
       {/* Stats Section */}
-      <div className="bg-gray-800 py-20">
+      <div className="bg-[#f5f5f5] dark:bg-[#18181b] py-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -89,15 +90,15 @@ export function Landing() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-gray-900 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-200/10 group"
+                className="bg-yellow-100 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl dark:hover:shadow-yellow-200 dark:hover:shadow-lg group"
               >
-                <div className="text-5xl font-bold text-yellow-200 mb-2 group-hover:text-yellow-300 transition-colors duration-300">
+                <div className="text-5xl font-bold text-black mb-2 group-hover:text-yellow-800 transition-colors duration-300">
                   {stat.number}
                 </div>
-                <div className="text-xl font-semibold text-gray-200 mb-2">
+                <div className="text-xl font-semibold text-gray-700 mb-2">
                   {stat.label}
                 </div>
-                <div className="text-gray-400">{stat.description}</div>
+                <div className="text-gray-600">{stat.description}</div>
               </div>
             ))}
           </div>
@@ -105,16 +106,16 @@ export function Landing() {
       </div>
 
       {/* Features Section */}
-      <div className="py-20 bg-gray-900">
+      <div className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-black dark:text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
             Everything You Need to Succeed
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: (
-                  <Terminal className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Terminal className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "Interactive Code Editor",
                 description:
@@ -122,7 +123,7 @@ export function Landing() {
               },
               {
                 icon: (
-                  <Brain className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Brain className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "AI-Powered Learning",
                 description:
@@ -130,7 +131,7 @@ export function Landing() {
               },
               {
                 icon: (
-                  <Book className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Book className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "Comprehensive Curriculum",
                 description:
@@ -138,7 +139,7 @@ export function Landing() {
               },
               {
                 icon: (
-                  <Timer className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Timer className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "Progress Tracking",
                 description:
@@ -146,7 +147,7 @@ export function Landing() {
               },
               {
                 icon: (
-                  <Users className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Users className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "Community Support",
                 description:
@@ -154,7 +155,7 @@ export function Landing() {
               },
               {
                 icon: (
-                  <Award className="w-12 h-12 text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300" />
+                  <Award className="w-12 h-12 text-black dark:text-yellow-200 group-hover:text-gray-800 dark:group-hover:text-yellow-300 transition-colors duration-300" />
                 ),
                 title: "Certification",
                 description:
@@ -163,12 +164,12 @@ export function Landing() {
             ].map((feature, index) => (
               <div
                 key={index}
-                className="group bg-gray-800 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-200/10 hover:bg-gray-800/80"
+                className="group bg-yellow-50 dark:bg-gray-800 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl shadow-lg"
               >
                 <div className="mb-6 transform transition-all duration-300 group-hover:scale-110">
                   {feature.icon}
                 </div>
-                <h3 className="text-2xl font-semibold text-yellow-200 mb-4 group-hover:text-yellow-300 transition-colors duration-300">
+                <h3 className="text-2xl font-semibold text-yellow-800 dark:text-yellow-200 mb-4 dark:group-hover:text-yellow-300 group-hover:text-yellow-600 transition-colors duration-300">
                   {feature.title}
                 </h3>
                 <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
@@ -181,9 +182,9 @@ export function Landing() {
       </div>
 
       {/* Testimonials Section */}
-      <div className="py-20 bg-gray-800">
+      <div className="py-20 bg-[#f5f5f5] dark:bg-[#18181b]">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-yellow-700 dark:text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
             What Our Users Say
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -215,7 +216,7 @@ export function Landing() {
             ].map((testimonial, index) => (
               <div
                 key={index}
-                className="group bg-gray-900 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-200/10"
+                className="group bg-gray-300 dark:bg-gray-800 p-8 rounded-2xl transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl dark:shadow-black dark:hover:shadow-black"
               >
                 <div className="flex items-center mb-6">
                   <img
@@ -224,15 +225,15 @@ export function Landing() {
                     className="w-16 h-16 rounded-full mr-4 transform transition-all duration-300 group-hover:scale-110"
                   />
                   <div>
-                    <h4 className="text-xl font-semibold text-yellow-200 group-hover:text-yellow-300 transition-colors duration-300">
+                    <h4 className="text-xl font-semibold text-black dark:text-yellow-300 group-hover:text-gray-600 dark:group-hover:text-yellow-100 transition-colors duration-300">
                       {testimonial.name}
                     </h4>
-                    <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                    <p className="text-gray-700 dark:text-gray-300 group-hover:text-gray-500 dark:group-hover:text-gray-100 transition-colors duration-300">
                       {testimonial.role}
                     </p>
                   </div>
                 </div>
-                <p className="text-gray-300 italic group-hover:text-white transition-colors duration-300">
+                <p className="text-gray-600 dark:text-yellow-50 italic group-hover:text-gray-800 dark:group-hover:text-yellow-100 transition-colors duration-300">
                   "{testimonial.quote}"
                 </p>
               </div>
@@ -242,9 +243,9 @@ export function Landing() {
       </div>
 
       {/* FAQ Section */}
-      <div className="py-20 bg-gray-900">
+      <div className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-black dark:text-yellow-200 mb-16 transform transition-all duration-500 hover:scale-105">
             Frequently Asked Questions
           </h2>
           <div className="max-w-3xl mx-auto space-y-6">
@@ -272,12 +273,12 @@ export function Landing() {
             ].map((faq, index) => (
               <div
                 key={index}
-                className="group bg-gray-800 rounded-2xl p-8 transform transition-all duration-300 hover:scale-102 hover:shadow-xl hover:shadow-yellow-200/10"
+                className="group bg-yellow-50 dark:bg-gray-800 rounded-2xl p-8 transform transition-all duration-300 hover:scale-102 shadow-lg dark:shadow-black hover:shadow-xl dark:hover:shadow-black"
               >
-                <h3 className="text-xl font-semibold text-yellow-200 mb-4 group-hover:text-yellow-300 transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-yellow-800 dark:text-yellow-300 mb-4 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300">
                   {faq.question}
                 </h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                <p className="text-gray-800 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-200  transition-colors duration-300">
                   {faq.answer}
                 </p>
               </div>
@@ -287,14 +288,14 @@ export function Landing() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 py-16">
+      <footer className="bg-yellow-50 dark:bg-[#18181b] py-16">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="transform transition-all duration-300 hover:translate-x-2">
-              <h3 className="text-xl font-bold text-yellow-200 mb-4">
+              <h3 className="text-xl font-bold text-yellow-600 dark:text-yellow-200 mb-4">
                 DoodleDuck
               </h3>
-              <p className="text-gray-400">
+              <p className="text-gray-800 dark:text-gray-400">
                 Empowering developers through interactive learning and
                 AI-powered guidance.
               </p>
@@ -335,7 +336,7 @@ export function Landing() {
                 key={index}
                 className="transform transition-all duration-300 hover:translate-x-2"
               >
-                <h4 className="font-semibold text-yellow-200 mb-4">
+                <h4 className="font-semibold text-yellow-600 dark:text-yellow-200 mb-4">
                   {section.title}
                 </h4>
                 <ul className="space-y-2">
@@ -343,7 +344,7 @@ export function Landing() {
                     <li key={linkIndex}>
                       <Link
                         to={link.path}
-                        className="text-gray-400 hover:text-yellow-200 transition-colors duration-300"
+                        className="text-gray-800 dark:text-gray-400 hover:text-yellow-700 dark:hover:text-yellow-100 transition-colors duration-300"
                       >
                         {link.name}
                       </Link>
@@ -353,7 +354,7 @@ export function Landing() {
               </div>
             ))}
           </div>
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-800 dark:text-gray-400">
             <p>© 2024 DoodleDuck. All rights reserved.</p>
           </div>
         </div>
