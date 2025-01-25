@@ -1,57 +1,34 @@
-// src/pages/CLanguagePage.jsx
+
+import { Award, BookOpen, CheckCircle, ChevronRight, Code2, Cpu, Database, LineChart, Network, Terminal } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import SideButtons from "../components/SideButtons";
 
 export default function CLanguagePage() {
   const [completedQuizzes, setCompletedQuizzes] = useState(["hello-world"]);
-  
-  useEffect(() => {
-    if (window.location.pathname === "/courses/c") {
-      const scriptConfig = document.createElement("script");
-      scriptConfig.innerHTML = `
-        window.embeddedChatbotConfig = {
-          chatbotId: "2q4GTxw4DnGGcyJB1GxGi",
-          domain: "www.chatbase.co"
-        };
-      `;
-      document.body.appendChild(scriptConfig);
-
-      const scriptEmbed = document.createElement("script");
-      scriptEmbed.src = "https://www.chatbase.co/embed.min.js";
-      scriptEmbed.setAttribute("chatbotId", "2q4GTxw4DnGGcyJB1GxGi");
-      scriptEmbed.setAttribute("domain", "www.chatbase.co");
-      scriptEmbed.defer = true;
-      document.body.appendChild(scriptEmbed);
-
-      return () => {
-        document.body.removeChild(scriptConfig);
-        document.body.removeChild(scriptEmbed);
-      };
-    }
-  }, []);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   const contentList = [
-    { id: "hello-world", title: "Hello World", quizCompleted: true },
-    { id: "variables", title: "Variables", quizCompleted: false },
-    { id: "data-types", title: "Data Types", quizCompleted: false },
-    { id: "control-structures", title: "Control Structures", quizCompleted: false },
-    { id: "functions", title: "Functions", quizCompleted: false },
-    { id: "arrays", title: "Arrays", quizCompleted: false },
-    { id: "pointers", title: "Pointers", quizCompleted: false },
-    { id: "strings", title: "Strings", quizCompleted: false },
-    { id: "structures", title: "Structures", quizCompleted: false },
-    { id: "file-io", title: "File I/O", quizCompleted: false },
-    { id: "memory-management", title: "Memory Management", quizCompleted: false },
-    { id: "dynamic-memory", title: "Dynamic Memory Allocation", quizCompleted: false },
-    { id: "multithreading", title: "Multithreading", quizCompleted: false },
-    { id: "preprocessors", title: "Preprocessors", quizCompleted: false },
-    { id: "bitwise-operations", title: "Bitwise Operations", quizCompleted: false },
-    { id: "recursion", title: "Recursion", quizCompleted: false },
-    { id: "linked-lists", title: "Linked Lists", quizCompleted: false },
-    { id: "advanced-pointers", title: "Advanced Pointers", quizCompleted: false },
-    { id: "graphics-programming", title: "Graphics Programming", quizCompleted: false },
-    { id: "network-programming", title: "Network Programming", quizCompleted: false }
+    { id: "hello-world", title: "Hello World", icon: <Terminal size={20} />, quizCompleted: true },
+    { id: "variables", title: "Variables", icon: <Code2 size={20} />, quizCompleted: false },
+    { id: "data-types", title: "Data Types", icon: <Database size={20} />, quizCompleted: false },
+    { id: "control-structures", title: "Control Structures", icon: <LineChart size={20} />, quizCompleted: false },
+    { id: "functions", title: "Functions", icon: <Code2 size={20} />, quizCompleted: false },
+    { id: "arrays", title: "Arrays", icon: <Database size={20} />, quizCompleted: false },
+    { id: "pointers", title: "Pointers", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "strings", title: "Strings", icon: <Code2 size={20} />, quizCompleted: false },
+    { id: "structures", title: "Structures", icon: <Database size={20} />, quizCompleted: false },
+    { id: "file-io", title: "File I/O", icon: <Database size={20} />, quizCompleted: false },
+    { id: "memory-management", title: "Memory Management", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "dynamic-memory", title: "Dynamic Memory Allocation", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "multithreading", title: "Multithreading", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "preprocessors", title: "Preprocessors", icon: <Code2 size={20} />, quizCompleted: false },
+    { id: "bitwise-operations", title: "Bitwise Operations", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "recursion", title: "Recursion", icon: <Code2 size={20} />, quizCompleted: false },
+    { id: "linked-lists", title: "Linked Lists", icon: <Database size={20} />, quizCompleted: false },
+    { id: "advanced-pointers", title: "Advanced Pointers", icon: <Cpu size={20} />, quizCompleted: false },
+    { id: "graphics-programming", title: "Graphics Programming", icon: <Terminal size={20} />, quizCompleted: false },
+    { id: "network-programming", title: "Network Programming", icon: <Network size={20} />, quizCompleted: false }
   ];
 
   const handleQuizCompletion = (id) => {
@@ -60,23 +37,124 @@ export default function CLanguagePage() {
     }
   };
 
+  const progress = (completedQuizzes.length / contentList.length) * 100;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-yellow-700 p-8">
-      <h1 className="text-4xl font-bold mb-8 text-yellow-400 text-center">C Language Course</h1>
-      <ul className="space-y-4 max-w-3xl mx-auto">
-        {contentList.map((content) => (
-          <li key={content.id} className={`p-4 rounded-lg shadow-lg bg-gray-800 border ${content.quizCompleted ? 'border-green-500' : 'border-yellow-500'}`}>
-            <Link
-              to={`/courses/c/${content.id}`}
-              className={`text-yellow-300 hover:text-yellow-400 font-semibold transition duration-300 ${content.quizCompleted ? 'line-through' : ''}`}
-              onClick={() => handleQuizCompletion(content.id)}
-            >
-              {content.title}
-            </Link>
-            {content.quizCompleted && <span className="text-green-400 ml-2">✔</span>}
-          </li>
-        ))}
-      </ul>
+    <div className="flex min-h-screen bg-white font-['Poppins']">
+      <SideButtons />
+      <div
+        id="main-content"
+        className="flex-1 transition-all duration-300"
+        style={{ marginLeft: isExpanded ? "260px" : "80px" }}
+      >
+        {/* Hero Section */}
+        <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 py-16 px-8 rounded-2xl">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="flex-1">
+                <h1 className="text-5xl font-bold text-gray-800 mb-4">
+                  Master C Programming
+                </h1>
+                <p className="text-xl text-gray-600 mb-6">
+                  From basics to advanced concepts, learn C programming through interactive lessons and hands-on practice.
+                </p>
+                <div className="flex gap-4">
+                  <button className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition duration-300 flex items-center gap-2">
+                    Start Learning <ChevronRight size={20} />
+                  </button>
+                </div>
+              </div>
+              <div className="flex-1 flex justify-center">
+                <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-semibold text-gray-800">Your Progress</h3>
+                    <span className="text-yellow-600 font-bold">{Math.round(progress)}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-2.5">
+                    <div
+                      className="bg-yellow-500 h-2.5 rounded-full transition-all duration-500"
+                      style={{ width: `${progress}%` }}
+                    ></div>
+                  </div>
+                  <div className="mt-4 flex justify-between text-sm text-gray-600">
+                    <span>{completedQuizzes.length} completed</span>
+                    <span>{contentList.length} total lessons</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="bg-white py-12 px-8">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-yellow-50 p-6 rounded-xl">
+              <div className="flex items-center gap-4">
+                <BookOpen className="text-yellow-600" size={24} />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">20 Lessons</h3>
+                  <p className="text-gray-600">Comprehensive curriculum</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-yellow-50 p-6 rounded-xl">
+              <div className="flex items-center gap-4">
+                <Code2 className="text-yellow-600" size={24} />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">Interactive</h3>
+                  <p className="text-gray-600">Hands-on exercises</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-yellow-50 p-6 rounded-xl">
+              <div className="flex items-center gap-4">
+                <Award className="text-yellow-600" size={24} />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800">Certificate</h3>
+                  <p className="text-gray-600">Upon completion</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Course Content */}
+        <div className="py-12 px-8 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">Course Content</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {contentList.map((content) => (
+                <Link
+                  key={content.id}
+                  to={`/courses/c/${content.id}`}
+                  onClick={() => handleQuizCompletion(content.id)}
+                  className="group"
+                >
+                  <div className={`bg-white p-6 rounded-xl shadow-sm border-2 ${
+                    content.quizCompleted ? 'border-green-500' : 'border-yellow-200'
+                  } hover:border-yellow-500 transition duration-300`}>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <span className="text-yellow-600">{content.icon}</span>
+                        <h3 className="font-semibold text-gray-800 group-hover:text-yellow-600 transition duration-300">
+                          {content.title}
+                        </h3>
+                      </div>
+                      {content.quizCompleted && (
+                        <CheckCircle className="text-green-500" size={20} />
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {content.quizCompleted ? 'Completed' : 'Not started'}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
