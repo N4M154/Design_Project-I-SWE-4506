@@ -6,7 +6,6 @@
 // import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 // import SideButtons from "../components/SideButtons";
 
-
 // export default function CLearningMaterial() {
 //   const { lessonId } = useParams(); // Get the current lesson ID from URL parameters
 //   const navigate = useNavigate();
@@ -170,12 +169,17 @@
 //   );
 // }
 
-
 //-----------------------------------------
 
-
 import { jsPDF } from "jspdf";
-import { BookOpen, ChevronLeft, Download, ExternalLink, GraduationCap, Play } from "lucide-react";
+import {
+  BookOpen,
+  ChevronLeft,
+  Download,
+  ExternalLink,
+  GraduationCap,
+  Play,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -192,7 +196,8 @@ export default function CLearningMaterial() {
   const learningContent = {
     "hello-world": {
       title: "Hello World in C",
-      intro: "Welcome to your first step in C programming! This comprehensive guide will walk you through creating your first C program. You'll learn about the basic structure of a C program, how to write and compile code, and understand the fundamental concepts behind the famous 'Hello, World!' program.",
+      intro:
+        "Welcome to your first step in C programming! This comprehensive guide will walk you through creating your first C program. You'll learn about the basic structure of a C program, how to write and compile code, and understand the fundamental concepts behind the famous 'Hello, World!' program.",
       sections: [
         {
           title: "Understanding the Basics",
@@ -201,7 +206,7 @@ export default function CLearningMaterial() {
 • C is a compiled language
 • It's widely used in system programming
 • It provides low-level access to computer memory
-• It's the foundation for many modern programming languages`
+• It's the foundation for many modern programming languages`,
         },
         {
           title: "Program Structure",
@@ -210,7 +215,7 @@ export default function CLearningMaterial() {
 • Header files (#include statements)
 • The main() function
 • Program statements
-• Return statement`
+• Return statement`,
         },
         {
           title: "Code Example",
@@ -225,22 +230,22 @@ int main() {
 1. #include <stdio.h> - Includes the standard input/output library
 2. int main() - The main function where program execution begins
 3. printf() - Function to print text to the console
-4. return 0 - Indicates successful program completion`
+4. return 0 - Indicates successful program completion`,
         },
         {
           title: "Common Mistakes to Avoid",
           content: `• Forgetting to include stdio.h
 • Missing semicolons
 • Incorrect quotation marks
-• Forgetting the return statement`
-        }
+• Forgetting the return statement`,
+        },
       ],
       practice: [
         "Try changing the message inside printf()",
         "Add multiple printf() statements",
-        "Experiment with different escape sequences (\\n, \\t, etc.)"
-      ]
-    }
+        "Experiment with different escape sequences (\\n, \\t, etc.)",
+      ],
+    },
   };
 
   // Simulated API responses (replace with actual API calls)
@@ -250,24 +255,27 @@ int main() {
       {
         id: "1",
         title: "C Programming Tutorial for Beginners",
-        thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        thumbnail:
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "12:34",
-        author: "CodeMaster"
+        author: "CodeMaster",
       },
       {
         id: "2",
         title: "Understanding Hello World in C",
-        thumbnail: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&auto=format",
+        thumbnail:
+          "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&auto=format",
         duration: "8:21",
-        author: "Programming Basics"
+        author: "Programming Basics",
       },
       {
         id: "3",
         title: "C Programming Fundamentals",
-        thumbnail: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format",
+        thumbnail:
+          "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format",
         duration: "15:45",
-        author: "Tech Education"
-      }
+        author: "Tech Education",
+      },
     ]);
 
     // Simulated articles data (replace with actual API call)
@@ -277,22 +285,22 @@ int main() {
         title: "Getting Started with C Programming",
         source: "Dev.to",
         url: "#",
-        readTime: "5 min"
+        readTime: "5 min",
       },
       {
         id: "2",
         title: "Understanding C Program Structure",
         source: "Medium",
         url: "#",
-        readTime: "7 min"
+        readTime: "7 min",
       },
       {
         id: "3",
         title: "Best Practices for C Programming",
         source: "FreeCodeCamp",
         url: "#",
-        readTime: "10 min"
-      }
+        readTime: "10 min",
+      },
     ]);
   }, []);
 
@@ -322,10 +330,10 @@ int main() {
     doc.text(introText, marginX, 30);
 
     lesson.sections.forEach((section, index) => {
-      const yPosition = 50 + (index * 40);
+      const yPosition = 50 + index * 40;
       doc.setFontSize(14);
       doc.text(section.title, marginX, yPosition);
-      
+
       doc.setFontSize(12);
       const content = doc.splitTextToSize(section.content, 170);
       doc.text(content, marginX, yPosition + 10);
@@ -382,20 +390,30 @@ int main() {
               {/* Main Lesson Content */}
               <div className="lg:col-span-2 space-y-8">
                 <div className="bg-white rounded-xl shadow-sm border border-yellow-100 p-8">
-                  <h1 className="text-4xl font-bold text-gray-800 mb-4">{lesson.title}</h1>
+                  <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                    {lesson.title}
+                  </h1>
                   <p className="text-gray-600 mb-8">{lesson.intro}</p>
 
                   {lesson.sections.map((section, index) => (
                     <div key={index} className="mb-8">
-                      <h2 className="text-2xl font-semibold text-gray-800 mb-4">{section.title}</h2>
+                      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                        {section.title}
+                      </h2>
                       {section.content && (
-                        <div className="text-gray-600 whitespace-pre-line mb-4">{section.content}</div>
+                        <div className="text-gray-600 whitespace-pre-line mb-4">
+                          {section.content}
+                        </div>
                       )}
                       {section.code && (
                         <div className="bg-yellow-50 rounded-lg p-6 mb-4">
-                          <pre className="text-gray-800 font-mono text-sm">{section.code}</pre>
+                          <pre className="text-gray-800 font-mono text-sm">
+                            {section.code}
+                          </pre>
                           {section.explanation && (
-                            <div className="mt-4 text-gray-600 text-sm">{section.explanation}</div>
+                            <div className="mt-4 text-gray-600 text-sm">
+                              {section.explanation}
+                            </div>
                           )}
                         </div>
                       )}
@@ -404,7 +422,9 @@ int main() {
 
                   {lesson.practice && (
                     <div className="bg-yellow-50 rounded-lg p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">Practice Exercises</h3>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                        Practice Exercises
+                      </h3>
                       <ul className="list-disc list-inside text-gray-600 space-y-2">
                         {lesson.practice.map((item, index) => (
                           <li key={index}>{item}</li>
@@ -460,7 +480,9 @@ int main() {
                       >
                         <div className="flex items-start justify-between">
                           <div>
-                            <h4 className="text-sm font-medium text-gray-800">{article.title}</h4>
+                            <h4 className="text-sm font-medium text-gray-800">
+                              {article.title}
+                            </h4>
                             <p className="text-xs text-gray-500 mt-1">
                               {article.source} • {article.readTime} read
                             </p>

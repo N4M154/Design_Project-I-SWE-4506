@@ -1,4 +1,3 @@
-
 //----------------------------------------------------------------------------
 
 import MonacoEditor from "@monaco-editor/react";
@@ -6,7 +5,6 @@ import axios from "axios";
 import { Code2, Copy, Download, Play, RefreshCw, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import SideButtons from "../components/SideButtons";
-
 
 const languageExamples = {
   c: `#include <stdio.h>
@@ -40,14 +38,14 @@ import "fmt"
 
 func main() {
     fmt.Println("Hello, World!")
-}`
+}`,
 };
 
 export default function CodeEditor() {
   const [code, setCode] = useState(languageExamples.python3);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [language, setLanguage] = useState("python3");
+  const [language, setLanguage] = useState("c");
   const [loading, setLoading] = useState(false);
   const [inputNeeded, setInputNeeded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -60,10 +58,6 @@ export default function CodeEditor() {
     { id: "cpp", name: "C++", icon: "⚡" },
     { id: "java", name: "Java", icon: "☕" },
     { id: "python3", name: "Python", icon: "🐍" },
-    { id: "javascript", name: "JavaScript", icon: "💛" },
-    { id: "typescript", name: "TypeScript", icon: "📘" },
-    { id: "rust", name: "Rust", icon: "🦀" },
-    { id: "go", name: "Go", icon: "🔵" }
   ];
 
   const inputKeywords = {
@@ -71,10 +65,6 @@ export default function CodeEditor() {
     cpp: ["cin"],
     java: ["Scanner"],
     python3: ["input"],
-    javascript: ["prompt"],
-    typescript: ["prompt"],
-    rust: ["stdin"],
-    go: ["Scan"]
   };
 
   useEffect(() => {
@@ -140,19 +130,15 @@ export default function CodeEditor() {
 
   const downloadCode = () => {
     const extensions = {
-      c: '.c',
-      cpp: '.cpp',
-      java: '.java',
-      python3: '.py',
-      javascript: '.js',
-      typescript: '.ts',
-      rust: '.rs',
-      go: '.go'
+      c: ".c",
+      cpp: ".cpp",
+      java: ".java",
+      python3: ".py",
     };
-    
-    const blob = new Blob([code], { type: 'text/plain' });
+
+    const blob = new Blob([code], { type: "text/plain" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `code${extensions[language]}`;
     a.click();
@@ -177,7 +163,7 @@ export default function CodeEditor() {
         "editor.foreground": "#D4D4D4",
         "editor.lineHighlightBackground": "#2F3139",
         "editorLineNumber.foreground": "#858585",
-      }
+      },
     });
 
     monaco.editor.defineTheme("customLight", {
@@ -194,15 +180,14 @@ export default function CodeEditor() {
         "editor.foreground": "#000000",
         "editor.lineHighlightBackground": "#F7F7F7",
         "editorLineNumber.foreground": "#237893",
-      }
+      },
     });
 
     monaco.editor.setTheme(theme === "vs-dark" ? "customDark" : "customLight");
   };
 
   return (
-    
-<div className="flex min-h-screen bg-[#1E1E1E] font-['Poppins'] overflow-hidden">
+    <div className="flex min-h-screen bg-[#1E1E1E] font-['Poppins'] overflow-hidden">
       <SideButtons />
       <div
         id="main-content"
@@ -211,11 +196,21 @@ export default function CodeEditor() {
       >
         <div className="min-h-screen flex flex-col ">
           {/* Header */}
-          <div className={`${theme === 'vs-dark' ? 'bg-[#2D2D2D] border-[#404040]' : 'bg-white border-gray-200'} p-4 border-b`}>
+          <div
+            className={`${
+              theme === "vs-dark"
+                ? "bg-[#2D2D2D] border-[#404040]"
+                : "bg-white border-gray-200"
+            } p-4 border-b`}
+          >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Code2 className="text-yellow-500" size={24} />
-                <h1 className={`text-xl font-semibold ${theme === 'vs-dark' ? 'text-white' : 'text-gray-800'}`}>
+                <h1
+                  className={`text-xl font-semibold ${
+                    theme === "vs-dark" ? "text-white" : "text-gray-800"
+                  }`}
+                >
                   Online Code Compiler
                 </h1>
               </div>
@@ -224,9 +219,9 @@ export default function CodeEditor() {
                   value={language}
                   onChange={handleLanguageChange}
                   className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-yellow-500 ${
-                    theme === 'vs-dark' 
-                      ? 'bg-[#3C3C3C] text-white border-[#505050]' 
-                      : 'bg-white text-gray-800 border-gray-300'
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white border-[#505050]"
+                      : "bg-white text-gray-800 border-gray-300"
                   }`}
                 >
                   {languages.map((lang) => (
@@ -236,11 +231,13 @@ export default function CodeEditor() {
                   ))}
                 </select>
                 <button
-                  onClick={() => setTheme(theme === "vs-dark" ? "vs" : "vs-dark")}
+                  onClick={() =>
+                    setTheme(theme === "vs-dark" ? "vs" : "vs-dark")
+                  }
                   className={`p-2 rounded-lg transition-colors ${
-                    theme === 'vs-dark'
-                      ? 'bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
                   <RefreshCw size={20} />
@@ -248,9 +245,9 @@ export default function CodeEditor() {
                 <button
                   onClick={downloadCode}
                   className={`p-2 rounded-lg transition-colors ${
-                    theme === 'vs-dark'
-                      ? 'bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    theme === "vs-dark"
+                      ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                   title="Download Code"
                 >
@@ -284,16 +281,16 @@ export default function CodeEditor() {
                     lineHeight: 21,
                     suggestOnTriggerCharacters: true,
                     formatOnPaste: true,
-                    formatOnType: true
+                    formatOnType: true,
                   }}
                 />
                 <div className="absolute bottom-4 right-4 flex space-x-2">
                   <button
                     onClick={copyCode}
                     className={`p-2 rounded-lg transition-colors ${
-                      theme === 'vs-dark'
-                        ? 'bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      theme === "vs-dark"
+                        ? "bg-[#3C3C3C] text-white hover:bg-[#4C4C4C]"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                     title="Copy Code"
                   >
@@ -304,8 +301,8 @@ export default function CodeEditor() {
                     disabled={loading}
                     className={`p-2 rounded-lg ${
                       loading
-                        ? 'bg-yellow-600 cursor-not-allowed'
-                        : 'bg-yellow-500 hover:bg-yellow-600'
+                        ? "bg-yellow-600 cursor-not-allowed"
+                        : "bg-yellow-500 hover:bg-yellow-600"
                     } text-black transition-colors flex items-center space-x-2`}
                     title="Run Code"
                   >
@@ -316,19 +313,37 @@ export default function CodeEditor() {
               </div>
 
               {/* Input/Output Section */}
-              <div className={`h-1/3 ${theme === 'vs-dark' ? 'bg-[#2D2D2D] border-[#404040]' : 'bg-gray-50 border-gray-200'} border-t`}>
+              <div
+                className={`h-1/3 ${
+                  theme === "vs-dark"
+                    ? "bg-[#2D2D2D] border-[#404040]"
+                    : "bg-gray-50 border-gray-200"
+                } border-t`}
+              >
                 <div className="flex h-full">
                   {/* Input Panel */}
                   {inputNeeded && (
-                    <div className={`w-1/2 ${theme === 'vs-dark' ? 'border-[#404040]' : 'border-gray-200'} border-r p-4`}>
+                    <div
+                      className={`w-1/2 ${
+                        theme === "vs-dark"
+                          ? "border-[#404040]"
+                          : "border-gray-200"
+                      } border-r p-4`}
+                    >
                       <div className="flex justify-between items-center mb-2">
-                        <h2 className={`font-medium ${theme === 'vs-dark' ? 'text-white' : 'text-gray-800'}`}>Input</h2>
+                        <h2
+                          className={`font-medium ${
+                            theme === "vs-dark" ? "text-white" : "text-gray-800"
+                          }`}
+                        >
+                          Input
+                        </h2>
                       </div>
                       <textarea
                         className={`w-full h-[calc(100%-2rem)] p-2 rounded border resize-none focus:outline-none focus:border-yellow-500 ${
-                          theme === 'vs-dark'
-                            ? 'bg-[#1E1E1E] text-white border-[#404040]'
-                            : 'bg-white text-gray-800 border-gray-300'
+                          theme === "vs-dark"
+                            ? "bg-[#1E1E1E] text-white border-[#404040]"
+                            : "bg-white text-gray-800 border-gray-300"
                         }`}
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
@@ -338,26 +353,34 @@ export default function CodeEditor() {
                   )}
 
                   {/* Output Panel */}
-                  <div className={`${inputNeeded ? 'w-1/2' : 'w-full'} p-4`}>
+                  <div className={`${inputNeeded ? "w-1/2" : "w-full"} p-4`}>
                     <div className="flex justify-between items-center mb-2">
-                      <h2 className={`font-medium ${theme === 'vs-dark' ? 'text-white' : 'text-gray-800'}`}>Output</h2>
+                      <h2
+                        className={`font-medium ${
+                          theme === "vs-dark" ? "text-white" : "text-gray-800"
+                        }`}
+                      >
+                        Output
+                      </h2>
                       <button
                         onClick={clearOutput}
                         className={`p-1 rounded ${
-                          theme === 'vs-dark'
-                            ? 'text-gray-400 hover:text-white'
-                            : 'text-gray-500 hover:text-gray-700'
+                          theme === "vs-dark"
+                            ? "text-gray-400 hover:text-white"
+                            : "text-gray-500 hover:text-gray-700"
                         } transition-colors`}
                         title="Clear Output"
                       >
                         <Trash2 size={16} />
                       </button>
                     </div>
-                    <div className={`h-[calc(100%-2rem)] p-2 rounded border overflow-auto ${
-                      theme === 'vs-dark'
-                        ? 'bg-[#1E1E1E] text-white border-[#404040]'
-                        : 'bg-white text-gray-800 border-gray-300'
-                    }`}>
+                    <div
+                      className={`h-[calc(100%-2rem)] p-2 rounded border overflow-auto ${
+                        theme === "vs-dark"
+                          ? "bg-[#1E1E1E] text-white border-[#404040]"
+                          : "bg-white text-gray-800 border-gray-300"
+                      }`}
+                    >
                       <pre className="whitespace-pre-wrap font-mono text-sm">
                         {output || "Output................."}
                       </pre>
@@ -370,8 +393,5 @@ export default function CodeEditor() {
         </div>
       </div>
     </div>
-  
-  
   );
 }
-

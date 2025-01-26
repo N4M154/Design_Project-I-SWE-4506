@@ -1,5 +1,15 @@
-
-import { Award, BookOpen, CheckCircle, ChevronRight, Code2, Cpu, Database, LineChart, Network, Terminal } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  CheckCircle,
+  ChevronRight,
+  Code2,
+  Cpu,
+  Database,
+  LineChart,
+  Network,
+  Terminal,
+} from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -9,26 +19,126 @@ export default function CLanguagePage() {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const contentList = [
-    { id: "hello-world", title: "Hello World", icon: <Terminal size={20} />, quizCompleted: true },
-    { id: "variables", title: "Variables", icon: <Code2 size={20} />, quizCompleted: false },
-    { id: "data-types", title: "Data Types", icon: <Database size={20} />, quizCompleted: false },
-    { id: "control-structures", title: "Control Structures", icon: <LineChart size={20} />, quizCompleted: false },
-    { id: "functions", title: "Functions", icon: <Code2 size={20} />, quizCompleted: false },
-    { id: "arrays", title: "Arrays", icon: <Database size={20} />, quizCompleted: false },
-    { id: "pointers", title: "Pointers", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "strings", title: "Strings", icon: <Code2 size={20} />, quizCompleted: false },
-    { id: "structures", title: "Structures", icon: <Database size={20} />, quizCompleted: false },
-    { id: "file-io", title: "File I/O", icon: <Database size={20} />, quizCompleted: false },
-    { id: "memory-management", title: "Memory Management", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "dynamic-memory", title: "Dynamic Memory Allocation", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "multithreading", title: "Multithreading", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "preprocessors", title: "Preprocessors", icon: <Code2 size={20} />, quizCompleted: false },
-    { id: "bitwise-operations", title: "Bitwise Operations", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "recursion", title: "Recursion", icon: <Code2 size={20} />, quizCompleted: false },
-    { id: "linked-lists", title: "Linked Lists", icon: <Database size={20} />, quizCompleted: false },
-    { id: "advanced-pointers", title: "Advanced Pointers", icon: <Cpu size={20} />, quizCompleted: false },
-    { id: "graphics-programming", title: "Graphics Programming", icon: <Terminal size={20} />, quizCompleted: false },
-    { id: "network-programming", title: "Network Programming", icon: <Network size={20} />, quizCompleted: false }
+    {
+      id: "hello-world",
+      title: "Hello World",
+      icon: <Terminal size={20} />,
+      quizCompleted: true,
+    },
+    {
+      id: "variables",
+      title: "Variables",
+      icon: <Code2 size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "data-types",
+      title: "Data Types",
+      icon: <Database size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "control-structures",
+      title: "Control Structures",
+      icon: <LineChart size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "functions",
+      title: "Functions",
+      icon: <Code2 size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "arrays",
+      title: "Arrays",
+      icon: <Database size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "pointers",
+      title: "Pointers",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "strings",
+      title: "Strings",
+      icon: <Code2 size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "structures",
+      title: "Structures",
+      icon: <Database size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "file-io",
+      title: "File I/O",
+      icon: <Database size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "memory-management",
+      title: "Memory Management",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "dynamic-memory",
+      title: "Dynamic Memory Allocation",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "multithreading",
+      title: "Multithreading",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "preprocessors",
+      title: "Preprocessors",
+      icon: <Code2 size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "bitwise-operations",
+      title: "Bitwise Operations",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "recursion",
+      title: "Recursion",
+      icon: <Code2 size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "linked-lists",
+      title: "Linked Lists",
+      icon: <Database size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "advanced-pointers",
+      title: "Advanced Pointers",
+      icon: <Cpu size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "graphics-programming",
+      title: "Graphics Programming",
+      icon: <Terminal size={20} />,
+      quizCompleted: false,
+    },
+    {
+      id: "network-programming",
+      title: "Network Programming",
+      icon: <Network size={20} />,
+      quizCompleted: false,
+    },
   ];
 
   const handleQuizCompletion = (id) => {
@@ -56,7 +166,8 @@ export default function CLanguagePage() {
                   Master C Programming
                 </h1>
                 <p className="text-xl text-gray-600 mb-6">
-                  From basics to advanced concepts, learn C programming through interactive lessons and hands-on practice.
+                  From basics to advanced concepts, learn C programming through
+                  interactive lessons and hands-on practice.
                 </p>
                 <div className="flex gap-4">
                   <button className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition duration-300 flex items-center gap-2">
@@ -67,8 +178,12 @@ export default function CLanguagePage() {
               <div className="flex-1 flex justify-center">
                 <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-800">Your Progress</h3>
-                    <span className="text-yellow-600 font-bold">{Math.round(progress)}%</span>
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Your Progress
+                    </h3>
+                    <span className="text-yellow-600 font-bold">
+                      {Math.round(progress)}%
+                    </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2.5">
                     <div
@@ -93,7 +208,9 @@ export default function CLanguagePage() {
               <div className="flex items-center gap-4">
                 <BookOpen className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">20 Lessons</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    20 Lessons
+                  </h3>
                   <p className="text-gray-600">Comprehensive curriculum</p>
                 </div>
               </div>
@@ -102,7 +219,9 @@ export default function CLanguagePage() {
               <div className="flex items-center gap-4">
                 <Code2 className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Interactive</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Interactive
+                  </h3>
                   <p className="text-gray-600">Hands-on exercises</p>
                 </div>
               </div>
@@ -111,7 +230,9 @@ export default function CLanguagePage() {
               <div className="flex items-center gap-4">
                 <Award className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">Certificate</h3>
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    Certificate
+                  </h3>
                   <p className="text-gray-600">Upon completion</p>
                 </div>
               </div>
@@ -122,7 +243,9 @@ export default function CLanguagePage() {
         {/* Course Content */}
         <div className="py-12 px-8 bg-gray-50">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">Course Content</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+              Course Content
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {contentList.map((content) => (
                 <Link
@@ -131,9 +254,13 @@ export default function CLanguagePage() {
                   onClick={() => handleQuizCompletion(content.id)}
                   className="group"
                 >
-                  <div className={`bg-white p-6 rounded-xl shadow-sm border-2 ${
-                    content.quizCompleted ? 'border-green-500' : 'border-yellow-200'
-                  } hover:border-yellow-500 transition duration-300`}>
+                  <div
+                    className={`bg-white p-6 rounded-xl shadow-sm border-2 ${
+                      content.quizCompleted
+                        ? "border-green-500"
+                        : "border-yellow-200"
+                    } hover:border-yellow-500 transition duration-300`}
+                  >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <span className="text-yellow-600">{content.icon}</span>
@@ -146,7 +273,7 @@ export default function CLanguagePage() {
                       )}
                     </div>
                     <div className="text-sm text-gray-600">
-                      {content.quizCompleted ? 'Completed' : 'Not started'}
+                      {content.quizCompleted ? "Completed" : "Not started"}
                     </div>
                   </div>
                 </Link>

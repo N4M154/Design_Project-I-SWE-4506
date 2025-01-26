@@ -27,32 +27,6 @@ export default function Profile() {
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
-  
-  useEffect(() => {
-    if (window.location.pathname === "/profile") {
-      const scriptConfig = document.createElement("script");
-      scriptConfig.innerHTML = `
-        window.embeddedChatbotConfig = {
-          chatbotId: "2q4GTxw4DnGGcyJB1GxGi",
-          domain: "www.chatbase.co"
-        };
-      `;
-      document.body.appendChild(scriptConfig);
-
-      const scriptEmbed = document.createElement("script");
-      scriptEmbed.src = "https://www.chatbase.co/embed.min.js";
-      scriptEmbed.setAttribute("chatbotId", "2q4GTxw4DnGGcyJB1GxGi");
-      scriptEmbed.setAttribute("domain", "www.chatbase.co");
-      scriptEmbed.defer = true;
-      document.body.appendChild(scriptEmbed);
-
-      return () => {
-        document.body.removeChild(scriptConfig);
-        document.body.removeChild(scriptEmbed);
-      };
-    }
-  }, []);
-
   const { currentUser, loading, error } = useSelector((state) => state.user);
 
   useEffect(() => {

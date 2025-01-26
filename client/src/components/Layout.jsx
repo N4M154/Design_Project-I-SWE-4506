@@ -21,7 +21,7 @@ const Layout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-      <Footer /> 
+      <Footer /> {/* Add the Footer component here */}
     </div>
   );
 };
