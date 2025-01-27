@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
 import { Groq } from "groq-sdk";
+import React, { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { useLocation } from "react-router-dom";
 
 const FloatingChatbot = () => {
   const [inputText, setInputText] = useState("");
@@ -11,7 +11,7 @@ const FloatingChatbot = () => {
   const chatEndRef = useRef(null);
 
   const location = useLocation();
-  const pathsToShowChatbot = ["/home", "/compiler"];
+  const pathsToShowChatbot = ["/home"];
   const shouldShowChatbot = pathsToShowChatbot.includes(location.pathname);
 
   const groq = new Groq({

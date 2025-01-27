@@ -3,7 +3,7 @@ import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import SecondaryHeader from "./SecondaryHeader";
-import Footer from "./Footer";
+
 
 const Layout = () => {
   const location = useLocation();
@@ -21,7 +21,7 @@ const Layout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-      <Footer /> {/* Add the Footer component here */}
+     {/* Add the Footer component here */}
     </div>
   );
 };

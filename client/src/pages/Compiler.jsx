@@ -211,7 +211,7 @@ export default function CodeEditor() {
                     theme === "vs-dark" ? "text-white" : "text-gray-800"
                   }`}
                 >
-                  Online Code Compiler
+                 Code Compiler
                 </h1>
               </div>
               <div className="flex items-center space-x-4">

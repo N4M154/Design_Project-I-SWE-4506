@@ -1,15 +1,15 @@
+import axios from "axios";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-import userRoutes from "./routes/user.route.js";
+import path from "path";
 import authRoutes from "./routes/auth.route.js";
 import blogRoutes from "./routes/blog.route.js"; // Import the blog routes
 import { problemDetails } from "./routes/problemDetails.route.js";
 import { problemsTable } from "./routes/problemsTable.route.js";
-import cookieParser from "cookie-parser";
-import path from "path";
-import axios from "axios";
-import cors from "cors";
+import userRoutes from "./routes/user.route.js";
 dotenv.config();
 
 const app = express();

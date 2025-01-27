@@ -7,6 +7,7 @@ export default function Footer() {
       <span className="text-sm text-black sm:text-center dark:text-gray-400">
         © 2024 DoodleDuck. All Rights Reserved.
       </span>
+     
       <div className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
         <li className="mr-4 flex item-center">
           <a
@@ -94,7 +95,7 @@ export default function Footer() {
               >
                 <path d="M23 2V6L20 9L12 6L4 9L1 6V2M1 6L12 13L23 6M23 15V19L20 22H4L1 19V15" />
               </svg>
-              Nusrat Siddique
+              Ishmaam Iftekhar Khan
             </a>
           </div>
           <div className="flex items-center ml-4">
@@ -115,7 +116,7 @@ export default function Footer() {
               >
                 <path d="M23 2V6L20 9L12 6L4 9L1 6V2M1 6L12 13L23 6M23 15V19L20 22H4L1 19V15" />
               </svg>
-              Ishmaam Iftekhar Khan
+              Nusrat Siddique
             </a>
           </div>
         </div>

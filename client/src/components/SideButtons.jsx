@@ -77,16 +77,16 @@ const SideButtons = () => {
             flex-direction: column;
             border-right: 1px solid darkkhaki;
           }
-            .dark .side-menu {
-            height: 100%;
-            background: linear-gradient(180deg, #18181b 0%, #09090b 100%);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid rgba(250, 204, 21, 0.1);
-          }
+           .dark .side-menu {
+  height: 100%;
+  background: rgba(218, 165, 33, 0.099);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(250, 204, 21, 0.1);
+}
 
           .side-menu.expanded {
             width: 260px;
@@ -203,7 +203,7 @@ const SideButtons = () => {
             color: #66602e;
           }
            .dark .menu-item.active {
-            background: rgba(250, 204, 21, 0.2);
+            background: rgba(235, 196, 41, 0.2);
             color: #facc15;
           }
 
@@ -221,7 +221,7 @@ const SideButtons = () => {
           }
 
           .item-text {
-            font-size: 14px;
+            font-size: 16px; /* Reduced font size */
             white-space: nowrap;
             opacity: 1;
             transition: opacity 0.2s ease;
