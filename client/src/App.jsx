@@ -5,9 +5,12 @@ import PrivateRoute from "./components/PrivateRoute";
 //import Compiler from "./components/Workspace/CodeEditor";
 import Home from "./Main/Home";
 import About from "./pages/About";
+import Chello from "./pages/Chello.jsx";
 import CLanguagePage from "./pages/CLanguagePage";
-import CLearningMaterial from "./pages/CLearningMaterial";
+import Community from "./pages/CommunityPage.jsx";
 import Compiler from "./pages/Compiler.jsx";
+import Content from "./pages/Content.jsx";
+import CQuizPage from "./pages/CQuizPage.jsx";
 import LandingPage from "./pages/Landing.jsx";
 import Notes from "./pages/Notes.tsx";
 import Problems from "./pages/Problems.tsx";
@@ -15,8 +18,6 @@ import Profile from "./pages/Profile";
 import Progress from "./pages/Progress.tsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Community from "./pages/CommunityPage.jsx";
-import Content from "./pages/Content.jsx";
 
 export default function App() {
   return (
@@ -38,7 +39,11 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/community" element={<Community />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
-          <Route path="/courses/c/:lessonId" element={<CLearningMaterial />} />
+         
+          <Route path="/courses/c/:lessonId" element={<Chello />} />
+         
+          
+          <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
 
           <Route element={<PrivateRoute />}>

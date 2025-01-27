@@ -1,7 +1,10 @@
 import { Award, Book, Brain, Terminal, Timer, Users } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 import ThemeToggle from "../components/ThemeToggle";
+
+
 export function Landing() {
   return (
     <div>
@@ -354,11 +357,12 @@ export function Landing() {
               </div>
             ))}
           </div>
-          <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-800 dark:text-gray-400">
+          {/* <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-800 dark:text-gray-400">
             <p>© 2024 DoodleDuck. All rights reserved.</p>
-          </div>
+          </div> */}
         </div>
       </footer>
+      <Footer/>
     </div>
   );
 }
