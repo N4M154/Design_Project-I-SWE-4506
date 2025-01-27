@@ -25,7 +25,7 @@ class Chart extends React.Component {
           height: 300,
           width: 300, // Adjusted for a compact display
           type: "heatmap",
-          foreColor: "#ffffff", // Set text color to white
+          foreColor: "darkkhaki", // Set text color to white
         },
         plotOptions: {
           heatmap: {
@@ -72,7 +72,7 @@ class Chart extends React.Component {
             show: true,
             offsetX: -10, // Add some distance between the month labels and the chart
             style: {
-              colors: "#ffffff", // Set y-axis label color to white
+              colors: "darkkhaki", // Set y-axis label color to white
               fontSize: "12px", // Adjust font size for readability
             },
             formatter: (val, index) => {
@@ -95,7 +95,7 @@ class Chart extends React.Component {
           text: "6-Month Activity Heatmap",
           align: "center",
           style: {
-            color: "#ffffff", // Set title color to white
+            color: "darkkhaki", // Set title color to white
           },
         },
       },

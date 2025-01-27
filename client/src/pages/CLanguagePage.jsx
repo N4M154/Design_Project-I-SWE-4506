@@ -150,7 +150,7 @@ export default function CLanguagePage() {
   const progress = (completedQuizzes.length / contentList.length) * 100;
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
@@ -158,27 +158,27 @@ export default function CLanguagePage() {
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 py-16 px-8 rounded-2xl">
+        <div className="bg-gradient-to-r from-yellow-50 dark:from-black dark:to-[#18181b] to-yellow-100 py-16 px-8 rounded-2xl">
           <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-between gap-8">
               <div className="flex-1">
-                <h1 className="text-5xl font-bold text-gray-800 mb-4">
+                <h1 className="text-5xl font-bold text-gray-800 dark:text-yellow-200 mb-4">
                   Master C Programming
                 </h1>
-                <p className="text-xl text-gray-600 mb-6">
+                <p className="text-xl text-gray-600 dark:text-[#f5f5f5] mb-6">
                   From basics to advanced concepts, learn C programming through
                   interactive lessons and hands-on practice.
                 </p>
                 <div className="flex gap-4">
-                  <button className="bg-yellow-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition duration-300 flex items-center gap-2">
+                  <button className="bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition duration-300 flex items-center gap-2">
                     Start Learning <ChevronRight size={20} />
                   </button>
                 </div>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
+                <div className="w-full max-w-md bg-white dark:bg-gray-500/20 rounded-xl shadow-lg dark:shadow-yellow-200/20 p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-semibold text-gray-800">
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                       Your Progress
                     </h3>
                     <span className="text-yellow-600 font-bold">
@@ -191,7 +191,7 @@ export default function CLanguagePage() {
                       style={{ width: `${progress}%` }}
                     ></div>
                   </div>
-                  <div className="mt-4 flex justify-between text-sm text-gray-600">
+                  <div className="mt-4 flex justify-between text-sm text-gray-600 dark:text-[#f5f5f5]">
                     <span>{completedQuizzes.length} completed</span>
                     <span>{contentList.length} total lessons</span>
                   </div>
@@ -202,38 +202,44 @@ export default function CLanguagePage() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white py-12 px-8">
+        <div className="bg-white dark:bg-transparent dark:border dark:border-yellow-200 dark:rounded-2xl py-12 px-8">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-yellow-50 p-6 rounded-xl">
+            <div className="bg-yellow-50 dark:bg-yellow-500/20 p-6 rounded-xl">
               <div className="flex items-center gap-4">
                 <BookOpen className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                     20 Lessons
                   </h3>
-                  <p className="text-gray-600">Comprehensive curriculum</p>
+                  <p className="text-gray-600 dark:text-yellow-100">
+                    Comprehensive curriculum
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="bg-yellow-50 p-6 rounded-xl">
+            <div className="bg-yellow-50 dark:bg-yellow-500/20 p-6 rounded-xl">
               <div className="flex items-center gap-4">
                 <Code2 className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                     Interactive
                   </h3>
-                  <p className="text-gray-600">Hands-on exercises</p>
+                  <p className="text-gray-600 dark:text-yellow-100">
+                    Hands-on exercises
+                  </p>
                 </div>
               </div>
             </div>
-            <div className="bg-yellow-50 p-6 rounded-xl">
+            <div className="bg-yellow-50 dark:bg-yellow-500/20 p-6 rounded-xl">
               <div className="flex items-center gap-4">
                 <Award className="text-yellow-600" size={24} />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
                     Certificate
                   </h3>
-                  <p className="text-gray-600">Upon completion</p>
+                  <p className="text-gray-600 dark:text-yellow-100">
+                    Upon completion
+                  </p>
                 </div>
               </div>
             </div>
@@ -241,9 +247,9 @@ export default function CLanguagePage() {
         </div>
 
         {/* Course Content */}
-        <div className="py-12 px-8 bg-gray-50">
+        <div className="py-12 px-8 bg-gray-50 dark:bg-transparent">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
               Course Content
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -255,7 +261,7 @@ export default function CLanguagePage() {
                   className="group"
                 >
                   <div
-                    className={`bg-white p-6 rounded-xl shadow-sm border-2 ${
+                    className={`bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 ${
                       content.quizCompleted
                         ? "border-green-500"
                         : "border-yellow-200"
@@ -264,7 +270,7 @@ export default function CLanguagePage() {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <span className="text-yellow-600">{content.icon}</span>
-                        <h3 className="font-semibold text-gray-800 group-hover:text-yellow-600 transition duration-300">
+                        <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
                           {content.title}
                         </h3>
                       </div>
@@ -272,7 +278,7 @@ export default function CLanguagePage() {
                         <CheckCircle className="text-green-500" size={20} />
                       )}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
                       {content.quizCompleted ? "Completed" : "Not started"}
                     </div>
                   </div>

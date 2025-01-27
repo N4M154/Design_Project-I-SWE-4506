@@ -1,12 +1,16 @@
-
 //-----------------------------------------------------------------------------------------------
 
-import { ArrowRight, CheckCircle2, Play, RefreshCcw, Timer, XCircle } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Play,
+  RefreshCcw,
+  Timer,
+  XCircle,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
-
-
 
 export default function CQuizPage() {
   const navigate = useNavigate();
@@ -18,8 +22,6 @@ export default function CQuizPage() {
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [quizStarted, setQuizStarted] = useState(false);
-
-
 
   const allQuestions = [
     {
@@ -46,8 +48,8 @@ export default function CQuizPage() {
       options: [
         'printf("Hello");',
         'print("Hello");',
-        'printf(Hello);',
-        'System.out.println("Hello");'
+        "printf(Hello);",
+        'System.out.println("Hello");',
       ],
       answer: 'printf("Hello");',
     },
@@ -57,21 +59,23 @@ export default function CQuizPage() {
       options: [
         'scanf("%d", &num);',
         'scanf("%d", num);',
-        'scanf(&num);',
-        'scanf(num);'
+        "scanf(&num);",
+        "scanf(num);",
       ],
       answer: 'scanf("%d", &num);',
     },
     {
       id: 6,
-      question: "Which of the following is the correct 'Hello, World!' program in C?",
+      question:
+        "Which of the following is the correct 'Hello, World!' program in C?",
       options: [
         '#include <stdio.h>\nint main() {\n    printf("Hello, World!");\n    return 0;\n}',
         'public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}',
         '#include <iostream>\nint main() {\n    cout << "Hello, World!";\n    return 0;\n}',
-        'print("Hello, World!")'
+        'print("Hello, World!")',
       ],
-      answer: '#include <stdio.h>\nint main() {\n    printf("Hello, World!");\n    return 0;\n}',
+      answer:
+        '#include <stdio.h>\nint main() {\n    printf("Hello, World!");\n    return 0;\n}',
     },
     {
       id: 7,
@@ -88,7 +92,12 @@ export default function CQuizPage() {
     {
       id: 9,
       question: "What is the size of int data type in C?",
-      options: ["2 bytes", "4 bytes", "8 bytes", "Depends on the compiler/system"],
+      options: [
+        "2 bytes",
+        "4 bytes",
+        "8 bytes",
+        "Depends on the compiler/system",
+      ],
       answer: "Depends on the compiler/system",
     },
     {
@@ -104,7 +113,7 @@ export default function CQuizPage() {
         "To terminate the program",
         "To exit from a loop or switch",
         "To skip one iteration",
-        "To continue execution"
+        "To continue execution",
       ],
       answer: "To exit from a loop or switch",
     },
@@ -115,7 +124,7 @@ export default function CQuizPage() {
         "#define MAX 100",
         "const MAX = 100;",
         "constant MAX = 100;",
-        "final MAX = 100;"
+        "final MAX = 100;",
       ],
       answer: "#define MAX 100",
     },
@@ -128,12 +137,7 @@ export default function CQuizPage() {
     {
       id: 14,
       question: "What is the correct way to read a character in C?",
-      options: [
-        "getchar();",
-        "scanf('%c');",
-        "read();",
-        "input();"
-      ],
+      options: ["getchar();", "scanf('%c');", "read();", "input();"],
       answer: "getchar();",
     },
     {
@@ -143,7 +147,7 @@ export default function CQuizPage() {
         "int numbers[];",
         "array numbers[10];",
         "int numbers[10];",
-        "numbers = array(10);"
+        "numbers = array(10);",
       ],
       answer: "int numbers[10];",
     },
@@ -154,7 +158,7 @@ export default function CQuizPage() {
         "To get the address of a variable",
         "To get the size of a data type or variable",
         "To allocate memory",
-        "To compare sizes"
+        "To compare sizes",
       ],
       answer: "To get the size of a data type or variable",
     },
@@ -171,7 +175,7 @@ export default function CQuizPage() {
         'fopen("file.txt", "r");',
         'open("file.txt");',
         'File.open("file.txt");',
-        'readFile("file.txt");'
+        'readFile("file.txt");',
       ],
       answer: 'fopen("file.txt", "r");',
     },
@@ -182,7 +186,7 @@ export default function CQuizPage() {
         "struct { ... };",
         "class { ... };",
         "typedef struct { ... };",
-        "object { ... };"
+        "object { ... };",
       ],
       answer: "struct { ... };",
     },
@@ -193,17 +197,17 @@ export default function CQuizPage() {
         "To create a new data type",
         "To share memory between variables",
         "To combine multiple structures",
-        "To create an array"
+        "To create an array",
       ],
       answer: "To share memory between variables",
-    }
+    },
   ];
 
   useEffect(() => {
     if (quizStarted) {
       const shuffled = [...allQuestions].sort(() => Math.random() - 0.5);
       setQuestions(shuffled.slice(0, 10));
-      
+
       const timer = setInterval(() => {
         setSeconds((prevSeconds) => {
           if (prevSeconds <= 1) {
@@ -234,7 +238,7 @@ export default function CQuizPage() {
       }
       return acc;
     }, 0);
-    
+
     setScore(calculatedScore);
     setShowResults(true);
   };
@@ -257,18 +261,21 @@ export default function CQuizPage() {
 
   if (!quizStarted) {
     return (
-      <div className="flex min-h-screen bg-white font-['Poppins']">
-      <SideButtons />
-      <div
-        id="main-content"
-        className="flex-1 transition-all duration-300"
-        style={{ marginLeft: isExpanded ? "260px" : "80px" }}
-      >
+      <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
+        <SideButtons />
+        <div
+          id="main-content"
+          className="flex-1 transition-all duration-300"
+          style={{ marginLeft: isExpanded ? "260px" : "80px" }}
+        >
           <div className="h-full flex items-center justify-center">
             <div className="text-center max-w-2xl px-4">
-              <h1 className="text-3xl md:text-4xl font-bold mb-6">C Programming Quiz</h1>
-              <p className="text-gray-600 mb-8">
-                You have 5 minutes to complete 10 questions. You need to score at least 80% to pass.
+              <h1 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">
+                C Programming Quiz
+              </h1>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
+                You have 5 minutes to complete 10 questions. You need to score
+                at least 80% to pass.
               </p>
               <button
                 onClick={startQuiz}
@@ -285,7 +292,7 @@ export default function CQuizPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
@@ -297,7 +304,7 @@ export default function CQuizPage() {
             {/* Timer Column - Moved to top on mobile */}
             <div className="md:col-span-3 md:order-2">
               <div className="sticky top-4">
-                <div className="bg-white rounded-xl p-4 md:p-6 shadow-lg border-2 border-yellow-100">
+                <div className="bg-white dark:bg-black rounded-xl p-4 md:p-6 shadow-lg border-2 border-yellow-100 dark:border-yellow-200/50">
                   <div className="relative w-32 h-32 md:w-48 md:h-48 mx-auto mb-4">
                     <svg className="w-full h-full transform -rotate-90">
                       <circle
@@ -316,20 +323,22 @@ export default function CQuizPage() {
                         stroke="#FCD34D"
                         strokeWidth="12"
                         strokeDasharray={2 * Math.PI * (seconds > 0 ? 88 : 0)}
-                        strokeDashoffset={2 * Math.PI * 88 * (1 - calculateTimeProgress() / 100)}
+                        strokeDashoffset={
+                          2 * Math.PI * 88 * (1 - calculateTimeProgress() / 100)
+                        }
                         className="transition-all duration-1000"
                       />
                     </svg>
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
                       <Timer className="w-6 h-6 md:w-8 md:h-8 text-yellow-500 mx-auto mb-2" />
-                      <span className="text-xl md:text-2xl font-bold">
+                      <span className="text-xl md:text-2xl font-bold dark:text-white">
                         {Math.floor(seconds / 60)}:
-                        {String(seconds % 60).padStart(2, '0')}
+                        {String(seconds % 60).padStart(2, "0")}
                       </span>
                     </div>
                   </div>
                   <div className="text-center">
-                    <p className="text-sm md:text-base text-gray-600">
+                    <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
                       Questions Answered: {Object.keys(answers).length}/10
                     </p>
                   </div>
@@ -339,8 +348,10 @@ export default function CQuizPage() {
 
             {/* Questions Column */}
             <div className="md:col-span-9 md:order-1">
-              <div className="bg-yellow-50 rounded-xl p-4 mb-6 sticky top-4 z-10 shadow-md">
-                <h1 className="text-xl md:text-2xl font-bold text-center">C - Basic Quiz</h1>
+              <div className="bg-yellow-50 dark:bg-black rounded-xl p-4 mb-6 sticky top-4 z-10 shadow-md">
+                <h1 className="text-xl md:text-2xl dark:text-yellow-100 font-bold text-center">
+                  C - Basic Quiz
+                </h1>
               </div>
 
               {!showResults ? (
@@ -348,29 +359,31 @@ export default function CQuizPage() {
                   {questions.map((question, index) => (
                     <div
                       key={question.id}
-                      className="bg-white rounded-xl p-4 md:p-6 shadow-md border-2 border-yellow-100"
+                      className="bg-white dark:bg-transparent dark:border-yellow-200/30 rounded-xl p-4 md:p-6 shadow-md border-2 border-yellow-100"
                     >
-                      <h3 className="text-base md:text-lg font-semibold mb-4">
+                      <h3 className="text-base md:text-lg dark:text-white font-semibold mb-4">
                         {index + 1}. {question.question}
                       </h3>
-                      <div className="space-y-2 md:space-y-3">
+                      <div className="space-y-2 md:space-y-3 dark:text-gray-300">
                         {question.options.map((option) => (
                           <label
                             key={option}
-                            className="flex items-center gap-3 p-2 md:p-3 rounded-lg hover:bg-yellow-50 cursor-pointer transition-colors"
+                            className="flex items-center gap-3 p-2 md:p-3 rounded-lg hover:bg-yellow-50 dark:hover:bg-yellow-200/20 cursor-pointer transition-colors"
                           >
                             <input
                               type="radio"
                               name={`question-${question.id}`}
                               value={option}
-                              onChange={() => handleOptionChange(question.id, option)}
+                              onChange={() =>
+                                handleOptionChange(question.id, option)
+                              }
                               checked={answers[question.id] === option}
                               className="w-4 h-4 text-yellow-600 focus:ring-yellow-500"
                               disabled={seconds === 0}
                             />
                             <span className="flex-1 text-sm md:text-base">
-                              {option.includes('\n') ? (
-                                <pre className="whitespace-pre-wrap font-mono text-xs md:text-sm bg-gray-50 p-2 rounded">
+                              {option.includes("\n") ? (
+                                <pre className="whitespace-pre-wrap font-mono text-xs md:text-sm bg-gray-50 dark:bg-black p-2 rounded">
                                   {option}
                                 </pre>
                               ) : (
@@ -394,18 +407,21 @@ export default function CQuizPage() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8 border-2 border-yellow-100">
-                  <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8">Quiz Results</h2>
+                <div className="w-full max-w-2xl mx-auto bg-white dark:bg-yellow-200/20 rounded-xl shadow-lg p-6 md:p-8 border-2 border-yellow-100">
+                  <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 dark:text-white">
+                    Quiz Results
+                  </h2>
                   <div className="text-center mb-6 md:mb-8">
                     {score >= 8 ? (
                       <CheckCircle2 className="w-16 h-16 md:w-20 md:h-20 text-green-500 mx-auto mb-4" />
                     ) : (
                       <XCircle className="w-16 h-16 md:w-20 md:h-20 text-red-500 mx-auto mb-4" />
                     )}
-                    <p className="text-xl md:text-2xl font-semibold mb-2">
-                      Your Score: {score}/10 ({(score / 10 * 100).toFixed(1)}%)
+                    <p className="text-xl md:text-2xl font-semibold mb-2 dark:text-gray-200">
+                      Your Score: {score}/10 ({((score / 10) * 100).toFixed(1)}
+                      %)
                     </p>
-                    <p className="text-base md:text-lg text-gray-600">
+                    <p className="text-base md:text-lg text-gray-600 dark:text-yellow-100">
                       {score >= 8
                         ? "Congratulations! You've passed the quiz!"
                         : "Keep practicing! You need 80% to pass."}
@@ -440,4 +456,3 @@ export default function CQuizPage() {
     </div>
   );
 }
-

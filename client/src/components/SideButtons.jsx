@@ -81,7 +81,7 @@ const SideButtons = () => {
   height: 100%;
   background: rgba(218, 165, 33, 0.099);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   display: flex;
   flex-direction: column;

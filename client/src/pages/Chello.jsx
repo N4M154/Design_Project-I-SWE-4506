@@ -1,5 +1,3 @@
-
-
 //-----------------------------------------
 
 import { jsPDF } from "jspdf";
@@ -178,20 +176,20 @@ int main() {
   }
 
   return (
-    <div className="flex min-h-screen bg-white font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
       <SideButtons />
       <div
         id="main-content"
         className="flex-1 transition-all duration-300"
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white dark:bg-[#18181b]">
           {/* Navigation Bar */}
-          <div className="bg-yellow-50 border-b border-yellow-100 p-4">
+          <div className="bg-yellow-50 dark:bg-black border-b border-yellow-100 p-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <Link
                 to="/courses/c"
-                className="flex items-center text-yellow-600 hover:text-yellow-700 transition-colors"
+                className="flex items-center text-yellow-600 hover:text-yellow-700 dark:text-yellow-300 dark:hover:text-yellow-500 transition-colors"
               >
                 <ChevronLeft className="mr-2" />
                 Back to Course
@@ -199,7 +197,7 @@ int main() {
               <div className="flex gap-4">
                 <button
                   onClick={handleQuizCompletion}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2"
+                  className="bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors flex items-center gap-2"
                 >
                   <GraduationCap size={20} />
                   Take Quiz
@@ -220,29 +218,31 @@ int main() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Lesson Content */}
               <div className="lg:col-span-2 space-y-8">
-                <div className="bg-white rounded-xl shadow-sm border border-yellow-100 p-8">
-                  <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                <div className="bg-white dark:bg-transparent rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-200/20 p-8">
+                  <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">
                     {lesson.title}
                   </h1>
-                  <p className="text-gray-600 mb-8">{lesson.intro}</p>
+                  <p className="text-gray-600 dark:text-gray-300 mb-8">
+                    {lesson.intro}
+                  </p>
 
                   {lesson.sections.map((section, index) => (
                     <div key={index} className="mb-8">
-                      <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                      <h2 className="text-2xl font-semibold text-gray-800 dark:text-yellow-100 mb-4">
                         {section.title}
                       </h2>
                       {section.content && (
-                        <div className="text-gray-600 whitespace-pre-line mb-4">
+                        <div className="text-gray-600 dark:text-white whitespace-pre-line mb-4">
                           {section.content}
                         </div>
                       )}
                       {section.code && (
-                        <div className="bg-yellow-50 rounded-lg p-6 mb-4">
-                          <pre className="text-gray-800 font-mono text-sm">
+                        <div className="bg-yellow-50 dark:bg-yellow-200/20 rounded-lg p-6 mb-4">
+                          <pre className="text-gray-800 dark:text-white font-mono text-sm">
                             {section.code}
                           </pre>
                           {section.explanation && (
-                            <div className="mt-4 text-gray-600 text-sm">
+                            <div className="mt-4 text-gray-600 dark:text-gray-300 text-sm">
                               {section.explanation}
                             </div>
                           )}
@@ -252,11 +252,11 @@ int main() {
                   ))}
 
                   {lesson.practice && (
-                    <div className="bg-yellow-50 rounded-lg p-6">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                    <div className="bg-yellow-50 dark:bg-yellow-200/20 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
                         Practice Exercises
                       </h3>
-                      <ul className="list-disc list-inside text-gray-600 space-y-2">
+                      <ul className="list-disc list-inside text-gray-600 dark:text-gray-300 space-y-2">
                         {lesson.practice.map((item, index) => (
                           <li key={index}>{item}</li>
                         ))}
@@ -269,8 +269,8 @@ int main() {
               {/* Sidebar Content */}
               <div className="space-y-8">
                 {/* Related Videos */}
-                <div className="bg-white rounded-xl shadow-sm border border-yellow-100 p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
                     <Play size={20} className="text-yellow-600" />
                     Related Videos
                   </h3>
@@ -287,18 +287,20 @@ int main() {
                             {video.duration}
                           </span>
                         </div>
-                        <h4 className="text-sm font-medium text-gray-800 mt-2 group-hover:text-yellow-600">
+                        <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300 mt-2 group-hover:text-yellow-600">
                           {video.title}
                         </h4>
-                        <p className="text-xs text-gray-500">{video.author}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {video.author}
+                        </p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Related Articles */}
-                <div className="bg-white rounded-xl shadow-sm border border-yellow-100 p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
                     <BookOpen size={20} className="text-yellow-600" />
                     Related Articles
                   </h3>
@@ -307,14 +309,14 @@ int main() {
                       <a
                         key={article.id}
                         href={article.url}
-                        className="block p-4 rounded-lg hover:bg-yellow-50 transition-colors"
+                        className="block p-4 rounded-lg hover:bg-yellow-50 dark:hover:bg-black/50 transition-colors"
                       >
                         <div className="flex items-start justify-between">
                           <div>
-                            <h4 className="text-sm font-medium text-gray-800">
+                            <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300">
                               {article.title}
                             </h4>
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                               {article.source} • {article.readTime} read
                             </p>
                           </div>
