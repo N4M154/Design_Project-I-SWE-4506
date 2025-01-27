@@ -27,9 +27,9 @@ export default function CLanguagePage() {
     },
     {
       id: "variables",
-      title: "Variables",
+      title: "variables",
       icon: <Code2 size={20} />,
-      quizCompleted: false,
+      quizCompleted: true,
     },
     {
       id: "data-types",
