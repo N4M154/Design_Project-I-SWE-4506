@@ -337,7 +337,7 @@ const FloatingChatbot = () => {
                   className={`inline-block p-3 rounded-lg shadow-sm ${
                     message.role === "user"
                       ? "bg-yellow-200 dark:bg-yellow-500 dark:text-black"
-                      : "bg-yellow-50 border-black dark:bg-black text-black dark:text-yellow-200 text-sm border dark:border-yellow-200"
+                      : "bg-yellow-50 border-black dark:bg-black text-black dark:text-white text-sm border dark:border-yellow-200"
                   }`}
                 >
                   <ReactMarkdown>{message.content}</ReactMarkdown>
