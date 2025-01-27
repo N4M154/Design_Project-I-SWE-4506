@@ -399,6 +399,7 @@
 //-------------------------------------------------------------------------------
 import MonacoEditor from "@monaco-editor/react";
 import axios from "axios";
+import { Groq } from "groq-sdk";
 import {
   Code2,
   Copy,
@@ -411,7 +412,6 @@ import {
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import SideButtons from "../components/SideButtons";
-import { Groq } from "groq-sdk";
 
 const languageExamples = {
   c: `#include <stdio.h>
