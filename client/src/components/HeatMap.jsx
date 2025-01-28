@@ -40,13 +40,13 @@ const HeatMap = ({ runData, currentDate }) => {
       <div className="grid grid-cols-12 gap-1">
         {Object.entries(heatmapData).map(([key, monthData], index) => (
           <div key={key} className="text-center">
-            <h2 className="text-xs font-semibold text-yellow-700">
+            <h2 className="text-xs font-semibold text-yellow-700 dark:text-yellow-100">
               {new Date(
                 key.split("-")[1],
                 key.split("-")[0] - 1
               ).toLocaleString("default", { month: "short" })}
             </h2>
-            <div className="grid grid-cols-7 gap-0.5">
+            <div className="grid grid-cols-7 gap-0.7">
               {monthData.map((count, i) => (
                 <div
                   key={`day-${index}-${i}`}
@@ -54,7 +54,7 @@ const HeatMap = ({ runData, currentDate }) => {
                   style={{
                     backgroundColor: count
                       ? `rgba(75,192,192,${Math.min(count / 10, 1)})`
-                      : "#f4f4f4",
+                      : "transparent",
                     borderColor: count ? "#4bc0c0" : "#dcdcdc",
                   }}
                   title={count ? `Day ${i + 1}: ${count} run(s)` : ""}

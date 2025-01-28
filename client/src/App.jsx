@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import Progress from "./pages/Progress.tsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import ProfileAnalytics from "./pages/ProfileAnalytics";
 
 export default function App() {
   return (
@@ -39,14 +40,14 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/community" element={<Community />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
-         
+
           <Route path="/courses/c/:lessonId" element={<Chello />} />
-         
-          
+
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
 
           <Route element={<PrivateRoute />}>
+            <Route path="/profile-analytics" element={<ProfileAnalytics />} />
             <Route path="/profile" element={<Profile />} />
           </Route>
         </Route>
