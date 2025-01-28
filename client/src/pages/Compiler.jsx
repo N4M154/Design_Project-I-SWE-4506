@@ -412,6 +412,7 @@ import {
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import SideButtons from "../components/SideButtons";
+import { useSelector } from "react-redux";
 
 const languageExamples = {
   c: `#include <stdio.h>
@@ -463,6 +464,7 @@ export default function CodeEditor() {
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [panelHeight, setPanelHeight] = useState(40); // Default 40%
   const [isDragging, setIsDragging] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
 
   const languages = [
     { id: "c", name: "C", icon: "🎯" },
@@ -510,6 +512,61 @@ export default function CodeEditor() {
     dangerouslyAllowBrowser: true,
   });
 
+  // const compileCode = async () => {
+  //   if (inputNeeded && !input) {
+  //     alert("This code requires input. Please provide input data.");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   try {
+  //     // Execute the code
+  //     const executionResponse = await axios.post("/api/execute", {
+  //       script: code,
+  //       language: language,
+  //       input: input,
+  //     });
+  //     const executionOutput = executionResponse.data.output;
+  //     setOutput(executionOutput);
+
+  //     // Save run details
+  //     await axios.post("/api/run", {
+  //       userId: currentUser._id,
+  //       language,
+  //     });
+
+  //     console.log("Run details saved successfully!");
+
+  //     const analysisResponse = await groq.chat.completions.create({
+  //       model: "llama-3.3-70b-versatile",
+  //       temperature: 0.7,
+  //       max_tokens: 2048,
+  //       messages: [
+  //         {
+  //           role: "system",
+  //           content:
+  //             "You are a programming expert. Analyze the provided code for its space and time complexity. Suggest any potential improvements for performance optimization in a clear and concise way. Format your response in markdown.",
+  //         },
+  //         {
+  //           role: "user",
+  //           content: `Here is the code:\n\nLanguage: ${language}\n\nCode:\n${code}`,
+  //         },
+  //       ],
+  //     });
+
+  //     const aiAnalysis =
+  //       analysisResponse.choices[0]?.message?.content ||
+  //       "No analysis available.";
+  //     setGroqAnalysis(aiAnalysis);
+  //   } catch (error) {
+  //     setOutput("Error: Failed to execute code. Please try again.");
+  //     setGroqAnalysis("Error: Failed to analyze code.");
+  //     console.error("Error:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const compileCode = async () => {
     if (inputNeeded && !input) {
       alert("This code requires input. Please provide input data.");
@@ -524,14 +581,36 @@ export default function CodeEditor() {
         language: language,
         input: input,
       });
+
       const executionOutput = executionResponse.data.output;
       setOutput(executionOutput);
+
+      // Format the current date in `dd-mm-yyyy` format
+      const now = new Date();
+      const formattedDate = `${now.getDate().toString().padStart(2, "0")}-${(
+        now.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, "0")}-${now.getFullYear()}`;
+
+      // Save run details
+      try {
+        await axios.post("/api/run", {
+          userId: currentUser._id,
+          date: formattedDate,
+          language,
+        });
+        console.log("Run details saved successfully!");
+      } catch (saveError) {
+        console.error("Error saving run details:", saveError);
+        alert("Failed to save run details. Please try again.");
+      }
 
       // Analyze the code using Groq AI
       const analysisResponse = await groq.chat.completions.create({
         model: "llama-3.3-70b-versatile",
         temperature: 0.7,
-        max_tokens: 1024,
+        max_tokens: 2048,
         messages: [
           {
             role: "system",
@@ -552,7 +631,7 @@ export default function CodeEditor() {
     } catch (error) {
       setOutput("Error: Failed to execute code. Please try again.");
       setGroqAnalysis("Error: Failed to analyze code.");
-      console.error(error);
+      console.error("Error during execution:", error);
     } finally {
       setLoading(false);
     }

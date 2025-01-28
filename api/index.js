@@ -10,6 +10,8 @@ import blogRoutes from "./routes/blog.route.js"; // Import the blog routes
 import { problemDetails } from "./routes/problemDetails.route.js";
 import { problemsTable } from "./routes/problemsTable.route.js";
 import userRoutes from "./routes/user.route.js";
+import runRoutes from "./routes/run.route.js";
+
 dotenv.config();
 
 const app = express();
@@ -36,6 +38,7 @@ app.use(cookieParser());
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/blog", blogRoutes);
+app.use("/api/run", runRoutes);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
 
