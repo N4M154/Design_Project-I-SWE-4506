@@ -38,7 +38,7 @@ export default function Header() {
           )}
 
           <Link
-            to="/profile"
+            to="/profile-analytics"
             className="font-bold text-yellow-700 dark:text-yellow-200"
           >
             {currentUser ? (
