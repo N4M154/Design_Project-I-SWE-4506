@@ -658,6 +658,7 @@ import {
 } from "chart.js";
 import SideButtons from "../components/SideButtons";
 import Graphs from "../components/Graphs.jsx";
+import HeatMap from "../components/HeatMap.jsx";
 
 ChartJS.register(
   CategoryScale,
@@ -896,6 +897,7 @@ export default function Profile() {
             <Graphs runData={runData || []} currentDate={currentDate} />{" "}
           </div>
         </div>
+        <HeatMap runData={runData || []} currentDate={currentDate} />
       </div>
     </div>
   );
