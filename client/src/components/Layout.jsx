@@ -4,7 +4,6 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import SecondaryHeader from "./SecondaryHeader";
 
-
 const Layout = () => {
   const location = useLocation();
   const excludeHeaderPaths = ["/sign-in", "/sign-up"];
@@ -21,7 +20,7 @@ const Layout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-     {/* Add the Footer component here */}
+      {/* Add the Footer component here */}
     </div>
   );
 };
