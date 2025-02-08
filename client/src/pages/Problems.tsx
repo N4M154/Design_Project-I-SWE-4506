@@ -373,7 +373,185 @@ const initialProblems: Problem[] = [
         output: "[['Q']]"
       }
     ]
+  },
+  {
+    id: "4",
+    title: "Reverse Integer",
+    difficulty: "Easy",
+    tags: ["Math"],
+    timeLimit: 1000,
+    description: "Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.",
+    sampleInput: "123",
+    sampleOutput: "321",
+    testCases: [
+      { input: "123", output: "321" },
+      { input: "-123", output: "-321" },
+      { input: "120", output: "21" },
+      { input: "1534236469", output: "0" }
+    ]
+  },
+  {
+    id: "5",
+    title: "Palindrome Number",
+    difficulty: "Easy",
+    tags: ["Math"],
+    timeLimit: 1000,
+    description: "Given an integer x, return true if x is a palindrome, and false otherwise.",
+    sampleInput: "121",
+    sampleOutput: "true",
+    testCases: [
+      { input: "121", output: "true" },
+      { input: "-121", output: "false" },
+      { input: "10", output: "false" }
+    ]
+  },
+  {
+    id: "6",
+    title: "Longest Common Prefix",
+    difficulty: "Easy",
+    tags: ["String"],
+    timeLimit: 1000,
+    description: "Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.",
+    sampleInput: '["flower","flow","flight"]',
+    sampleOutput: '"fl"',
+    testCases: [
+      { input: '["flower","flow","flight"]', output: '"fl"' },
+      { input: '["dog","racecar","car"]', output: '""' }
+    ]
+  },
+  {
+    id: "7",
+    title: "Valid Parentheses",
+    difficulty: "Easy",
+    tags: ["Stack", "String"],
+    timeLimit: 1000,
+    description: "Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.",
+    sampleInput: '"()[]{}"',
+    sampleOutput: "true",
+    testCases: [
+      { input: '"()[]{}"', output: "true" },
+      { input: '"(]"', output: "false" },
+      { input: '"([)]"', output: "false" }
+    ]
+  },
+  {
+    id: "8",
+    title: "Remove Duplicates from Sorted Array",
+    difficulty: "Easy",
+    tags: ["Array", "Two Pointers"],
+    timeLimit: 1000,
+    description: "Given a sorted array nums, remove the duplicates in-place such that each element appears only once and returns the new length.",
+    sampleInput: "[1,1,2]",
+    sampleOutput: "2",
+    testCases: [
+      { input: "[1,1,2]", output: "2" },
+      { input: "[0,0,1,1,1,2,2,3,3,4]", output: "5" }
+    ]
+  },
+  {
+    id: "9",
+    title: "Climbing Stairs",
+    difficulty: "Easy",
+    tags: ["Dynamic Programming"],
+    timeLimit: 1000,
+    description: "You are climbing a staircase. It takes n steps to reach the top. Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
+    sampleInput: "2",
+    sampleOutput: "2",
+    testCases: [
+      { input: "2", output: "2" },
+      { input: "3", output: "3" },
+      { input: "4", output: "5" }
+    ]
+  },
+  {
+    id: "10",
+    title: "Merge Intervals",
+    difficulty: "Medium",
+    tags: ["Array", "Sorting"],
+    timeLimit: 2000,
+    description: "Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.",
+    sampleInput: "[[1,3],[2,6],[8,10],[15,18]]",
+    sampleOutput: "[[1,6],[8,10],[15,18]]",
+    testCases: [
+      { input: "[[1,3],[2,6],[8,10],[15,18]]", output: "[[1,6],[8,10],[15,18]]" },
+      { input: "[[1,4],[4,5]]", output: "[[1,5]]" }
+    ]
+  },
+  {
+    id: "11",
+    title: "Unique Paths",
+    difficulty: "Medium",
+    tags: ["Dynamic Programming"],
+    timeLimit: 2000,
+    description: "There is a robot on an m x n grid. The robot starts at the top-left corner and tries to move to the bottom-right corner. The robot can only move either down or right at any point in time. Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.",
+    sampleInput: "3\n7",
+    sampleOutput: "28",
+    testCases: [
+      { input: "3\n7", output: "28" },
+      { input: "3\n2", output: "3" }
+    ]
+  },
+  {
+    id: "12",
+    title: "Symmetric Tree",
+    difficulty: "Easy",
+    tags: ["Tree", "Depth-First Search"],
+    timeLimit: 1000,
+    description: "Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).",
+    sampleInput: "[1,2,2,3,4,4,3]",
+    sampleOutput: "true",
+    testCases: [
+      { input: "[1,2,2,3,4,4,3]", output: "true" },
+      { input: "[1,2,2,null,3,null,3]", output: "false" }
+    ]
+  },
+  {
+    id: "13",
+    title: "Binary Tree Inorder Traversal",
+    difficulty: "Easy",
+    tags: ["Tree", "Depth-First Search"],
+    timeLimit: 1000,
+    description: "Given the root of a binary tree, return the inorder traversal of its nodes' values.",
+    sampleInput: "[1,null,2,3]",
+    sampleOutput: "[1,3,2]",
+    testCases: [
+      { input: "[1,null,2,3]", output: "[1,3,2]" },
+      { input: "[]", output: "[]" },
+      { input: "[1]", output: "[1]" }
+    ]
+  },
+  {
+    id: "14",
+    title: "Linked List Cycle",
+    difficulty: "Medium",
+    tags: ["Linked List", "Two Pointers"],
+    timeLimit: 1000,
+    description: "Given head, the head of a linked list, determine if the linked list has a cycle in it.",
+    sampleInput: "[3,2,0,-4]\n1",
+    sampleOutput: "true",
+    testCases: [
+      { input: "[3,2,0,-4]\n1", output: "true" },
+      { input: "[1,2]\n0", output: "true" },
+      { input: "[1]\n-1", output: "false" }
+    ]
+  },
+  {
+    id: "15",
+    title: "Single Number",
+    difficulty: "Easy",
+    tags: ["Array", "Bit Manipulation"],
+    timeLimit: 1000,
+    description: "Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.",
+    sampleInput: "[2,2,1]",
+    sampleOutput: "1",
+    testCases: [
+      { input: "[2,2,1]", output: "1" },
+      { input: "[4,1,2,1,2]", output: "4" }
+    ]
   }
+
+
+
 ];
 
 const languageExamples = {
@@ -454,7 +632,7 @@ const Problems: React.FC = () => {
   }, [submissions]);
 
   const groq = new Groq({
-    apiKey: import.meta.env.VITE_GROQ_API_KEY,
+   apiKey: import.meta.env.VITE_GROQ_API_KEY,
     dangerouslyAllowBrowser: true,
   });
 
@@ -485,8 +663,7 @@ const Problems: React.FC = () => {
         if (result !== 'AC') {
           allTestsPassed = false;
         }
-
-        testOutput += `Test case: ${testCase.input}\nExpected: ${testCase.output}\nResult: ${result}\n\n`;
+testOutput += `Test case: ${testCase.input}\nExpected: ${testCase.output}\nResult: ${result}\n\n`;
       }
 
       setOutput(testOutput);
