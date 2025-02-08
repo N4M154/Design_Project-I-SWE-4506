@@ -10,6 +10,7 @@ import CLanguagePage from "./pages/CLanguagePage";
 import Community from "./pages/CommunityPage.jsx";
 import Compiler from "./pages/Compiler.jsx";
 import Content from "./pages/Content.jsx";
+import Cpy from "./pages/Cpy.jsx";
 import CQuizPage from "./pages/CQuizPage.jsx";
 import LandingPage from "./pages/Landing.jsx";
 import Notes from "./pages/Notes.tsx";
@@ -40,8 +41,10 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/community" element={<Community />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
+          <Route path="/courses/python" element={<Cpy />} />
 
           <Route path="/courses/c/:lessonId" element={<Chello />} />
+          
 
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
