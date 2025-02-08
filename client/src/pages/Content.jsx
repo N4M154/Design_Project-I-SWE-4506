@@ -390,7 +390,7 @@ const Content = () => {
         <div className="p-8 font-sans max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
+          <h1 className="text-4xl font-bold text-yellow-600 mb-4 text-center">
   Unlock Knowledge, One Click at a Time!
 </h1>
 <p className="text-gray-600 text-center text-lg max-w-2xl mx-auto">
