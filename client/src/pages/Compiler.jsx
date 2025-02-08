@@ -445,7 +445,7 @@ export default function CodeEditor() {
                     theme === "vs-dark" ? "border-[#404040]" : "border-gray-200"
                   }`}
                 >
-                  <div className="flex justify-between items-center mb-2">
+                  <div className="flex justify-between items-center mb-8">
                     <h2
                       className={`font-medium ${
                         theme === "vs-dark" ? "text-white" : "text-black"

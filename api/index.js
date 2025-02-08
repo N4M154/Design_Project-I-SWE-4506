@@ -9,8 +9,8 @@ import authRoutes from "./routes/auth.route.js";
 import blogRoutes from "./routes/blog.route.js"; // Import the blog routes
 import { problemDetails } from "./routes/problemDetails.route.js";
 import { problemsTable } from "./routes/problemsTable.route.js";
-import userRoutes from "./routes/user.route.js";
 import runRoutes from "./routes/run.route.js";
+import userRoutes from "./routes/user.route.js";
 
 dotenv.config();
 

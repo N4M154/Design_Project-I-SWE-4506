@@ -15,10 +15,10 @@ import LandingPage from "./pages/Landing.jsx";
 import Notes from "./pages/Notes.tsx";
 import Problems from "./pages/Problems.tsx";
 import Profile from "./pages/Profile";
+import ProfileAnalytics from "./pages/ProfileAnalytics";
 import Progress from "./pages/Progress.tsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import ProfileAnalytics from "./pages/ProfileAnalytics";
 
 export default function App() {
   return (
