@@ -11,7 +11,7 @@ function CQuizResultsPage() {
             <h1 className="text-center">{passed ? "Congratulations, You Passed!" : "Quiz Failed, Try Again!"}</h1>
             <div className="text-center">
                 {passed ? (
-                    <Link to="/courses/c" className="btn btn-success">Continue Learning</Link>
+                    <Link to="/courses/c/variables" className="btn btn-success">Continue Learning</Link>
                 ) : (
                     <button onClick={() => window.history.back()} className="btn btn-danger">Retake Quiz</button>
                 )}
