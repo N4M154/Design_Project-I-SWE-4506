@@ -191,7 +191,7 @@ Cover essential technical skills, problem-solving strategies, system design, beh
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <Map className="h-12 w-12 mx-auto text-yellow-600" />
-            <h2 className="mt-2 text-3xl font-bold text-gray-900">Career Roadmap Generator</h2>
+            <h2 className="mt-2 text-3xl font-bold text-gray-900">Your ultimate guide to career growth and success!!!</h2>
             <p className="mt-2 text-gray-600">Enter your desired career path to get a personalized roadmap</p>
           </div>
           <div className="mt-8">
