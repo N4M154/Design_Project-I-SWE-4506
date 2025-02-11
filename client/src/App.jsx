@@ -15,6 +15,7 @@ import CQuizPage from "./pages/CQuizPage.jsx";
 import Java from "./pages/Java.jsx";
 import Javascript from "./pages/Javascript.jsx";
 import LandingPage from "./pages/Landing.jsx";
+import Mock from "./pages/Mock.jsx";
 import Notes from "./pages/Notes.tsx";
 import Problems from "./pages/Problems.tsx";
 import Profile from "./pages/Profile";
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="/compiler" element={<Compiler />} />
           <Route path="/about" element={<About />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/mock" element={<Mock />} />
           <Route path="/courses/c" element={<CLanguagePage />} />
           <Route path="/courses/python" element={<Cpy />} />
           <Route path="/courses/java" element={<Java />} />
