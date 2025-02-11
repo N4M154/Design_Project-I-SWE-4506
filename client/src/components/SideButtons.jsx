@@ -25,7 +25,7 @@ const sidebarItems = [
   { name: "Community Forum", icon: MessageSquare, route: "/community" },
   { name: "Take Notes", icon: PenTool, route: "/notes" },
   // { name: "Resources", icon: LayoutList, route: "/resources" },
-  { name: "Mock Interview", icon: UserRound, route: "/mock" },
+  { name: "Interview Preparation", icon: UserRound, route: "/mock" },
   { name: "News Portal", icon: Bell, route: "/news" },
 ];
 
