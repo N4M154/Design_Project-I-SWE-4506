@@ -1,4 +1,3 @@
-
 import MonacoEditor from "@monaco-editor/react";
 import axios from "axios";
 import { Groq } from "groq-sdk";
@@ -14,6 +13,7 @@ import {
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import SideButtons from "../components/SideButtons";
+import { useSelector } from "react-redux";
 
 const languageExamples = {
   c: `#include <stdio.h>
@@ -65,6 +65,7 @@ export default function CodeEditor() {
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [panelHeight, setPanelHeight] = useState(40); // Default 40%
   const [isDragging, setIsDragging] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
 
   const languages = [
     { id: "c", name: "C", icon: "🎯" },
@@ -128,6 +129,26 @@ export default function CodeEditor() {
       });
       const executionOutput = executionResponse.data.output;
       setOutput(executionOutput);
+      // Format the current date in `dd-mm-yyyy` format
+      const now = new Date();
+      const formattedDate = `${now.getDate().toString().padStart(2, "0")}-${(
+        now.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, "0")}-${now.getFullYear()}`;
+
+      // Save run details
+      try {
+        await axios.post("/api/run", {
+          userId: currentUser._id,
+          date: formattedDate,
+          language,
+        });
+        console.log("Run details saved successfully!");
+      } catch (saveError) {
+        console.error("Error saving run details:", saveError);
+        alert("Failed to save run details. Please try again.");
+      }
 
       // Analyze the code using Groq AI
       const analysisResponse = await groq.chat.completions.create({
