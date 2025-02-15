@@ -658,7 +658,8 @@ const Problems: React.FC = () => {
           temperature: 0.1
         });
 
-        const result = response.choices[0].message.content.trim() as 'AC' | 'WA' | 'TLE';
+        const result = (response.choices[0].message.content?.trim() as 'AC' | 'WA' | 'TLE') ?? 'WA';
+
         
         if (result !== 'AC') {
           allTestsPassed = false;
