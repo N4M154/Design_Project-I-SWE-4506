@@ -73,23 +73,23 @@
 //         </div>
 //       )}
 
-//       {generatedRoadmap ? (
-//         <div>
-//           <h2 className="text-2xl font-bold">Your Generated Roadmap</h2>
-//           <pre className="bg-gray-100 p-4 rounded">{generatedRoadmap}</pre>
-//         </div>
-//       ) : (
-//         <form onSubmit={handleSubmit}>
-//           {/* Progress Indicator */}
-//           <div className="text-center mb-8">
-//             <span className="text-gray-600">Step {step} of 7</span>
-//             <div className="h-2 bg-gray-200 mt-2 rounded">
-//               <div
-//                 className="h-full bg-blue-500 rounded transition-all"
-//                 style={{ width: `${(step / 7) * 100}%` }}
-//               ></div>
-//             </div>
-//           </div>
+      // {generatedRoadmap ? (
+      //   <div>
+      //     <h2 className="text-2xl font-bold">Your Generated Roadmap</h2>
+      //     <pre className="bg-gray-100 p-4 rounded">{generatedRoadmap}</pre>
+      //   </div>
+      // ) : (
+      //   <form onSubmit={handleSubmit}>
+      //     {/* Progress Indicator */}
+      //     <div className="text-center mb-8">
+      //       <span className="text-gray-600">Step {step} of 7</span>
+      //       <div className="h-2 bg-gray-200 mt-2 rounded">
+      //         <div
+      //           className="h-full bg-blue-500 rounded transition-all"
+      //           style={{ width: `${(step / 7) * 100}%` }}
+      //         ></div>
+      //       </div>
+      //     </div>
 
 //           {/* Step 1: Goals & Interests */}
 //           {step === 1 && (
@@ -575,10 +575,10 @@
 
 //------------------------------------------------------------------------------------------
 
-
 import axios from "axios";
-import { BookOpen, Brain, Clock, Code, MessageSquare, Target, PenTool as Tool } from 'lucide-react';
-import { useState } from "react";
+import html2pdf from 'html2pdf.js';
+import { BookOpen, Brain, Clock, Code, Download, MessageSquare, Target, PenTool as Tool } from 'lucide-react';
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SideButtons from "../components/SideButtons";
 
@@ -586,6 +586,7 @@ const RoadmapForm = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [isExpanded, setIsExpanded] = useState(true);
   const [step, setStep] = useState(1);
+  const roadmapRef = useRef(null);
   const [formData, setFormData] = useState({
     goals: {
       primaryGoal: "",
@@ -630,16 +631,27 @@ const RoadmapForm = () => {
       alert(`Error: ${errorMessage}`);
     }
   };
-  const handleDownload = () => {
-    const element = document.createElement("a");
-    const file = new Blob([generatedRoadmap], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = "my-learning-roadmap.txt";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+  const handleDownloadPDF = () => {
+    const element = roadmapRef.current;
+    const opt = {
+      margin: 1,
+      filename: 'my-learning-roadmap.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
   };
 
+  // const handleDownloadTxt = () => {
+  //   const element = document.createElement("a");
+  //   const file = new Blob([generatedRoadmap], {type: 'text/plain'});
+  //   element.href = URL.createObjectURL(file);
+  //   element.download = "my-learning-roadmap.txt";
+  //   document.body.appendChild(element);
+  //   element.click();
+  //   document.body.removeChild(element);
+  // };
 
 
 
@@ -702,25 +714,25 @@ const RoadmapForm = () => {
             </div>
           )}
 
-          {generatedRoadmap ? (
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-amber-900 mb-6">Your Generated Roadmap</h2>
-              <div className="bg-amber-50 p-6 rounded-lg border border-amber-200">
-                <pre className="whitespace-pre-wrap text-amber-900">{generatedRoadmap}</pre>
-              </div>
-              <button
-                onClick={() => {
-                  setGeneratedRoadmap(null);
-                  setSuccessMessage("");
-                }}
-                className="mt-6 bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors"
-              >
-                Create Another Roadmap
-              </button>
-            </div>
-          ) : (
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <form onSubmit={handleSubmit} className="space-y-8"> */}
+          // generatedRoadmap ? (
+          //   <div className="bg-white rounded-lg shadow-lg p-8">
+          //     <h2 className="text-3xl font-bold text-amber-900 mb-6">Your Generated Roadmap</h2>
+          //     <div className="bg-amber-50 p-6 rounded-lg border border-amber-200">
+          //       <pre className="whitespace-pre-wrap text-amber-900">{generatedRoadmap}</pre>
+          //     </div>
+          //     <button
+          //       onClick={() => {
+          //         setGeneratedRoadmap(null);
+          //         setSuccessMessage("");
+          //       }}
+          //       className="mt-6 bg-amber-600 text-white px-6 py-2 rounded-lg hover:bg-amber-700 transition-colors"
+          //     >
+          //       Create Another Roadmap
+          //     </button>
+          //   </div>
+          // ) : (
+          //   <div className="bg-white rounded-lg shadow-lg p-8">
+          //     <form onSubmit={handleSubmit} className="space-y-8"> 
 
 
 
@@ -752,53 +764,38 @@ const RoadmapForm = () => {
               <p className="font-semibold text-xl">{successMessage}</p>
             </div>
           )}
-
-          {generatedRoadmap ? (
-            <div className="bg-white rounded-lg shadow-lg p-8">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold text-amber-900">Your Learning Roadmap</h2>
-                <button
-                  onClick={handleDownload}
-                  className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  Download Roadmap
-                </button>
-              </div>
-              
-              <div className="space-y-6">
-                {/* Roadmap Content */}
-                <div className="bg-amber-50 p-6 rounded-lg border border-amber-200">
-                  <div className="grid gap-4">
-                    {generatedRoadmap.split('\n\n').map((section, index) => (
-                      <div key={index} className="bg-white p-4 rounded-lg shadow-sm">
-                        <div className="flex items-start gap-3">
-                          <ChevronRight className="w-5 h-5 text-amber-600 mt-1" />
-                          <div className="flex-1">
-                            <p className="text-amber-900 whitespace-pre-line">{section}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex justify-between">
-                  <button
-                    onClick={() => {
-                      setGeneratedRoadmap(null);
-                      setSuccessMessage("");
-                    }}
-                    className="px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
-                  >
-                    Create New Roadmap
-                  </button>
-                </div>
-              </div>
+     {generatedRoadmap ? (
+          <div className="bg-white rounded-lg shadow-sm p-8" ref={roadmapRef}>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-bold text-amber-900">Your Learning Roadmap</h2>
+              <button
+                onClick={handleDownloadPDF}
+                className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Download PDF
+              </button>
             </div>
-          ) : (
-            <div className="bg-white rounded-lg shadow-lg p-8">
+
+            <div className="bg-amber-50/50 rounded-lg p-6">
+              <pre className="whitespace-pre-wrap font-sans text-amber-900 leading-relaxed">
+                {generatedRoadmap}
+              </pre>
+            </div>
+
+            <button
+              onClick={() => {
+                setGeneratedRoadmap(null);
+                setSuccessMessage("");
+                setStep(1);
+              }}
+              className="mt-8 px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+            >
+              Create New Roadmap
+            </button>
+          </div>
+        ) : (
+          <div className="bg-white rounded-lg shadow-lg p-8">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Progress Steps */}
                 <div className="mb-8">
@@ -1272,9 +1269,8 @@ const RoadmapForm = () => {
           )}
 
 
-
-                {/* Navigation Controls */}
-                <div className="flex justify-between pt-6">
+  {/* Navigation Controls */}
+  <div className="flex justify-between pt-6">
                   {step > 1 && (
                     <button
                       type="button"
