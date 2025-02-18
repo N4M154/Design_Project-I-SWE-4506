@@ -9,6 +9,7 @@ import {
   Terminal,
   Timer,
   UserRound,
+  Laptop
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -27,6 +28,7 @@ const sidebarItems = [
   // { name: "Resources", icon: LayoutList, route: "/resources" },
   { name: "Interview Preparation", icon: UserRound, route: "/mock" },
   { name: "News Portal", icon: Bell, route: "/news" },
+  { name: "Mock Interview", icon: Laptop, route: "/codeLobby" }
 ];
 
 const SideButtons = () => {
