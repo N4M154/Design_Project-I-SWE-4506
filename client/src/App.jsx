@@ -24,11 +24,14 @@ import RoadmapForm from "./pages/RoadMap.jsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
+import CodeRoom from "./coderoom/Room.jsx"
+import CodeLobby from "./coderoom/Lobby.jsx"
+import {SocketProvider} from "./context/SocketProvider.jsx"
 export default function App() {
   return (
     <BrowserRouter>
       {/* header */}
-
+      <SocketProvider>
       <Routes>
         <Route path="/" element={<LandingPage />} />
 
@@ -48,6 +51,8 @@ export default function App() {
           <Route path="/courses/python" element={<Cpy />} />
           <Route path="/courses/java" element={<Java />} />
           <Route path="/courses/javascript" element={<Javascript />} />
+        <Route path="/codeLobby" element={<CodeLobby />} />
+        <Route path="/codeRoom/:roomId" element={<CodeRoom />} />
 
           <Route path="/courses/c/:lessonId" element={<Chello />} />
           
@@ -62,6 +67,7 @@ export default function App() {
         </Route>
       </Routes>
       <FloatingChatbot iconSrc="/chatbot.png" />
+      </SocketProvider>
     </BrowserRouter>
   );
 }
