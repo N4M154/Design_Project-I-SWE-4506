@@ -14,7 +14,7 @@ import Cpy from "./pages/Cpy.jsx";
 import CQuizPage from "./pages/CQuizPage.jsx";
 import Java from "./pages/Java.jsx";
 import Javascript from "./pages/Javascript.jsx";
-import LandingPage from "./pages/Landing.jsx";
+import LandingPage from "./pages/Landing.tsx";
 import Notes from "./pages/Notes.tsx";
 import Problems from "./pages/Problems.tsx";
 import Profile from "./pages/Profile";
