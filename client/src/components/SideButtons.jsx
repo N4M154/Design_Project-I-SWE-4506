@@ -3,13 +3,13 @@ import {
   BookOpen,
   ChevronLeft,
   Code2,
+  Laptop,
   LogOut,
   MessageSquare,
   PenTool,
   Terminal,
   Timer,
-  UserRound,
-  Laptop
+  UserRound
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -359,14 +359,14 @@ const SideButtons = () => {
                     isExpanded ? "single-line" : "multi-line"
                   }`}
                 >
-                  Doodle
+                   &lt;/Cod
                 </span>
                 <span
                   className={`doodle-text ${
                     isExpanded ? "single-line" : "multi-line"
                   }`}
                 >
-                  Duck
+                  ERA&gt;
                 </span>
               </h1>
             </Link>

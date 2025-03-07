@@ -3,7 +3,7 @@ import FloatingChatbot from "./components/Chatbot";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 //import Compiler from "./components/Workspace/CodeEditor";
-import Home from "./Main/Home";
+import Home from "./Main/Home.jsx";
 import About from "./pages/About";
 import Chello from "./pages/Chello.jsx";
 import CLanguagePage from "./pages/CLanguagePage";
@@ -24,9 +24,9 @@ import RoadmapForm from "./pages/RoadMap.jsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-import CodeRoom from "./coderoom/Room.jsx"
-import CodeLobby from "./coderoom/Lobby.jsx"
-import {SocketProvider} from "./context/SocketProvider.jsx"
+import CodeLobby from "./coderoom/Lobby.jsx";
+import CodeRoom from "./coderoom/Room.jsx";
+import { SocketProvider } from "./context/SocketProvider.jsx";
 export default function App() {
   return (
     <BrowserRouter>

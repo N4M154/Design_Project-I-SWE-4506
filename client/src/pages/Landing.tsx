@@ -382,9 +382,10 @@ export function Landing() {
       {/* Header */}
       <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg py-4 z-50 transition-all duration-300 border-b border-yellow-100/50 dark:border-yellow-900/50">
         <div className="container mx-auto px-6 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200 transition-colors duration-300">
-            DoodleDuck
-          </h1>
+        <h1 className="text-2xl font-bold text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200 transition-colors duration-300">
+  &lt;/CodERA&gt;
+</h1>
+
           <div className="flex items-center space-x-6">
             <Link to="/sign-in">
               <button className="bg-yellow-400/90 hover:bg-yellow-500 dark:bg-yellow-300/90 dark:hover:bg-yellow-200 text-gray-900 px-6 py-2 rounded-full text-base font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-yellow-200/20 hover:-translate-y-0.5">
@@ -453,7 +454,7 @@ export function Landing() {
                     </div>
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-300">
-                    <span className="font-semibold text-gray-900 dark:text-white">500+</span> developers
+                    <span className="font-semibold text-gray-900 dark:text-white">500+</span> users
                     <br />joined last month
                   </div>
                 </div>
@@ -507,9 +508,9 @@ export function Landing() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
             {[
-              { number: "50K+", label: "Active Learners" },
-              { number: "200+", label: "Video Tutorials" },
-              { number: "15+", label: "Programming Languages" },
+              { number: "24/7", label: "Availability" },
+              { number: "150+", label: "Video Tutorials" },
+              { number: "200+", label: "Active Users" },
               { number: "98%", label: "Success Rate" },
             ].map((stat, index) => (
               <div
@@ -618,7 +619,7 @@ export function Landing() {
                 name: "Sarah Ahmed",
                 role: "Software Developer",
                 image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-                quote: "DoodleDuck helped me transition from a beginner to a confident developer.",
+                quote: "CodERA helped me transition from a beginner to a confident developer.",
               },
               {
                 name: "Mishal Rahman",
@@ -672,7 +673,7 @@ export function Landing() {
                 answer: "We offer courses in Python, JavaScript, Java, C++, and more.",
               },
               {
-                question: "Is DoodleDuck suitable for beginners?",
+                question: "Is CodERA suitable for beginners?",
                 answer: "Absolutely! Our platform accommodates learners of all levels.",
               },
               {
@@ -681,7 +682,7 @@ export function Landing() {
               },
               {
                 question: "Can I access the platform on mobile devices?",
-                answer: "Yes, DoodleDuck is fully responsive and works on any device.",
+                answer: "Yes, It is fully responsive and works on any device.",
               },
             ].map((faq, index) => (
               <div
