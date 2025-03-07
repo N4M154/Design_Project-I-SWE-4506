@@ -120,7 +120,6 @@
 
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
-import python from "highlight.js/lib/languages/python";
 import typescript from "highlight.js/lib/languages/typescript";
 import "highlight.js/styles/github-dark.css";
 import { jsPDF } from "jspdf";
@@ -151,7 +150,7 @@ import SideButtons from "../components/SideButtons";
 
 // Register languages for syntax highlighting
 hljs.registerLanguage("javascript", javascript);
-hljs.registerLanguage("python", python);
+//hljs.registerLanguage("python", python);
 hljs.registerLanguage("typescript", typescript);
 
 const AUTOSAVE_DELAY = 1000;
@@ -621,7 +620,7 @@ function Notes() {
       </div>
 
       {/* Tooltip Styles */}
-      <style jsx>{`
+      <style >{`
         .tooltip {
           position: relative;
         }
@@ -632,7 +631,7 @@ function Notes() {
           left: 50%;
           transform: translateX(-50%);
           padding: 4px 8px;
-          background: rgba(0, 0, 0, 0.8);
+          background: rgba(12, 2, 2, 0.8);
           color: white;
           border-radius: 4px;
           font-size: 12px;
