@@ -84,28 +84,29 @@ int main() {
       {
         id: "1",
         title: "C Programming Tutorial for Beginners",
-        thumbnail:
-          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "12:34",
+        url: "https://youtu.be/WXY-r9s0_Rg?si=WJe4oBdzQZ6OtoYI",
         author: "CodeMaster",
       },
       {
         id: "2",
         title: "Understanding Hello World in C",
-        thumbnail:
-          "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&auto=format",
+        thumbnail: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&auto=format",
         duration: "8:21",
+        url: "https://youtu.be/8mo6hpxXn8A?si=TetyWaQIXOlocG8v",
         author: "Programming Basics",
       },
       {
         id: "3",
         title: "C Programming Fundamentals",
-        thumbnail:
-          "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format",
+        thumbnail: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format",
         duration: "15:45",
+        url: "https://youtu.be/fmyRqhaqFXA?si=yXARMrTtMEnCB0Fp",
         author: "Tech Education",
       },
     ]);
+    
 
     // Simulated articles data (replace with actual API call)
     setRelatedArticles([
@@ -113,21 +114,21 @@ int main() {
         id: "1",
         title: "Getting Started with C Programming",
         source: "Dev.to",
-        url: "#",
+        url: "https://www.programiz.com/c-programming/examples/print-sentence",
         readTime: "5 min",
       },
       {
         id: "2",
         title: "Understanding C Program Structure",
         source: "Medium",
-        url: "#",
+        url: "https://medium.com/@aserdargun/introduction-to-c-1-hello-world-and-commenting-in-c-b92119bc62a5",
         readTime: "7 min",
       },
       {
         id: "3",
         title: "Best Practices for C Programming",
         source: "FreeCodeCamp",
-        url: "#",
+        url: "https://www.freecodecamp.org/news/the-c-beginners-handbook/",
         readTime: "10 min",
       },
     ]);
@@ -269,34 +270,41 @@ int main() {
               {/* Sidebar Content */}
               <div className="space-y-8">
                 {/* Related Videos */}
-                <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-                    <Play size={20} className="text-yellow-600" />
-                    Related Videos
-                  </h3>
-                  <div className="space-y-4">
-                    {relatedVideos.map((video) => (
-                      <div key={video.id} className="group cursor-pointer">
-                        <div className="relative">
-                          <img
-                            src={video.thumbnail}
-                            alt={video.title}
-                            className="w-full h-32 object-cover rounded-lg"
-                          />
-                          <span className="absolute bottom-2 right-2 bg-black/75 text-white text-xs px-2 py-1 rounded">
-                            {video.duration}
-                          </span>
-                        </div>
-                        <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300 mt-2 group-hover:text-yellow-600">
-                          {video.title}
-                        </h4>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">
-                          {video.author}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+<div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
+  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+    <Play size={20} className="text-yellow-600" />
+    Related Videos
+  </h3>
+  <div className="space-y-4">
+    {relatedVideos.map((video) => (
+      <a
+        key={video.id}
+        href={video.url}        // Ensure that the video URL is correct
+        target="_blank"         // Open the video in a new tab
+        rel="noopener noreferrer"  // Security measure when using target="_blank"
+        className="group cursor-pointer"
+      >
+        <div className="relative">
+          <img
+            src={video.thumbnail}
+            alt={video.title}
+            className="w-full h-32 object-cover rounded-lg"
+          />
+          <span className="absolute bottom-2 right-2 bg-black/75 text-white text-xs px-2 py-1 rounded">
+            {video.duration}
+          </span>
+        </div>
+        <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300 mt-2 group-hover:text-yellow-600">
+          {video.title}
+        </h4>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          {video.author}
+        </p>
+      </a>
+    ))}
+  </div>
+</div>
+
 
                 {/* Related Articles */}
                 <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
