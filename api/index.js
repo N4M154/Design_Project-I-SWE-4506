@@ -40,7 +40,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/run", runRoutes);
-app.use("/api/roadmap",Rmap);
+app.use("/api/roadmap", Rmap);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
 

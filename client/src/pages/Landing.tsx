@@ -4,7 +4,6 @@
 // import Footer from "../components/Footer";
 // import ThemeToggle from "../components/ThemeToggle";
 
-
 // export function Landing() {
 //   return (
 //     <div>
@@ -369,8 +368,16 @@
 
 // export default Landing;
 
-
-import { Award, Book, Brain, FileText, Terminal, Timer, Users, Video } from "lucide-react";
+import {
+  Award,
+  Book,
+  Brain,
+  FileText,
+  Terminal,
+  Timer,
+  Users,
+  Video,
+} from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
@@ -382,9 +389,9 @@ export function Landing() {
       {/* Header */}
       <header className="fixed w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg py-4 z-50 transition-all duration-300 border-b border-yellow-100/50 dark:border-yellow-900/50">
         <div className="container mx-auto px-6 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200 transition-colors duration-300">
-  &lt;/CodERA&gt;
-</h1>
+          <h1 className="text-2xl font-bold text-yellow-500 dark:text-yellow-300 hover:text-yellow-600 dark:hover:text-yellow-200 transition-colors duration-300">
+            &lt;/CodERA&gt;
+          </h1>
 
           <div className="flex items-center space-x-6">
             <Link to="/sign-in">
@@ -418,20 +425,25 @@ export function Landing() {
                   </span>
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-300 max-w-xl">
-                  Experience the next generation of coding education with AI-powered guidance, 
-                  interactive environments, and a thriving community of developers.
+                  Experience the next generation of coding education with
+                  AI-powered guidance, interactive environments, and a thriving
+                  community of developers.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link to="/sign-up">
                     <button className="group bg-yellow-400 hover:bg-yellow-500 dark:bg-yellow-300 dark:hover:bg-yellow-200 text-gray-900 px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 hover:shadow-xl hover:shadow-yellow-200/20 hover:-translate-y-1 flex items-center gap-2">
                       Start Your Journey
-                      <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span className="transform transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
                     </button>
                   </Link>
                   <Link to="/courses">
                     <button className="group bg-transparent border-2 border-yellow-400 dark:border-yellow-300 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-yellow-600 dark:text-yellow-300 px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 flex items-center gap-2">
                       View Courses
-                      <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span className="transform transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
                     </button>
                   </Link>
                 </div>
@@ -439,10 +451,10 @@ export function Landing() {
                   <div>
                     <div className="flex -space-x-3">
                       {[
-                  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100",
-"https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100",
-"https://images.unsplash.com/photo-1548946526-f69e2424cf45?w=100"
+                        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
+                        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100",
+                        "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100",
+                        "https://images.unsplash.com/photo-1548946526-f69e2424cf45?w=100",
                       ].map((src, idx) => (
                         <img
                           key={idx}
@@ -454,8 +466,12 @@ export function Landing() {
                     </div>
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-300">
-                    <span className="font-semibold text-gray-900 dark:text-white">500+</span> users
-                    <br />joined last month
+                    <span className="font-semibold text-gray-900 dark:text-white">
+                      ++
+                    </span>{" "}
+                    users
+                    <br />
+                    joined last month
                   </div>
                 </div>
               </div>
@@ -465,32 +481,32 @@ export function Landing() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl">
-                        <img 
-                          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800" 
-                          alt="Modern Workspace" 
+                        <img
+                          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800"
+                          alt="Modern Workspace"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="rounded-2xl overflow-hidden aspect-square shadow-2xl">
-                        <img 
-                          src="https://images.unsplash.com/photo-1552308995-2baac1ad5490?w=800" 
-                          alt="Collaborative Coding" 
+                        <img
+                          src="https://images.unsplash.com/photo-1552308995-2baac1ad5490?w=800"
+                          alt="Collaborative Coding"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                     </div>
                     <div className="space-y-4 pt-8">
                       <div className="rounded-2xl overflow-hidden aspect-square shadow-2xl">
-                        <img 
-                          src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800" 
-                          alt="Remote Work" 
+                        <img
+                          src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=800"
+                          alt="Remote Work"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl">
-                        <img 
-                          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800" 
-                          alt="Modern Setup" 
+                        <img
+                          src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800"
+                          alt="Modern Setup"
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                         />
                       </div>
@@ -520,7 +536,9 @@ export function Landing() {
                 <div className="text-3xl font-bold text-yellow-500 dark:text-yellow-300 group-hover:scale-105 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-300 mt-2">{stat.label}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300 mt-2">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -540,7 +558,8 @@ export function Landing() {
               {
                 icon: <Terminal className="w-8 h-8" />,
                 title: "Interactive Code Editor",
-                description: "Write, compile, and test code directly in your browser.",
+                description:
+                  "Write, compile, and test code directly in your browser.",
               },
               {
                 icon: <Brain className="w-8 h-8" />,
@@ -568,23 +587,22 @@ export function Landing() {
                 description: "Earn certificates upon course completion.",
               },
               {
-                icon: <Video className="w-8 h-8" />, 
+                icon: <Video className="w-8 h-8" />,
                 title: "Mock Interview",
                 description: "Video calling system for real-time practice.",
               },
-              
+
               {
-                icon: <FileText className="w-8 h-8" />, 
+                icon: <FileText className="w-8 h-8" />,
                 title: "Content",
                 description: "Access articles and videos for learning.",
               },
-              
+
               {
-                icon: <Brain className="w-8 h-8" />, 
+                icon: <Brain className="w-8 h-8" />,
                 title: "Career Guideline",
                 description: "AI-driven career planning and guidance.",
               },
-              
             ].map((feature, index) => (
               <div
                 key={index}
@@ -618,20 +636,26 @@ export function Landing() {
               {
                 name: "Sarah Ahmed",
                 role: "Software Developer",
-                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
-                quote: "CodERA helped me transition from a beginner to a confident developer.",
+                image:
+                  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+                quote:
+                  "CodERA helped me transition from a beginner to a confident developer.",
               },
               {
                 name: "Mishal Rahman",
                 role: "Computer Science Student",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
-                quote: "The interactive coding environment made learning programming enjoyable.",
+                image:
+                  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+                quote:
+                  "The interactive coding environment made learning programming enjoyable.",
               },
               {
                 name: "Saifur Islam",
                 role: "Web Developer",
-                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
-                quote: "The structured curriculum helped me stay motivated throughout my journey.",
+                image:
+                  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150",
+                quote:
+                  "The structured curriculum helped me stay motivated throughout my journey.",
               },
             ].map((testimonial, index) => (
               <div
@@ -648,10 +672,14 @@ export function Landing() {
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-yellow-300">
                       {testimonial.name}
                     </h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{testimonial.role}</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
-                <p className="text-base text-gray-600 dark:text-gray-300 italic">"{testimonial.quote}"</p>
+                <p className="text-base text-gray-600 dark:text-gray-300 italic">
+                  "{testimonial.quote}"
+                </p>
               </div>
             ))}
           </div>
@@ -670,15 +698,18 @@ export function Landing() {
             {[
               {
                 question: "What programming languages do you offer?",
-                answer: "We offer courses in Python, JavaScript, Java, C++, and more.",
+                answer:
+                  "We offer courses in Python, JavaScript, Java, C++, and more.",
               },
               {
                 question: "Is CodERA suitable for beginners?",
-                answer: "Absolutely! Our platform accommodates learners of all levels.",
+                answer:
+                  "Absolutely! Our platform accommodates learners of all levels.",
               },
               {
                 question: "How does the AI learning assistance work?",
-                answer: "Our AI analyzes your code in real-time, providing personalized suggestions.",
+                answer:
+                  "Our AI analyzes your code in real-time, providing personalized suggestions.",
               },
               {
                 question: "Can I access the platform on mobile devices?",
@@ -692,7 +723,9 @@ export function Landing() {
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-yellow-300 mb-2">
                   {faq.question}
                 </h3>
-                <p className="text-base text-gray-600 dark:text-gray-300">{faq.answer}</p>
+                <p className="text-base text-gray-600 dark:text-gray-300">
+                  {faq.answer}
+                </p>
               </div>
             ))}
           </div>
