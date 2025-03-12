@@ -27,6 +27,9 @@ import SignUp from "./pages/SignUp";
 import CodeLobby from "./coderoom/Lobby.jsx";
 import CodeRoom from "./coderoom/Room.jsx";
 import { SocketProvider } from "./context/SocketProvider.jsx";
+import RoomForm from "./pages/RoomForm.jsx";
+import CollabEditor from "./pages/CollabEditor.jsx";
+import Collab from "./pages/Collab.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -51,8 +54,8 @@ export default function App() {
           <Route path="/courses/python" element={<Cpy />} />
           <Route path="/courses/java" element={<Java />} />
           <Route path="/courses/javascript" element={<Javascript />} />
-        <Route path="/codeLobby" element={<CodeLobby />} />
-        <Route path="/codeRoom/:roomId" element={<CodeRoom />} />
+        <Route path="/lobby" element={<Collab />} />
+        <Route path="/codeRoom" element={<CollabEditor />} />
 
           <Route path="/courses/c/:lessonId" element={<Chello />} />
           
