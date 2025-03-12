@@ -33,7 +33,7 @@ const Certificate = ({ userName, score, onClose }) => {
             <div className="mb-8">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-gray-900 flex items-center justify-center">
                 <div className="w-16 h-16 bg-gray-900 rounded-full flex items-center justify-center">
-                  <span className="text-white text-2xl font-bold">HR</span>
+                  <span className="text-white font-bold text-xs">CodERA</span>
                 </div>
               </div>
             </div>

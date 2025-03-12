@@ -12,6 +12,7 @@ import { problemsTable } from "./routes/problemsTable.route.js";
 import Rmap from "./routes/roadmap.route.js";
 import runRoutes from "./routes/run.route.js";
 import userRoutes from "./routes/user.route.js";
+import contestRoutes from "./routes/contest.route.js";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/blog", blogRoutes);
 app.use("/api/run", runRoutes);
 app.use("/api/roadmap", Rmap);
+app.use("/api/contest", contestRoutes);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
 
