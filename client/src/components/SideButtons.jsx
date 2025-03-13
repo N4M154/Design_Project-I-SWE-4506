@@ -28,7 +28,7 @@ const sidebarItems = [
   // { name: "Resources", icon: LayoutList, route: "/resources" },
   { name: "Interview Preparation", icon: UserRound, route: "/mock" },
   { name: "News Portal", icon: Bell, route: "/news" },
-  { name: "Mock Interview", icon: Laptop, route: "/codeLobby" }
+  { name: "Mock Interview", icon: Laptop, route: "/lobby" }
 ];
 
 const SideButtons = () => {
