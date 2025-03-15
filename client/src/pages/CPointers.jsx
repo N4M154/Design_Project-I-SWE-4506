@@ -11,98 +11,68 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CControl() {
+export default function CPointers() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["control-structures"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["pointers"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Control Structures" lesson
+  // Define the learning content for the "C Pointers" lesson
   const learningContent = {
-    "control-structures": {
-      title: "C Language Control Structures",
+    "pointers": {
+      title: "C Language Pointers",
       intro:
-        "Control structures in C are used to make decisions, repeat code, and more. In this lesson, you'll learn about the different types of control structures in C, including if-else, loops, and switch statements.",
+        "Pointers in C are variables that store memory addresses. This lesson will introduce pointers, how to declare them, how they work, and how to use them in programs.",
       sections: [
         {
-          title: "What Are Control Structures?",
-          content: `Control structures are the blocks that manage the flow of control in a program. They allow you to perform tasks based on conditions (if-else) or repeat tasks (loops). Common types include:
+          title: "What Are Pointers?",
+          content: `A pointer is a variable that stores the memory address of another variable. Pointers allow you to indirectly access and manipulate values.
 
-• Conditional statements (if, if-else, switch)
-• Looping statements (for, while, do-while)
-• Jump statements (break, continue, return)`,
-        },
-        {
-          title: "If-Else Statement",
-          content: `The if-else statement allows you to make decisions based on conditions.
+Syntax for declaring a pointer:
+type *pointer_name;
 
-Syntax:
-
-if (condition) {
-    // Code to execute if the condition is true
-} else {
-    // Code to execute if the condition is false
-}
 Example:
-
-int age = 20;
-if (age >= 18) {
-    printf("Adult");
-} else {
-    printf("Minor");
-}`,
+int *ptr;
+In this example, ptr is a pointer to an integer. It can store the address of an integer variable.`,
         },
         {
-          title: "Switch Statement",
-          content: `The switch statement allows you to select one of many code blocks to be executed.
+          title: "Dereferencing Pointers",
+          content: `Dereferencing a pointer means accessing the value stored at the memory address that the pointer is pointing to.
 
-Syntax:
-
-switch (variable) {
-    case value1:
-        // Code to execute if variable == value1
-        break;
-    case value2:
-        // Code to execute if variable == value2
-        break;
-    default:
-        // Code to execute if none of the cases match
-}
+To dereference a pointer, use the * operator.
 Example:
-
-int day = 2;
-switch (day) {
-    case 1:
-        printf("Sunday");
-        break;
-    case 2:
-        printf("Monday");
-        break;
-    default:
-        printf("Invalid day");
-}`,
+int num = 10;
+int *ptr = &num;
+printf("%d", *ptr);  // Output: 10
+Here, ptr stores the address of num, and *ptr accesses the value at that address, which is 10.`,
         },
         {
-          title: "Loops in C",
-          content: `Loops are used to repeat a block of code multiple times.
+          title: "Pointer Arithmetic",
+          content: `Pointers in C support arithmetic operations. You can increment or decrement pointers to traverse arrays or memory locations.
 
-• For Loop: Used when the number of iterations is known.
-• While Loop: Used when the number of iterations is not known but a condition is true.
-• Do-While Loop: Similar to while, but executes at least once.
+For example:
+int arr[] = {1, 2, 3, 4, 5};
+int *ptr = arr;
+printf("%d", *(ptr + 2));  // Output: 3
+In this example, ptr is pointing to the first element of the array, and incrementing ptr by 2 moves it to the third element of the array.`,
+        },
+        {
+          title: "Pointers and Arrays",
+          content: `In C, arrays and pointers are closely related. The name of an array is essentially a pointer to its first element.
 
-Example of a for loop:
-
-for (int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}`,
+Example:
+int arr[] = {1, 2, 3, 4};
+int *ptr = arr;
+printf("%d", *(ptr + 1));  // Output: 2
+Here, ptr points to the first element of the array, and *(ptr + 1) accesses the second element.`,
         },
       ],
       practice: [
-        "Write a program to check whether a number is even or odd using an if-else statement.",
-        "Create a switch-case statement to display the name of a day based on a number (1 for Sunday, 2 for Monday, etc.).",
-        "Use a for loop to print numbers from 1 to 10.",
+        "Declare a pointer to an integer and print its value using dereferencing.",
+        "Perform pointer arithmetic on an array of integers.",
+        "Create a function that uses a pointer to modify an integer value.",
       ],
     },
   };
@@ -112,26 +82,35 @@ for (int i = 0; i < 5; i++) {
     setRelatedVideos([
       {
         id: "1",
-        title: "C Control Structures Explained",
+        title: "C Pointers Explained",
         thumbnail:
-          "https://mma.prnewswire.com/media/1100016/4169121/Simplilearn_Logo.jpg?p=facebook",
-        duration: "14:30",
-        url: "https://www.youtube.com/watch?v=YiPoFeWrSYY&pp=ygUTYyBjb250cm9sIHN0cnVjdHVyZQ%3D%3D",  // BroCode video link
-        author: "Simplilearn",
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        duration: "15:10",
+        url: "https://youtu.be/QKf2qUYP0s0",  // BroCode video link
+        author: "BroCode",
+      },
+      {
+        id: "2",
+        title: "Understanding Pointers in C",
+        thumbnail:
+          "https://images.unsplash.com/photo-1526374965328-7ea3c8b860aa?w=500&auto=format",
+        duration: "18:25",
+        url: "https://youtu.be/dzS57z69x9Y",  // BroCode video link
+        author: "BroCode",
       },
     ]);
 
     setRelatedArticles([
       {
         id: "1",
-        title: "Understanding C Control Structures",
+        title: "Pointers in C Programming",
         source: "GeeksForGeeks",
         url: "#",
         readTime: "7 min",
       },
       {
         id: "2",
-        title: "A Beginner's Guide to C Control Structures",
+        title: "Understanding Pointer Arithmetic",
         source: "TutorialsPoint",
         url: "#",
         readTime: "8 min",

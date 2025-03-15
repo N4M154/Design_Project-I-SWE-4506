@@ -11,98 +11,69 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CControl() {
+export default function CStrings() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["control-structures"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["strings"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Control Structures" lesson
+  // Define the learning content for the "C Strings" lesson
   const learningContent = {
-    "control-structures": {
-      title: "C Language Control Structures",
+    "strings": {
+      title: "C Language Strings",
       intro:
-        "Control structures in C are used to make decisions, repeat code, and more. In this lesson, you'll learn about the different types of control structures in C, including if-else, loops, and switch statements.",
+        "In C, strings are arrays of characters used to store text. This lesson will introduce strings, how to declare them, and how to manipulate them.",
       sections: [
         {
-          title: "What Are Control Structures?",
-          content: `Control structures are the blocks that manage the flow of control in a program. They allow you to perform tasks based on conditions (if-else) or repeat tasks (loops). Common types include:
-
-• Conditional statements (if, if-else, switch)
-• Looping statements (for, while, do-while)
-• Jump statements (break, continue, return)`,
+          title: "What Are Strings?",
+          content: "A string is a sequence of characters stored in an array. C does not have a built-in string type, but strings are implemented using character arrays terminated by a special null character `'\0'`.\n\n" +
+            "Syntax for declaring a string:\n" +
+            "char str[100]; // Declaration of a character array\n\n" +
+            "You can initialize a string like this:\n" +
+            "char str[] = \"Hello, World!\"; // A string literal",
         },
         {
-          title: "If-Else Statement",
-          content: `The if-else statement allows you to make decisions based on conditions.
-
-Syntax:
-
-if (condition) {
-    // Code to execute if the condition is true
-} else {
-    // Code to execute if the condition is false
-}
-Example:
-
-int age = 20;
-if (age >= 18) {
-    printf("Adult");
-} else {
-    printf("Minor");
-}`,
+          title: "String Manipulation",
+          content: "You can manipulate strings using several functions from the standard library `<string.h>`.\n\n" +
+            "For example, to copy a string, you can use the `strcpy()` function:\n" +
+            "char str1[100], str2[] = \"Hello\";\n" +
+            "strcpy(str1, str2); // Copies the content of str2 to str1",
         },
         {
-          title: "Switch Statement",
-          content: `The switch statement allows you to select one of many code blocks to be executed.
-
-Syntax:
-
-switch (variable) {
-    case value1:
-        // Code to execute if variable == value1
-        break;
-    case value2:
-        // Code to execute if variable == value2
-        break;
-    default:
-        // Code to execute if none of the cases match
-}
-Example:
-
-int day = 2;
-switch (day) {
-    case 1:
-        printf("Sunday");
-        break;
-    case 2:
-        printf("Monday");
-        break;
-    default:
-        printf("Invalid day");
-}`,
+          title: "String Length",
+          content: "To find the length of a string (excluding the null character), use the `strlen()` function.\n\n" +
+            "Example:\n" +
+            "char str[] = \"Hello\";\n" +
+            "int len = strlen(str); // len will be 5",
         },
         {
-          title: "Loops in C",
-          content: `Loops are used to repeat a block of code multiple times.
-
-• For Loop: Used when the number of iterations is known.
-• While Loop: Used when the number of iterations is not known but a condition is true.
-• Do-While Loop: Similar to while, but executes at least once.
-
-Example of a for loop:
-
-for (int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}`,
+          title: "Concatenating Strings",
+          content: "To concatenate two strings, use the `strcat()` function.\n\n" +
+            "Example:\n" +
+            "char str1[100] = \"Hello \";\n" +
+            "char str2[] = \"World!\";\n" +
+            "strcat(str1, str2); // str1 will become \"Hello World!\"",
+        },
+        {
+          title: "Comparing Strings",
+          content: "To compare two strings, use the `strcmp()` function, which returns 0 if the strings are equal.\n\n" +
+            "Example:\n" +
+            "char str1[] = \"Hello\";\n" +
+            "char str2[] = \"Hello\";\n" +
+            "if (strcmp(str1, str2) == 0) {\n" +
+            "  printf(\"Strings are equal\");\n" +
+            "} else {\n" +
+            "  printf(\"Strings are different\");\n" +
+            "}",
         },
       ],
       practice: [
-        "Write a program to check whether a number is even or odd using an if-else statement.",
-        "Create a switch-case statement to display the name of a day based on a number (1 for Sunday, 2 for Monday, etc.).",
-        "Use a for loop to print numbers from 1 to 10.",
+        "Declare a string and print it using `printf()`.",
+        "Use `strcpy()` to copy one string to another.",
+        "Concatenate two strings using `strcat()`.",
+        "Compare two strings using `strcmp()` and display if they are equal or not.",
       ],
     },
   };
@@ -112,29 +83,29 @@ for (int i = 0; i < 5; i++) {
     setRelatedVideos([
       {
         id: "1",
-        title: "C Control Structures Explained",
+        title: "C Strings Explained",
         thumbnail:
-          "https://mma.prnewswire.com/media/1100016/4169121/Simplilearn_Logo.jpg?p=facebook",
-        duration: "14:30",
-        url: "https://www.youtube.com/watch?v=YiPoFeWrSYY&pp=ygUTYyBjb250cm9sIHN0cnVjdHVyZQ%3D%3D",  // BroCode video link
-        author: "Simplilearn",
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        duration: "12:30",
+        url: "https://youtu.be/0T8LFSyd8BQ",  // BroCode video link
+        author: "BroCode",
       },
     ]);
 
     setRelatedArticles([
       {
         id: "1",
-        title: "Understanding C Control Structures",
+        title: "Strings in C Programming",
         source: "GeeksForGeeks",
         url: "#",
-        readTime: "7 min",
+        readTime: "6 min",
       },
       {
         id: "2",
-        title: "A Beginner's Guide to C Control Structures",
+        title: "A Complete Guide to C Strings",
         source: "TutorialsPoint",
         url: "#",
-        readTime: "8 min",
+        readTime: "7 min",
       },
     ]);
   }, []);

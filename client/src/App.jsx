@@ -36,6 +36,8 @@ import CControl from "./pages/CControl.jsx";
 import CFunctions from "./pages/CFunctions.jsx";
 import CArrays from "./pages/CArrays.jsx";
 import CMemoryManagement from "./pages/CMemoryManagement.jsx";
+import CPointers from "./pages/CPointers.jsx";
+import CStrings from "./pages/CStrings.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -69,6 +71,8 @@ export default function App() {
           <Route path="/courses/c/control-structures" element={<CControl />} />
           <Route path="/courses/c/functions" element={<CFunctions />} />
           <Route path="/courses/c/arrays" element={<CArrays />} />
+          <Route path="/courses/c/pointers" element={<CPointers />} />
+          <Route path="/courses/c/strings" element={<CStrings />} />
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
             <Route path="/courses/c/hello-world" element={<Chello />} />
