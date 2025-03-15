@@ -13,16 +13,14 @@ import Rmap from "./routes/roadmap.route.js";
 import runRoutes from "./routes/run.route.js";
 import userRoutes from "./routes/user.route.js";
 import contestRoutes from "./routes/contest.route.js";
+import progressRoutes from './routes/progressRoutes.js';
 
 dotenv.config();
 
 const app = express();
-app.use(
-  cors({
-    origin: "https://localhost:5173", // Frontend origin
-    credentials: true, // Allow credentials (cookies)
-  })
-);
+
+app.use(cors()); // Allow all origins or specify only localhost
+
 mongoose
   .connect(process.env.MONGO)
   .then(() => {
@@ -45,6 +43,7 @@ app.use("/api/roadmap", Rmap);
 app.use("/api/contest", contestRoutes);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
+app.use(progressRoutes);
 
 app.post("/api/execute", async (req, res) => {
   const { script, language, input } = req.body; // Get the C code from the request

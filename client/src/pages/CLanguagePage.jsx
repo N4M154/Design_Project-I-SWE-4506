@@ -10,13 +10,14 @@ import {
   Network,
   Terminal,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
 export default function CLanguagePage() {
-  const [completedQuizzes, setCompletedQuizzes] = useState(["hello-world"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [isExpanded, setIsExpanded] = useState(true);
+  const [progress, setProgress] = useState(0); // State to hold the progress
 
   const contentList = [
     {
@@ -27,7 +28,7 @@ export default function CLanguagePage() {
     },
     {
       id: "variables",
-      title: "variables",
+      title: "Variables",
       icon: <Code2 size={20} />,
       quizCompleted: true,
     },
@@ -141,13 +142,48 @@ export default function CLanguagePage() {
     },
   ];
 
+  useEffect(() => {
+    // Fetch progress data from localStorage and update progress dynamically
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
+
+    if (userId) {
+      const fetchProgress = async () => {
+        try {
+          const user = JSON.parse(localStorage.getItem("persist:root"));
+          const currentUser = user ? JSON.parse(user.user).currentUser : null;
+          const userId = currentUser ? currentUser._id : null;
+      
+          if (!userId) {
+            console.error("User not logged in");
+            return;
+          }
+      
+          const response = await fetch(`http://localhost:3000/api/progress/get-progress/${userId}`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            setCompletedQuizzes(data.completedLessons);
+            const progressValue = (data.completedLessons.length / contentList.length) * 100;
+            setProgress(progressValue);
+          } else {
+            console.error("Failed to fetch progress");
+          }
+        } catch (error) {
+          console.error("Error fetching progress:", error);
+        }
+      };
+      
+      fetchProgress();
+    }
+  }, [contentList.length]);
+
   const handleQuizCompletion = (id) => {
     if (!completedQuizzes.includes(id)) {
       setCompletedQuizzes([...completedQuizzes, id]);
     }
   };
-
-  const progress = (completedQuizzes.length / contentList.length) * 100;
 
   return (
     <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">

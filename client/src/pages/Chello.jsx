@@ -1,5 +1,3 @@
-//-----------------------------------------
-
 import { jsPDF } from "jspdf";
 import {
   BookOpen,
@@ -9,16 +7,13 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
-
-
 
 export default function Chello() {
   const { lessonId } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
   const [completedQuizzes, setCompletedQuizzes] = useState(["hello-world"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
@@ -79,38 +74,21 @@ int main() {
     },
   };
 
-  // Simulated API responses (replace with actual API calls)
+  // Simulated API responses for related content
   useEffect(() => {
-    // Simulated video data (replace with actual YouTube API call)
     setRelatedVideos([
       {
         id: "1",
         title: "C Programming Tutorial for Beginners",
-        thumbnail: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        thumbnail:
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "12:34",
         url: "https://youtu.be/WXY-r9s0_Rg?si=WJe4oBdzQZ6OtoYI",
         author: "CodeMaster",
       },
-      {
-        id: "2",
-        title: "Understanding Hello World in C",
-        thumbnail: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=500&auto=format",
-        duration: "8:21",
-        url: "https://youtu.be/8mo6hpxXn8A?si=TetyWaQIXOlocG8v",
-        author: "Programming Basics",
-      },
-      {
-        id: "3",
-        title: "C Programming Fundamentals",
-        thumbnail: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=500&auto=format",
-        duration: "15:45",
-        url: "https://youtu.be/fmyRqhaqFXA?si=yXARMrTtMEnCB0Fp",
-        author: "Tech Education",
-      },
+      // Add more video data as needed
     ]);
-    
 
-    // Simulated articles data (replace with actual API call)
     setRelatedArticles([
       {
         id: "1",
@@ -119,37 +97,17 @@ int main() {
         url: "https://www.programiz.com/c-programming/examples/print-sentence",
         readTime: "5 min",
       },
-      {
-        id: "2",
-        title: "Understanding C Program Structure",
-        source: "Medium",
-        url: "https://medium.com/@aserdargun/introduction-to-c-1-hello-world-and-commenting-in-c-b92119bc62a5",
-        readTime: "7 min",
-      },
-      {
-        id: "3",
-        title: "Best Practices for C Programming",
-        source: "FreeCodeCamp",
-        url: "https://www.freecodecamp.org/news/the-c-beginners-handbook/",
-        readTime: "10 min",
-      },
+      // Add more article data as needed
     ]);
   }, []);
 
   const lesson = learningContent[lessonId];
-  const quizResult = location.state?.passed;
 
-  useEffect(() => {
-    if (quizResult && !completedQuizzes.includes(lessonId)) {
-      setCompletedQuizzes([...completedQuizzes, lessonId]);
-    }
-  }, [quizResult, lessonId]);
-
-  function handleQuizCompletion() {
+  const handleQuizCompletion = () => {
     navigate(`/courses/c/${lessonId}/quiz`);
-  }
+  };
 
-  function downloadPDF() {
+  const downloadPDF = () => {
     const doc = new jsPDF();
     const marginX = 20;
     const lineSpacing = 10;
@@ -172,7 +130,30 @@ int main() {
     });
 
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
-  }
+  };
+
+  const handleMarkAsRead = () => {
+    const userId = localStorage.getItem("userId"); // Ensure userId is stored in localStorage
+
+    if (userId) {
+      // Update progress by making a POST request to mark the lesson as read
+      fetch("http://localhost:5000/api/progress/mark-as-read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, lessonId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.progress) {
+            console.log("Progress updated:", data.progress);
+            // You can update local progress state here if needed
+          }
+        })
+        .catch((error) => {
+          console.error("Error updating progress:", error);
+        });
+    }
+  };
 
   if (!lesson) {
     return <div className="text-center p-8">Lesson not found.</div>;
@@ -187,7 +168,6 @@ int main() {
         style={{ marginLeft: isExpanded ? "260px" : "80px" }}
       >
         <div className="min-h-screen bg-white dark:bg-[#18181b]">
-          {/* Navigation Bar */}
           <div className="bg-yellow-50 dark:bg-black border-b border-yellow-100 p-4">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <Link
@@ -211,6 +191,12 @@ int main() {
                 >
                   <Download size={20} />
                   Download PDF
+                </button>
+                <button
+                  onClick={handleMarkAsRead}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
+                >
+                  Mark as Read
                 </button>
               </div>
             </div>
@@ -272,41 +258,40 @@ int main() {
               {/* Sidebar Content */}
               <div className="space-y-8">
                 {/* Related Videos */}
-<div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
-  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
-    <Play size={20} className="text-yellow-600" />
-    Related Videos
-  </h3>
-  <div className="space-y-4">
-    {relatedVideos.map((video) => (
-      <a
-        key={video.id}
-        href={video.url}        // Ensure that the video URL is correct
-        target="_blank"         // Open the video in a new tab
-        rel="noopener noreferrer"  // Security measure when using target="_blank"
-        className="group cursor-pointer"
-      >
-        <div className="relative">
-          <img
-            src={video.thumbnail}
-            alt={video.title}
-            className="w-full h-32 object-cover rounded-lg"
-          />
-          <span className="absolute bottom-2 right-2 bg-black/75 text-white text-xs px-2 py-1 rounded">
-            {video.duration}
-          </span>
-        </div>
-        <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300 mt-2 group-hover:text-yellow-600">
-          {video.title}
-        </h4>
-        <p className="text-xs text-gray-500 dark:text-gray-400">
-          {video.author}
-        </p>
-      </a>
-    ))}
-  </div>
-</div>
-
+                <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                    <Play size={20} className="text-yellow-600" />
+                    Related Videos
+                  </h3>
+                  <div className="space-y-4">
+                    {relatedVideos.map((video) => (
+                      <a
+                        key={video.id}
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group cursor-pointer"
+                      >
+                        <div className="relative">
+                          <img
+                            src={video.thumbnail}
+                            alt={video.title}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                          <span className="absolute bottom-2 right-2 bg-black/75 text-white text-xs px-2 py-1 rounded">
+                            {video.duration}
+                          </span>
+                        </div>
+                        <h4 className="text-sm font-medium text-gray-800 dark:text-gray-300 mt-2 group-hover:text-yellow-600">
+                          {video.title}
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {video.author}
+                        </p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Related Articles */}
                 <div className="bg-white dark:bg-yellow-200/20 rounded-xl shadow-sm border border-yellow-100 dark:border-yellow-800/40 p-6">
