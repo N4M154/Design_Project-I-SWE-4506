@@ -479,6 +479,33 @@ export default function CLanguagePage() {
                   </div>
                 </div>
               </Link>
+
+              <Link
+                to="/courses/c/strings"
+                onClick={() => handleQuizCompletion("strings")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Strings
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("strings") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("strings")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
