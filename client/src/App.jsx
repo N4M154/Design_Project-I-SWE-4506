@@ -35,32 +35,33 @@ import CData from "./pages/CData.jsx";
 import CControl from "./pages/CControl.jsx";
 import CFunctions from "./pages/CFunctions.jsx";
 import CArrays from "./pages/CArrays.jsx";
+import CMemoryManagement from "./pages/CMemoryManagement.jsx";
 export default function App() {
   return (
     <BrowserRouter>
       {/* header */}
       <SocketProvider>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
 
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route element={<Layout />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/practice" element={<Problems />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/progress" element={<Progress />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/compiler" element={<Compiler />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/mock" element={<RoadmapForm />} />
-          <Route path="/courses/c" element={<CLanguagePage />} />
-          <Route path="/courses/python" element={<Cpy />} />
-          <Route path="/courses/java" element={<Java />} />
-          <Route path="/courses/javascript" element={<Javascript />} />
-        <Route path="/lobby" element={<Collab />} />
-        <Route path="/codeRoom" element={<CollabEditor />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/practice" element={<Problems />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/progress" element={<Progress />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/compiler" element={<Compiler />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/community" element={<Community />} />
+            <Route path="/mock" element={<RoadmapForm />} />
+            <Route path="/courses/c" element={<CLanguagePage />} />
+            <Route path="/courses/python" element={<Cpy />} />
+            <Route path="/courses/java" element={<Java />} />
+            <Route path="/courses/javascript" element={<Javascript />} />
+            <Route path="/lobby" element={<Collab />} />
+            <Route path="/codeRoom" element={<CollabEditor />} />
 
           <Route path="/courses/c/hello-world" element={<Chello />} />
           <Route path="/courses/c/variables" element={<Cvar />} />
@@ -70,14 +71,27 @@ export default function App() {
           <Route path="/courses/c/arrays" element={<CArrays />} />
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
+            <Route path="/courses/c/hello-world" element={<Chello />} />
+            <Route path="/courses/c/variables" element={<Cvar />} />
+            <Route path="/courses/c/data-types" element={<CData />} />
+            <Route
+              path="/courses/c/control-structures"
+              element={<CControl />}
+            />
+            <Route
+              path="/courses/c/memory-management"
+              element={<CMemoryManagement />}
+            />
+            <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
+            <Route path="/news" element={<Content />} />
 
-          <Route element={<PrivateRoute />}>
-            <Route path="/profile-analytics" element={<ProfileAnalytics />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/profile-analytics" element={<ProfileAnalytics />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-      <FloatingChatbot iconSrc="/chatbot.png" />
+        </Routes>
+        <FloatingChatbot iconSrc="/chatbot.png" />
       </SocketProvider>
     </BrowserRouter>
   );
