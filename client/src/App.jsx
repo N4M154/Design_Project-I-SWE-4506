@@ -30,6 +30,7 @@ import { SocketProvider } from "./context/SocketProvider.jsx";
 import RoomForm from "./pages/RoomForm.jsx";
 import CollabEditor from "./pages/CollabEditor.jsx";
 import Collab from "./pages/Collab.jsx";
+import Cvar from "./pages/Cvar.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -57,8 +58,8 @@ export default function App() {
         <Route path="/lobby" element={<Collab />} />
         <Route path="/codeRoom" element={<CollabEditor />} />
 
-          <Route path="/courses/c/:lessonId" element={<Chello />} />
-          
+          <Route path="/courses/c/hello-world" element={<Chello />} />
+          <Route path="/courses/c/variables" element={<Cvar />} />
 
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />

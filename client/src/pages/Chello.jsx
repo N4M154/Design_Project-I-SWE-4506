@@ -8,17 +8,18 @@ import {
   Play,
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
 export default function Chello() {
-  const { lessonId } = useParams();
+  const location = useLocation();
   const navigate = useNavigate();
   const [completedQuizzes, setCompletedQuizzes] = useState(["hello-world"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
+  // Define the learning content for all lessons
   const learningContent = {
     "hello-world": {
       title: "Hello World in C",
@@ -74,7 +75,7 @@ int main() {
     },
   };
 
-  // Simulated API responses for related content
+  // Fetch related videos and articles
   useEffect(() => {
     setRelatedVideos([
       {
@@ -86,7 +87,6 @@ int main() {
         url: "https://youtu.be/WXY-r9s0_Rg?si=WJe4oBdzQZ6OtoYI",
         author: "CodeMaster",
       },
-      // Add more video data as needed
     ]);
 
     setRelatedArticles([
@@ -97,10 +97,11 @@ int main() {
         url: "https://www.programiz.com/c-programming/examples/print-sentence",
         readTime: "5 min",
       },
-      // Add more article data as needed
     ]);
   }, []);
 
+  // Get the current lesson based on the path
+  const lessonId = location.pathname.split("/").pop();
   const lesson = learningContent[lessonId];
 
   const handleQuizCompletion = () => {
@@ -133,11 +134,13 @@ int main() {
   };
 
   const handleMarkAsRead = () => {
-    const userId = localStorage.getItem("userId"); // Ensure userId is stored in localStorage
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
 
     if (userId) {
       // Update progress by making a POST request to mark the lesson as read
-      fetch("http://localhost:5000/api/progress/mark-as-read", {
+      fetch("http://localhost:3000/api/progress/mark-as-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),
@@ -154,6 +157,8 @@ int main() {
         });
     }
   };
+
+  
 
   if (!lesson) {
     return <div className="text-center p-8">Lesson not found.</div>;

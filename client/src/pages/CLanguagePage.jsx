@@ -143,41 +143,42 @@ export default function CLanguagePage() {
   ];
 
   useEffect(() => {
-    // Fetch progress data from localStorage and update progress dynamically
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
     const userId = currentUser ? currentUser._id : null;
-
+  
     if (userId) {
       const fetchProgress = async () => {
         try {
-          const user = JSON.parse(localStorage.getItem("persist:root"));
-          const currentUser = user ? JSON.parse(user.user).currentUser : null;
-          const userId = currentUser ? currentUser._id : null;
-      
-          if (!userId) {
-            console.error("User not logged in");
-            return;
-          }
-      
           const response = await fetch(`http://localhost:3000/api/progress/get-progress/${userId}`);
-          
+          const data = await response.json();
+  
           if (response.ok) {
-            const data = await response.json();
-            setCompletedQuizzes(data.completedLessons);
-            const progressValue = (data.completedLessons.length / contentList.length) * 100;
-            setProgress(progressValue);
+            // Ensure the response has the correct structure
+            if (data && data.progress && Array.isArray(data.progress.completedLessons)) {
+              setCompletedQuizzes(data.progress.completedLessons);
+              const progressValue = (data.progress.completedLessons.length / contentList.length) * 100;
+              setProgress(progressValue);
+            } else {
+              console.error("Invalid data structure", data);
+              setProgress(0); // If invalid data, reset progress
+            }
           } else {
             console.error("Failed to fetch progress");
+            setProgress(0); // If API fails, reset progress
           }
         } catch (error) {
           console.error("Error fetching progress:", error);
+          setProgress(0); // If there was an error, reset progress
         }
       };
-      
+  
       fetchProgress();
+    } else {
+      console.error("User not logged in");
     }
   }, [contentList.length]);
+  
 
   const handleQuizCompletion = (id) => {
     if (!completedQuizzes.includes(id)) {
@@ -282,44 +283,147 @@ export default function CLanguagePage() {
           </div>
         </div>
 
-        {/* Course Content */}
-        <div className="py-12 px-8 bg-gray-50 dark:bg-transparent">
+       {/* Course Content */}
+       <div className="py-12 px-8 bg-gray-50 dark:bg-transparent">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
               Course Content
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {contentList.map((content) => (
-                <Link
-                  key={content.id}
-                  to={`/courses/c/${content.id}`}
-                  onClick={() => handleQuizCompletion(content.id)}
-                  className="group"
-                >
-                  <div
-                    className={`bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 ${
-                      content.quizCompleted
-                        ? "border-green-500"
-                        : "border-yellow-200"
-                    } hover:border-yellow-500 transition duration-300`}
-                  >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <span className="text-yellow-600">{content.icon}</span>
-                        <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
-                          {content.title}
-                        </h3>
-                      </div>
-                      {content.quizCompleted && (
-                        <CheckCircle className="text-green-500" size={20} />
-                      )}
+              <Link
+                to="/courses/c/hello-world"
+                onClick={() => handleQuizCompletion("hello-world")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Terminal size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Hello World
+                      </h3>
                     </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {content.quizCompleted ? "Completed" : "Not started"}
-                    </div>
+                    {completedQuizzes.includes("hello-world") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
                   </div>
-                </Link>
-              ))}
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("hello-world")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/variables"
+                onClick={() => handleQuizCompletion("variables")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Variables
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("variables") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("variables")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/data-types"
+                onClick={() => handleQuizCompletion("data-types")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Data Types
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("data-types") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("data-types")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/control-structures"
+                onClick={() => handleQuizCompletion("control-structures")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Control Structures
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("control-structures") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("control-structures")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/functions"
+                onClick={() => handleQuizCompletion("functions")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Functions
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("functions") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("functions")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>

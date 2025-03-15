@@ -7,12 +7,11 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
 export default function Cvar() {
-  const { lessonId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const [completedQuizzes, setCompletedQuizzes] = useState(["variables"]);
@@ -20,8 +19,9 @@ export default function Cvar() {
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
+  // Define learning content for the lesson
   const learningContent = {
-   "variables": {
+    "variables": {
       title: "C Language Variables",
       intro:
         "Variables in C are used to store data values. This section will cover the types of variables, their declaration, and usage in C programming.",
@@ -71,6 +71,7 @@ char grade = 'A';`
     },
   };
 
+  // Fetch related videos and articles
   useEffect(() => {
     setRelatedVideos([
       {
@@ -109,20 +110,21 @@ char grade = 'A';`
     ]);
   }, []);
 
-  const lesson = learningContent[lessonId];
-  const quizResult = location.state?.passed;
+  // Get the current lesson based on the path
+  const lessonId = location.pathname.split("/").pop(); // Extract lessonId from path
+  const lesson = learningContent[lessonId]; // Get the lesson content based on the lessonId
 
   useEffect(() => {
-    if (quizResult && !completedQuizzes.includes(lessonId)) {
+    if (!completedQuizzes.includes(lessonId)) {
       setCompletedQuizzes([...completedQuizzes, lessonId]);
     }
-  }, [quizResult, lessonId]);
+  }, [lessonId]);
 
-  function handleQuizCompletion() {
+  const handleQuizCompletion = () => {
     navigate(`/courses/c/${lessonId}/quiz`);
-  }
+  };
 
-  function downloadPDF() {
+  const downloadPDF = () => {
     const doc = new jsPDF();
     const marginX = 20;
     const lineSpacing = 10;
@@ -145,7 +147,33 @@ char grade = 'A';`
     });
 
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
-  }
+  };
+
+  // Mark lesson as read and update progress
+  const handleMarkAsRead = () => {
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
+
+    if (userId) {
+      // Update progress by making a POST request to mark the lesson as read
+      fetch("http://localhost:3000/api/progress/mark-as-read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, lessonId }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.progress) {
+            console.log("Progress updated:", data.progress);
+            // You can update local progress state here if needed
+          }
+        })
+        .catch((error) => {
+          console.error("Error updating progress:", error);
+        });
+    }
+  };
 
   if (!lesson) {
     return <div className="text-center p-8">Lesson not found.</div>;
@@ -183,6 +211,12 @@ char grade = 'A';`
                 >
                   <Download size={20} />
                   Download PDF
+                </button>
+                <button
+                  onClick={handleMarkAsRead}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
+                >
+                  Mark as Read
                 </button>
               </div>
             </div>
@@ -288,18 +322,3 @@ char grade = 'A';`
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-// Update your routing configuration to handle the new topic:
-
-// In your routes definition, add:
-// <Route path="/courses/c/variables" element={<CLearningMaterial />} />
