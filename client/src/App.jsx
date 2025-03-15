@@ -38,6 +38,8 @@ import CArrays from "./pages/CArrays.jsx";
 import CMemoryManagement from "./pages/CMemoryManagement.jsx";
 import CPointers from "./pages/CPointers.jsx";
 import CStrings from "./pages/CStrings.jsx";
+import CFileIO from "./pages/CFileIO.jsx";
+import CStructures from "./pages/CStructures.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -73,6 +75,8 @@ export default function App() {
           <Route path="/courses/c/arrays" element={<CArrays />} />
           <Route path="/courses/c/pointers" element={<CPointers />} />
           <Route path="/courses/c/strings" element={<CStrings />} />
+          <Route path="/courses/c/file-io" element={<CFileIO />} />
+          <Route path="/courses/c/structures" element={<CStructures />} />
           <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
           <Route path="/news" element={<Content />} />
             <Route path="/courses/c/hello-world" element={<Chello />} />
