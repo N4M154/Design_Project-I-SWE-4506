@@ -146,18 +146,26 @@ export default function CLanguagePage() {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
     const userId = currentUser ? currentUser._id : null;
-  
+
     if (userId) {
       const fetchProgress = async () => {
         try {
-          const response = await fetch(`http://localhost:3000/api/progress/get-progress/${userId}`);
+          const response = await fetch(
+            `http://localhost:3000/api/progress/get-progress/${userId}`
+          );
           const data = await response.json();
-  
+
           if (response.ok) {
             // Ensure the response has the correct structure
-            if (data && data.progress && Array.isArray(data.progress.completedLessons)) {
+            if (
+              data &&
+              data.progress &&
+              Array.isArray(data.progress.completedLessons)
+            ) {
               setCompletedQuizzes(data.progress.completedLessons);
-              const progressValue = (data.progress.completedLessons.length / contentList.length) * 100;
+              const progressValue =
+                (data.progress.completedLessons.length / contentList.length) *
+                100;
               setProgress(progressValue);
             } else {
               console.error("Invalid data structure", data);
@@ -172,13 +180,12 @@ export default function CLanguagePage() {
           setProgress(0); // If there was an error, reset progress
         }
       };
-  
+
       fetchProgress();
     } else {
       console.error("User not logged in");
     }
   }, [contentList.length]);
-  
 
   const handleQuizCompletion = (id) => {
     if (!completedQuizzes.includes(id)) {
@@ -283,8 +290,8 @@ export default function CLanguagePage() {
           </div>
         </div>
 
-       {/* Course Content */}
-       <div className="py-12 px-8 bg-gray-50 dark:bg-transparent">
+        {/* Course Content */}
+        <div className="py-12 px-8 bg-gray-50 dark:bg-transparent">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-8">
               Course Content
@@ -425,7 +432,6 @@ export default function CLanguagePage() {
                 </div>
               </Link>
 
-
               <Link
                 to="/courses/c/arrays"
                 onClick={() => handleQuizCompletion("arrays")}
@@ -534,7 +540,6 @@ export default function CLanguagePage() {
                 </div>
               </Link>
 
-              
               <Link
                 to="/courses/c/file-io"
                 onClick={() => handleQuizCompletion("file-io")}
@@ -556,6 +561,276 @@ export default function CLanguagePage() {
                   </div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">
                     {completedQuizzes.includes("file-io")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/memory-management"
+                onClick={() => handleQuizCompletion("memory-management")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        memory-management
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("memory-management") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("memory-management")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/dynamic-memory"
+                onClick={() => handleQuizCompletion("dynamic-memory")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        dynamic-memory
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("dynamic-memory") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("dynamic-memory")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/multithreading"
+                onClick={() => handleQuizCompletion("multithreading")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        multithreading
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("multithreading") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("multithreading")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/preprocessors"
+                onClick={() => handleQuizCompletion("preprocessors")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        preprocessors
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("preprocessors") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("preprocessors")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/bitwise-operations"
+                onClick={() => handleQuizCompletion("bitwise-operations")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        bitwise-operations
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("bitwise-operations") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("bitwise-operations")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/recursion"
+                onClick={() => handleQuizCompletion("recursion")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        recursion
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("recursion") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("recursion")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/linked-lists"
+                onClick={() => handleQuizCompletion("linked-lists")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        linked-lists
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("linked-lists") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("linked-lists")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/advanced-pointers"
+                onClick={() => handleQuizCompletion("advanced-pointers")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        advanced-pointers
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("advanced-pointers") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("advanced-pointers")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/graphics-programming"
+                onClick={() => handleQuizCompletion("graphics-programming")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        graphics-programming
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("graphics-programming") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("graphics-programming")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/network-programming"
+                onClick={() => handleQuizCompletion("network-programming")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        network-programming
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("network-programming") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("network-programming")
                       ? "Completed"
                       : "Not started"}
                   </div>
