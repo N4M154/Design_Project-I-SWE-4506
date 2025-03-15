@@ -424,6 +424,61 @@ export default function CLanguagePage() {
                   </div>
                 </div>
               </Link>
+
+
+              <Link
+                to="/courses/c/arrays"
+                onClick={() => handleQuizCompletion("arrays")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Arrays
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("arrays") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("arrays")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
+
+              <Link
+                to="/courses/c/pointers"
+                onClick={() => handleQuizCompletion("pointers")}
+                className="group"
+              >
+                <div className="bg-white dark:bg-transparent p-6 rounded-xl shadow-sm border-2 border-yellow-200 hover:border-yellow-500 transition duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-yellow-600">
+                        <Code2 size={20} />
+                      </span>
+                      <h3 className="font-semibold text-gray-800 dark:text-white group-hover:text-yellow-600 transition duration-300">
+                        Pointers
+                      </h3>
+                    </div>
+                    {completedQuizzes.includes("pointers") && (
+                      <CheckCircle className="text-green-500" size={20} />
+                    )}
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
+                    {completedQuizzes.includes("pointers")
+                      ? "Completed"
+                      : "Not started"}
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
