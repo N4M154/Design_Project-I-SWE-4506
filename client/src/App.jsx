@@ -34,6 +34,10 @@ import Cvar from "./pages/Cvar.jsx";
 import CData from "./pages/CData.jsx";
 import CControl from "./pages/CControl.jsx";
 import CMemoryManagement from "./pages/CMemoryManagement.jsx";
+import CDynamicMemory from "./pages/CDynamicMemory.jsx";
+import CMultithreading from "./pages/CMultithreading.jsx";
+import CPreprocessor from "./pages/CPreprocessor.jsx";
+import CBitwiseOperations from "./pages/CBitwiseOperations.jsx";
 export default function App() {
   return (
     <BrowserRouter>
@@ -71,6 +75,22 @@ export default function App() {
             <Route
               path="/courses/c/memory-management"
               element={<CMemoryManagement />}
+            />
+            <Route
+              path="/courses/c/dynamic-memory"
+              element={<CDynamicMemory />}
+            />
+            <Route
+              path="/courses/c/multithreading"
+              element={<CMultithreading />}
+            />
+            <Route
+              path="/courses/c/preprocessors"
+              element={<CPreprocessor />}
+            />
+            <Route
+              path="/courses/c/bitwise-operations"
+              element={<CBitwiseOperations />}
             />
             <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
             <Route path="/news" element={<Content />} />
