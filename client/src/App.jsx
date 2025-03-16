@@ -44,6 +44,10 @@ import CPointers from "./pages/CPointers.jsx";
 import CStrings from "./pages/CStrings.jsx";
 import CFileIO from "./pages/CFileIO.jsx";
 import CStructures from "./pages/CStructures.jsx";
+import CRecursion from "./pages/CRecursion.jsx";
+import CLinkedList from "./pages/CLinkedList.jsx";
+import CAdvancedPointers from "./pages/CAdvancedPointers.jsx";
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -71,18 +75,21 @@ export default function App() {
             <Route path="/lobby" element={<Collab />} />
             <Route path="/codeRoom" element={<CollabEditor />} />
 
-          <Route path="/courses/c/hello-world" element={<Chello />} />
-          <Route path="/courses/c/variables" element={<Cvar />} />
-          <Route path="/courses/c/data-types" element={<CData />} />
-          <Route path="/courses/c/control-structures" element={<CControl />} />
-          <Route path="/courses/c/functions" element={<CFunctions />} />
-          <Route path="/courses/c/arrays" element={<CArrays />} />
-          <Route path="/courses/c/pointers" element={<CPointers />} />
-          <Route path="/courses/c/strings" element={<CStrings />} />
-          <Route path="/courses/c/file-io" element={<CFileIO />} />
-          <Route path="/courses/c/structures" element={<CStructures />} />
-          <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
-          <Route path="/news" element={<Content />} />
+            <Route path="/courses/c/hello-world" element={<Chello />} />
+            <Route path="/courses/c/variables" element={<Cvar />} />
+            <Route path="/courses/c/data-types" element={<CData />} />
+            <Route
+              path="/courses/c/control-structures"
+              element={<CControl />}
+            />
+            <Route path="/courses/c/functions" element={<CFunctions />} />
+            <Route path="/courses/c/arrays" element={<CArrays />} />
+            <Route path="/courses/c/pointers" element={<CPointers />} />
+            <Route path="/courses/c/strings" element={<CStrings />} />
+            <Route path="/courses/c/file-io" element={<CFileIO />} />
+            <Route path="/courses/c/structures" element={<CStructures />} />
+            <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
+            <Route path="/news" element={<Content />} />
             <Route path="/courses/c/hello-world" element={<Chello />} />
             <Route path="/courses/c/variables" element={<Cvar />} />
             <Route path="/courses/c/data-types" element={<CData />} />
@@ -109,6 +116,12 @@ export default function App() {
             <Route
               path="/courses/c/bitwise-operations"
               element={<CBitwiseOperations />}
+            />
+            <Route path="/courses/c/recursion" element={<CRecursion />} />
+            <Route path="/courses/c/linked-lists" element={<CLinkedList />} />
+            <Route
+              path="/courses/c/advanced-pointers"
+              element={<CAdvancedPointers />}
             />
             <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
             <Route path="/news" element={<Content />} />
