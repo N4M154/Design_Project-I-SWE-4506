@@ -11,62 +11,55 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CPreprocessor() {
+export default function CRecursion() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["preprocessor"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["recursion"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Preprocessor" lesson
+  // Define the learning content for the "Recursion" lesson
   const learningContent = {
-    preprocessors: {
-      title: "C Language Preprocessor",
+    "recursion": {
+      title: "C Language Recursion",
       intro:
-        "The C preprocessor is a tool that processes the C code before it is compiled. It is used for macros, file inclusion, and conditional compilation. This lesson will cover the fundamentals of the C preprocessor.",
+        "Recursion in C is a process where a function calls itself to solve smaller instances of a problem. This lesson will teach you the fundamentals of recursion, including base and recursive cases.",
       sections: [
         {
-          title: "What is a Preprocessor?",
-          content: `The preprocessor is a phase in C that performs various operations before the actual compilation starts.
-
-Key tasks performed by the preprocessor:
-• File inclusion
-• Macro substitution
-• Conditional compilation`,
+          title: "What is Recursion?",
+          content: `Recursion occurs when a function calls itself directly or indirectly to solve a problem. Recursive functions require two essential parts:
+• Base Case: The stopping condition.
+• Recursive Case: The function calling itself with modified parameters.`,
         },
         {
-          title: "File Inclusion",
-          content: `In C, files can be included using the #include directive. This allows the inclusion of header files that provide definitions and declarations to the program.
+          title: "How Recursion Works",
+          content: `Recursion works by breaking a problem into smaller instances and solving them until the base case is reached. The function continues to call itself with a reduced problem size, until it reaches the base case and stops.
 
-Syntax:
-• #include <filename>
-• #include "filename"`,
+Example: Factorial of a number n! = n × (n-1) × (n-2) × ... × 1`,
         },
         {
-          title: "Macros",
-          content: `Macros are used to define code snippets that can be reused throughout the program. They are defined using the #define directive.
+          title: "Base Case and Recursive Case",
+          content: `In recursion, a base case is necessary to stop the function from calling itself endlessly. The recursive case is where the function calls itself with a smaller problem.
 
 Example:
-• #define PI 3.14
-
-Macros are replaced by the preprocessor before the code is compiled.`,
+Factorial function:
+Base case: 1! = 1
+Recursive case: n! = n × (n-1)!`,
         },
         {
-          title: "Conditional Compilation",
-          content: `Conditional compilation is used to include or exclude parts of code based on certain conditions.
-
-Common preprocessor directives:
-• #ifdef
-• #ifndef
-• #else
-• #endif`,
+          title: "Common Uses of Recursion",
+          content: `Recursion is often used for:
+• Calculating factorials
+• Generating Fibonacci numbers
+• Traversing data structures like trees
+• Solving problems like the Tower of Hanoi`,
         },
       ],
       practice: [
-        "Use #define to create a macro for a constant value.",
-        "Use #include to include a standard library file in your program.",
-        "Use conditional compilation to include code for a specific environment.",
+        "Write a recursive function to calculate the factorial of a number.",
+        "Create a recursive function to print Fibonacci numbers.",
+        "Implement recursion to solve the Tower of Hanoi problem.",
       ],
     },
   };
@@ -76,35 +69,35 @@ Common preprocessor directives:
     setRelatedVideos([
       {
         id: "1",
-        title: "Understanding the C Preprocessor",
+        title: "Understanding Recursion in C",
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
-        duration: "10:30",
-        url: "https://www.youtube.com/watch?v=kEXg58NMPo4",
-        author: "TechGuru",
+        duration: "11:50",
+        url: "https://www.youtube.com/watch?v=keRrHkA5R1g",
+        author: "TechMaster",
       },
       {
         id: "2",
-        title: "Macros and Preprocessor Directives in C",
+        title: "Recursive Functions Explained",
         thumbnail:
           "https://images.unsplash.com/photo-1518565305704-c03a758c6996?w=500&auto=format",
-        duration: "12:45",
-        url: "https://youtu.be/jUQ3ot9D0fg",
-        author: "CodeMaster",
+        duration: "13:15",
+        url: "https://youtu.be/S7mQ9u02-XA",
+        author: "CodeTutor",
       },
     ]);
 
     setRelatedArticles([
       {
         id: "1",
-        title: "A Deep Dive into C Preprocessor",
+        title: "Mastering Recursion in C",
         source: "GeeksForGeeks",
         url: "#",
         readTime: "8 min",
       },
       {
         id: "2",
-        title: "Using Macros in C Programming",
+        title: "Recursive Functions in C Programming",
         source: "TutorialsPoint",
         url: "#",
         readTime: "9 min",

@@ -11,62 +11,69 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CPreprocessor() {
+export default function CLinkedList() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["preprocessor"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["linked-list"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Preprocessor" lesson
+  // Define the learning content for the "Linked List" lesson
   const learningContent = {
-    preprocessors: {
-      title: "C Language Preprocessor",
+    "linked-lists": {
+      title: "C Language Linked List",
       intro:
-        "The C preprocessor is a tool that processes the C code before it is compiled. It is used for macros, file inclusion, and conditional compilation. This lesson will cover the fundamentals of the C preprocessor.",
+        "A linked list is a data structure used to store a collection of data. Unlike arrays, linked lists do not require contiguous memory locations. This lesson will introduce you to the concept and implementation of linked lists in C.",
       sections: [
         {
-          title: "What is a Preprocessor?",
-          content: `The preprocessor is a phase in C that performs various operations before the actual compilation starts.
+          title: "What is a Linked List?",
+          content: `A linked list is a linear data structure where elements, called nodes, are stored in memory. Each node contains data and a reference (or link) to the next node in the sequence.
 
-Key tasks performed by the preprocessor:
-• File inclusion
-• Macro substitution
-• Conditional compilation`,
+Key characteristics of a linked list:
+• Dynamic size
+• Elements are not stored in contiguous memory locations
+• Efficient insertions and deletions`,
         },
         {
-          title: "File Inclusion",
-          content: `In C, files can be included using the #include directive. This allows the inclusion of header files that provide definitions and declarations to the program.
-
-Syntax:
-• #include <filename>
-• #include "filename"`,
+          title: "Types of Linked Lists",
+          content: `There are several types of linked lists:
+• Singly Linked List: Each node has data and a reference to the next node.
+• Doubly Linked List: Each node has data and two references (next and previous).
+• Circular Linked List: The last node points back to the first node.`,
         },
         {
-          title: "Macros",
-          content: `Macros are used to define code snippets that can be reused throughout the program. They are defined using the #define directive.
-
-Example:
-• #define PI 3.14
-
-Macros are replaced by the preprocessor before the code is compiled.`,
+          title: "Basic Operations on Linked Lists",
+          content: `The basic operations that can be performed on linked lists include:
+• Insertion: Add a new node to the list.
+• Deletion: Remove a node from the list.
+• Traversal: Visit all nodes in the list.
+• Searching: Find a specific node in the list.`,
         },
         {
-          title: "Conditional Compilation",
-          content: `Conditional compilation is used to include or exclude parts of code based on certain conditions.
+          title: "Singly Linked List Example",
+          content: `In a singly linked list, each node contains a pointer to the next node. Here's how you can create a singly linked list in C:
 
-Common preprocessor directives:
-• #ifdef
-• #ifndef
-• #else
-• #endif`,
+Example code:
+\`\`\`
+struct Node {
+    int data;
+    struct Node *next;
+};
+\`\`\`
+
+Operations on a singly linked list:
+• Insert at the beginning
+• Insert at the end
+• Delete a node
+• Traverse the list`,
         },
       ],
       practice: [
-        "Use #define to create a macro for a constant value.",
-        "Use #include to include a standard library file in your program.",
-        "Use conditional compilation to include code for a specific environment.",
+        "Implement a function to insert a node at the beginning of a singly linked list.",
+        "Write a function to delete a node from a singly linked list.",
+        "Write a function to traverse and print the linked list.",
+        "Create a function to search for an element in the linked list.",
       ],
     },
   };
@@ -76,20 +83,20 @@ Common preprocessor directives:
     setRelatedVideos([
       {
         id: "1",
-        title: "Understanding the C Preprocessor",
+        title: "Linked List Tutorial in C",
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
-        duration: "10:30",
-        url: "https://www.youtube.com/watch?v=kEXg58NMPo4",
+        duration: "12:10",
+        url: "https://www.youtube.com/watch?v=H92W_EAS7zM",
         author: "TechGuru",
       },
       {
         id: "2",
-        title: "Macros and Preprocessor Directives in C",
+        title: "C Programming - Linked List Operations",
         thumbnail:
           "https://images.unsplash.com/photo-1518565305704-c03a758c6996?w=500&auto=format",
-        duration: "12:45",
-        url: "https://youtu.be/jUQ3ot9D0fg",
+        duration: "14:45",
+        url: "https://youtu.be/U8aSihfdw2k",
         author: "CodeMaster",
       },
     ]);
@@ -97,17 +104,17 @@ Common preprocessor directives:
     setRelatedArticles([
       {
         id: "1",
-        title: "A Deep Dive into C Preprocessor",
+        title: "A Comprehensive Guide to Linked Lists in C",
         source: "GeeksForGeeks",
         url: "#",
         readTime: "8 min",
       },
       {
         id: "2",
-        title: "Using Macros in C Programming",
+        title: "Understanding Linked Lists and Their Implementation in C",
         source: "TutorialsPoint",
         url: "#",
-        readTime: "9 min",
+        readTime: "10 min",
       },
     ]);
   }, []);
