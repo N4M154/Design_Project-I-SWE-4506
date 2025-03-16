@@ -11,98 +11,65 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CControl() {
+export default function CStructures() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["control-structures"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["structures"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Control Structures" lesson
+  // Define the learning content for the "C Structures" lesson
   const learningContent = {
-    "control-structures": {
-      title: "C Language Control Structures",
+    "structures": {
+      title: "C Language Structures",
       intro:
-        "Control structures in C are used to make decisions, repeat code, and more. In this lesson, you'll learn about the different types of control structures in C, including if-else, loops, and switch statements.",
+        "Structures in C allow you to group different data types together into a single unit. This lesson will introduce structures, how to declare them, and how to access their members.",
       sections: [
         {
-          title: "What Are Control Structures?",
-          content: `Control structures are the blocks that manage the flow of control in a program. They allow you to perform tasks based on conditions (if-else) or repeat tasks (loops). Common types include:
-
-• Conditional statements (if, if-else, switch)
-• Looping statements (for, while, do-while)
-• Jump statements (break, continue, return)`,
+          title: "What Are Structures?",
+          content: "A structure is a user-defined data type in C that allows you to group different data types together.\n\n" +
+            "Syntax for declaring a structure:\n" +
+            "struct structure_name {\n" +
+            "  data_type member1;\n" +
+            "  data_type member2;\n" +
+            "};\n\n" +
+            "Example:\n" +
+            "struct Person {\n" +
+            "  char name[50];\n" +
+            "  int age;\n" +
+            "};",
         },
         {
-          title: "If-Else Statement",
-          content: `The if-else statement allows you to make decisions based on conditions.
-
-Syntax:
-
-if (condition) {
-    // Code to execute if the condition is true
-} else {
-    // Code to execute if the condition is false
-}
-Example:
-
-int age = 20;
-if (age >= 18) {
-    printf("Adult");
-} else {
-    printf("Minor");
-}`,
+          title: "Accessing Structure Members",
+          content: "To access a structure's member, use the dot operator (`.`).\n\n" +
+            "Example:\n" +
+            "struct Person p1;\n" +
+            "strcpy(p1.name, \"John\");\n" +
+            "p1.age = 25;\n" +
+            "printf(\"Name: %s, Age: %d\", p1.name, p1.age);",
         },
         {
-          title: "Switch Statement",
-          content: `The switch statement allows you to select one of many code blocks to be executed.
-
-Syntax:
-
-switch (variable) {
-    case value1:
-        // Code to execute if variable == value1
-        break;
-    case value2:
-        // Code to execute if variable == value2
-        break;
-    default:
-        // Code to execute if none of the cases match
-}
-Example:
-
-int day = 2;
-switch (day) {
-    case 1:
-        printf("Sunday");
-        break;
-    case 2:
-        printf("Monday");
-        break;
-    default:
-        printf("Invalid day");
-}`,
+          title: "Pointers and Structures",
+          content: "You can use pointers to access structure members using the arrow operator (`->`).\n\n" +
+            "Example:\n" +
+            "struct Person *p1_ptr = &p1;\n" +
+            "printf(\"Name: %s\", p1_ptr->name);",
         },
         {
-          title: "Loops in C",
-          content: `Loops are used to repeat a block of code multiple times.
-
-• For Loop: Used when the number of iterations is known.
-• While Loop: Used when the number of iterations is not known but a condition is true.
-• Do-While Loop: Similar to while, but executes at least once.
-
-Example of a for loop:
-
-for (int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}`,
+          title: "Structures and Functions",
+          content: "You can pass structures to functions either by value or by reference.\n\n" +
+            "Example:\n" +
+            "void printPerson(struct Person p) {\n" +
+            "  printf(\"Name: %s, Age: %d\", p.name, p.age);\n" +
+            "}\n\n" +
+            "In this example, the structure is passed by value.",
         },
       ],
       practice: [
-        "Write a program to check whether a number is even or odd using an if-else statement.",
-        "Create a switch-case statement to display the name of a day based on a number (1 for Sunday, 2 for Monday, etc.).",
-        "Use a for loop to print numbers from 1 to 10.",
+        "Declare a structure to store a student's name and age, and print these details.",
+        "Create a function that accepts a structure and prints its members.",
+        "Use a pointer to access a structure's member and print it.",
       ],
     },
   };
@@ -112,29 +79,29 @@ for (int i = 0; i < 5; i++) {
     setRelatedVideos([
       {
         id: "1",
-        title: "C Control Structures Explained",
+        title: "C Structures Explained",
         thumbnail:
-          "https://mma.prnewswire.com/media/1100016/4169121/Simplilearn_Logo.jpg?p=facebook",
-        duration: "14:30",
-        url: "https://www.youtube.com/watch?v=YiPoFeWrSYY&pp=ygUTYyBjb250cm9sIHN0cnVjdHVyZQ%3D%3D",  // BroCode video link
-        author: "Simplilearn",
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
+        duration: "15:20",
+        url: "https://youtu.be/XNz6UpK5mSM",  // BroCode video link
+        author: "BroCode",
       },
     ]);
 
     setRelatedArticles([
       {
         id: "1",
-        title: "Understanding C Control Structures",
+        title: "Structures in C Programming",
         source: "GeeksForGeeks",
         url: "#",
         readTime: "7 min",
       },
       {
         id: "2",
-        title: "A Beginner's Guide to C Control Structures",
+        title: "Working with C Structures",
         source: "TutorialsPoint",
         url: "#",
-        readTime: "8 min",
+        readTime: "6 min",
       },
     ]);
   }, []);

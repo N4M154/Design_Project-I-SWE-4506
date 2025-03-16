@@ -11,98 +11,75 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CControl() {
+export default function CArrays() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [completedQuizzes, setCompletedQuizzes] = useState(["control-structures"]);
+  const [completedQuizzes, setCompletedQuizzes] = useState(["arrays"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
 
-  // Define the learning content for the "C Control Structures" lesson
+  // Define the learning content for the "C Arrays" lesson
   const learningContent = {
-    "control-structures": {
-      title: "C Language Control Structures",
+    "arrays": {
+      title: "C Language Arrays",
       intro:
-        "Control structures in C are used to make decisions, repeat code, and more. In this lesson, you'll learn about the different types of control structures in C, including if-else, loops, and switch statements.",
+        "Arrays in C are used to store multiple values in a single variable, instead of declaring separate variables for each value. This lesson will cover how to declare, initialize, and use arrays in C.",
       sections: [
         {
-          title: "What Are Control Structures?",
-          content: `Control structures are the blocks that manage the flow of control in a program. They allow you to perform tasks based on conditions (if-else) or repeat tasks (loops). Common types include:
-
-• Conditional statements (if, if-else, switch)
-• Looping statements (for, while, do-while)
-• Jump statements (break, continue, return)`,
-        },
-        {
-          title: "If-Else Statement",
-          content: `The if-else statement allows you to make decisions based on conditions.
+          title: "What Are Arrays?",
+          content: `In C, an array is a collection of variables of the same type, stored in contiguous memory locations. The main advantage of using arrays is that it allows you to group related data together.
 
 Syntax:
-
-if (condition) {
-    // Code to execute if the condition is true
-} else {
-    // Code to execute if the condition is false
-}
+\`\`\`
+type array_name[array_size];
+\`\`\`
 Example:
-
-int age = 20;
-if (age >= 18) {
-    printf("Adult");
-} else {
-    printf("Minor");
-}`,
+\`\`\`
+int arr[5];
+\`\`\`
+In the example above, an array of integers with 5 elements is declared. The index of the first element is 0, and the index of the last element is 4.`,
         },
         {
-          title: "Switch Statement",
-          content: `The switch statement allows you to select one of many code blocks to be executed.
+          title: "Initializing Arrays",
+          content: `You can initialize an array either at the time of declaration or later in the program.
 
-Syntax:
-
-switch (variable) {
-    case value1:
-        // Code to execute if variable == value1
-        break;
-    case value2:
-        // Code to execute if variable == value2
-        break;
-    default:
-        // Code to execute if none of the cases match
-}
+Array initialization syntax:
+\`\`\`
+type array_name[array_size] = {value1, value2, ...};
+\`\`\`
 Example:
-
-int day = 2;
-switch (day) {
-    case 1:
-        printf("Sunday");
-        break;
-    case 2:
-        printf("Monday");
-        break;
-    default:
-        printf("Invalid day");
-}`,
+\`\`\`
+int arr[5] = {1, 2, 3, 4, 5};
+\`\`\`
+In this case, the array arr will contain 5 elements, initialized with values 1 through 5.`,
         },
         {
-          title: "Loops in C",
-          content: `Loops are used to repeat a block of code multiple times.
+          title: "Accessing Array Elements",
+          content: `You can access array elements by using their index. The index starts from 0.
 
-• For Loop: Used when the number of iterations is known.
-• While Loop: Used when the number of iterations is not known but a condition is true.
-• Do-While Loop: Similar to while, but executes at least once.
+Example:
+\`\`\`
+int arr[5] = {1, 2, 3, 4, 5};
+printf("%d", arr[0]);  // Output: 1
+\`\`\`
+In this case, arr[0] accesses the first element of the array, which is 1.`,
+        },
+        {
+          title: "Multi-Dimensional Arrays",
+          content: `C also allows you to create multi-dimensional arrays, like matrices. A two-dimensional array can be visualized as a table with rows and columns.
 
-Example of a for loop:
-
-for (int i = 0; i < 5; i++) {
-    printf("%d ", i);
-}`,
+Example:
+\`\`\`
+int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+\`\`\`
+This creates a 2x3 array with 2 rows and 3 columns.`,
         },
       ],
       practice: [
-        "Write a program to check whether a number is even or odd using an if-else statement.",
-        "Create a switch-case statement to display the name of a day based on a number (1 for Sunday, 2 for Monday, etc.).",
-        "Use a for loop to print numbers from 1 to 10.",
+        "Create an array of 10 integers and initialize them with values.",
+        "Write a program that sums the elements of an array.",
+        "Create a multi-dimensional array and print its elements.",
       ],
     },
   };
@@ -112,29 +89,38 @@ for (int i = 0; i < 5; i++) {
     setRelatedVideos([
       {
         id: "1",
-        title: "C Control Structures Explained",
+        title: "C Arrays Explained",
         thumbnail:
-          "https://mma.prnewswire.com/media/1100016/4169121/Simplilearn_Logo.jpg?p=facebook",
+          "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "14:30",
-        url: "https://www.youtube.com/watch?v=YiPoFeWrSYY&pp=ygUTYyBjb250cm9sIHN0cnVjdHVyZQ%3D%3D",  // BroCode video link
-        author: "Simplilearn",
+        url: "https://youtu.be/vZgGzU_v9eM",  // BroCode video link
+        author: "BroCode",
+      },
+      {
+        id: "2",
+        title: "Understanding Arrays in C Programming",
+        thumbnail:
+          "https://images.unsplash.com/photo-1526374965328-7ea3c8b860aa?w=500&auto=format",
+        duration: "13:45",
+        url: "https://youtu.be/jU-q0O9g9BY",  // BroCode video link
+        author: "BroCode",
       },
     ]);
 
     setRelatedArticles([
       {
         id: "1",
-        title: "Understanding C Control Structures",
+        title: "Understanding Arrays in C",
         source: "GeeksForGeeks",
         url: "#",
         readTime: "7 min",
       },
       {
         id: "2",
-        title: "A Beginner's Guide to C Control Structures",
+        title: "A Guide to Multi-Dimensional Arrays in C",
         source: "TutorialsPoint",
         url: "#",
-        readTime: "8 min",
+        readTime: "9 min",
       },
     ]);
   }, []);
