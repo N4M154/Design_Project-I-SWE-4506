@@ -2222,8 +2222,12 @@ const Problems: React.FC = () => {
       let allTestsPassed = true;
       let testOutput = "";
 
+      console.log("[DEBUG] Starting code evaluation...");
+
       // Evaluate each test case and generate the final verdict
       for (const testCase of selectedProblem.testCases) {
+        console.log(`[DEBUG] Evaluating test case: ${testCase.input}`);
+
         const response = await groq.chat.completions.create({
           messages: [
             {
@@ -2240,6 +2244,7 @@ const Problems: React.FC = () => {
         });
 
         const verdict = response.choices[0].message.content?.trim();
+        console.log(`[DEBUG] Verdict for test case: ${verdict}`);
 
         if (verdict === "AC") {
           testOutput += `Test case: ${testCase.input}\nExpected: ${testCase.output}\nResult: AC\n\n`;
@@ -2259,21 +2264,29 @@ const Problems: React.FC = () => {
       }
 
       // After the final verdict, update contest progress
+      console.log("[DEBUG] Updating contest progress...");
+      // After final verdict, update contest progress
       try {
-        const verdict = result;
-        await fetch("/api/contest/progress", {
+        const response = await fetch("/api/contest/progress", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userId: currentUser._id,
-            problemId: selectedProblem.id,
-            verdict,
+            userId: currentUser._id, // Ensure userId is passed
+            problemId: selectedProblem.id, // Ensure problemId is passed
+            verdict: result, // Make sure result (AC, WA, TLE) is sent
+            language: language, // Ensure language is passed
           }),
         });
+
+        const responseData = await response.json();
+        console.log(
+          "[DEBUG] Contest progress updated successfully:",
+          responseData
+        );
       } catch (error) {
-        console.error("Failed to update contest progress:", error);
+        console.error("[DEBUG] Failed to update contest progress:", error);
       }
 
       setOutput(testOutput);
@@ -2289,7 +2302,7 @@ const Problems: React.FC = () => {
       setSubmissions((prev) => [...prev, newSubmission]);
     } catch (error) {
       setOutput("Error: Failed to evaluate code. Please try again.");
-      console.error(error);
+      console.error("[DEBUG] Error in code evaluation:", error);
     } finally {
       setLoading(false);
     }

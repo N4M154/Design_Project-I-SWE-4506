@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const contestSchema = new mongoose.Schema(
   {
@@ -44,10 +44,36 @@ const contestSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    totalSolved: {
+      type: Number,
+      default: 0,
+    },
+    totalAttempted: {
+      type: Number,
+      default: 0,
+    },
+    languageStats: {
+      python: {
+        solved: { type: Number, default: 0 },
+        attempted: { type: Number, default: 0 },
+      },
+      javascript: {
+        solved: { type: Number, default: 0 },
+        attempted: { type: Number, default: 0 },
+      },
+      cpp: {
+        solved: { type: Number, default: 0 },
+        attempted: { type: Number, default: 0 },
+      },
+      java: {
+        solved: { type: Number, default: 0 },
+        attempted: { type: Number, default: 0 },
+      },
+    },
   },
   { timestamps: true }
 );
 
-const Contest = mongoose.model("Contest", contestSchema);
+const Contest = mongoose.model('Contest', contestSchema);
 
 export default Contest;
