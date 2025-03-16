@@ -47,6 +47,8 @@ import CStructures from "./pages/CStructures.jsx";
 import CRecursion from "./pages/CRecursion.jsx";
 import CLinkedList from "./pages/CLinkedList.jsx";
 import CAdvancedPointers from "./pages/CAdvancedPointers.jsx";
+import CGraphicsProgramming from "./pages/CGraphicsProgramming.jsx";
+import CNetworkProgramming from "./pages/CNetworkProgramming.jsx";
 
 export default function App() {
   return (
@@ -122,6 +124,14 @@ export default function App() {
             <Route
               path="/courses/c/advanced-pointers"
               element={<CAdvancedPointers />}
+            />
+            <Route
+              path="/courses/c/graphics-programming"
+              element={<CGraphicsProgramming />}
+            />
+            <Route
+              path="/courses/c/network-programming"
+              element={<CNetworkProgramming />}
             />
             <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
             <Route path="/news" element={<Content />} />
