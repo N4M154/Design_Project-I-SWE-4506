@@ -13,6 +13,9 @@ const contestSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
+        problemTitle: {
+          type: String,
+        },
         solvedAt: {
           type: Date,
           default: Date.now,
@@ -24,6 +27,9 @@ const contestSchema = new mongoose.Schema(
         problemId: {
           type: String,
           required: true,
+        },
+        problemTitle: {
+          type: String,
         },
         verdict: {
           type: String,
