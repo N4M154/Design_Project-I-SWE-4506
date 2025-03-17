@@ -13,7 +13,7 @@ import Rmap from "./routes/roadmap.route.js";
 import runRoutes from "./routes/run.route.js";
 import userRoutes from "./routes/user.route.js";
 import contestRoutes from "./routes/contest.route.js";
-import progressRoutes from './routes/progressRoutes.js';
+import progressRoutes from "./routes/progressRoutes.js";
 
 dotenv.config();
 

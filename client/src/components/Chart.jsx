@@ -2,7 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import ReactApexChart from "react-apexcharts";
 
-// Generate data function for 6 months with 30 days each
 function generateData(months, daysPerMonth, { min, max }) {
   return Array.from({ length: months }, (_, monthIndex) => ({
     name: `Month ${monthIndex + 1}`,
@@ -17,7 +16,6 @@ class Chart extends React.Component {
   constructor(props) {
     super(props);
 
-    // Generating data for 6 months with 30 days each
     this.state = {
       series: generateData(6, 30, { min: 0, max: 10 }),
       options: {
