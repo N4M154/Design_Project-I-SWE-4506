@@ -49,6 +49,7 @@ import CLinkedList from "./pages/CLinkedList.jsx";
 import CAdvancedPointers from "./pages/CAdvancedPointers.jsx";
 import CGraphicsProgramming from "./pages/CGraphicsProgramming.jsx";
 import CNetworkProgramming from "./pages/CNetworkProgramming.jsx";
+import Certificate from "./pages/certificate.jsx";
 
 export default function App() {
   return (
@@ -133,6 +134,7 @@ export default function App() {
               path="/courses/c/network-programming"
               element={<CNetworkProgramming />}
             />
+            <Route path="/certificate" element={<Certificate />} />
             <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
             <Route path="/news" element={<Content />} />
 

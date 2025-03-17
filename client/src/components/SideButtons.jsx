@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "../redux/user/userSlice";
+import { Haze } from 'lucide-react';
 
 const sidebarItems = [
   { name: "Learning Path", icon: BookOpen, route: "/home" },
@@ -28,6 +29,7 @@ const sidebarItems = [
   // { name: "Resources", icon: LayoutList, route: "/resources" },
   { name: "Interview Preparation", icon: UserRound, route: "/mock" },
   { name: "News Portal", icon: Bell, route: "/news" },
+  { name: "Certificate", icon: Haze, route: "/certificate" },
   { name: "Mock Interview", icon: Laptop, route: "/lobby" }
 ];
 
