@@ -1,12 +1,13 @@
 import { jsPDF } from "jspdf";
 import {
-  BookOpen,
   ChevronLeft,
+  GraduationCap,
   Download,
   ExternalLink,
-  GraduationCap,
   Play,
+  BookOpen,
 } from "lucide-react";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -18,7 +19,7 @@ export default function Chello() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
-
+  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
   // Define the learning content for all lessons
   const learningContent = {
     "hello-world": {
@@ -133,6 +134,30 @@ int main() {
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
+
+    if (userId && lessonId) {
+      // Fetch user progress from the server
+      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // Check if the lesson is already in the completedLessons array
+          if (
+            data.progress &&
+            data.progress.completedLessons.includes(lessonId)
+          ) {
+            setIsMarkedAsRead(true); // Mark the lesson as read
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching progress:", error);
+        });
+    }
+  }, [lessonId]);
+
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -148,6 +173,7 @@ int main() {
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
+            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -157,8 +183,6 @@ int main() {
         });
     }
   };
-
-  
 
   if (!lesson) {
     return <div className="text-center p-8">Lesson not found.</div>;
@@ -199,9 +223,16 @@ int main() {
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
+                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
+                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
+                  }`}
                 >
-                  Mark as Read
+                  {isMarkedAsRead ? (
+                    <FaBookmark size={20} />
+                  ) : (
+                    <FaRegBookmark size={20} />
+                  )}
+                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
                 </button>
               </div>
             </div>

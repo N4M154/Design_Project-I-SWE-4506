@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -18,10 +19,11 @@ export default function CFunctions() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
+  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define the learning content for the "C Functions" lesson
   const learningContent = {
-    "functions": {
+    functions: {
       title: "C Language Functions",
       intro:
         "Functions are an essential part of C programming. They allow you to organize code into reusable blocks. In this lesson, you'll learn about the different types of functions, how to declare and define them, and how to call them.",
@@ -110,7 +112,7 @@ Here, greet() is a function with no parameters and no return type (void). It sim
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "15:20",
-        url: "https://youtu.be/_fJzjx3gMjM",  // BroCode video link
+        url: "https://youtu.be/_fJzjx3gMjM", // BroCode video link
         author: "BroCode",
       },
       {
@@ -119,7 +121,7 @@ Here, greet() is a function with no parameters and no return type (void). It sim
         thumbnail:
           "https://images.unsplash.com/photo-1526374965328-7ea3c8b860aa?w=500&auto=format",
         duration: "12:10",
-        url: "https://youtu.be/Nsvivq3RohY",  // BroCode video link
+        url: "https://youtu.be/Nsvivq3RohY", // BroCode video link
         author: "BroCode",
       },
     ]);
@@ -174,7 +176,29 @@ Here, greet() is a function with no parameters and no return type (void). It sim
 
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
 
+    if (userId && lessonId) {
+      // Fetch user progress from the server
+      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // Check if the lesson is already in the completedLessons array
+          if (
+            data.progress &&
+            data.progress.completedLessons.includes(lessonId)
+          ) {
+            setIsMarkedAsRead(true); // Mark the lesson as read
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching progress:", error);
+        });
+    }
+  }, [lessonId]);
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -190,6 +214,7 @@ Here, greet() is a function with no parameters and no return type (void). It sim
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
+            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -239,9 +264,16 @@ Here, greet() is a function with no parameters and no return type (void). It sim
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
+                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
+                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
+                  }`}
                 >
-                  Mark as Read
+                  {isMarkedAsRead ? (
+                    <FaBookmark size={20} />
+                  ) : (
+                    <FaRegBookmark size={20} />
+                  )}
+                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
                 </button>
               </div>
             </div>

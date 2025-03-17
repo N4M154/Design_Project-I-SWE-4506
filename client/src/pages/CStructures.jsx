@@ -7,8 +7,9 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
 export default function CStructures() {
@@ -18,17 +19,19 @@ export default function CStructures() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
+  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define the learning content for the "C Structures" lesson
   const learningContent = {
-    "structures": {
+    structures: {
       title: "C Language Structures",
       intro:
         "Structures in C allow you to group different data types together into a single unit. This lesson will introduce structures, how to declare them, and how to access their members.",
       sections: [
         {
           title: "What Are Structures?",
-          content: "A structure is a user-defined data type in C that allows you to group different data types together.\n\n" +
+          content:
+            "A structure is a user-defined data type in C that allows you to group different data types together.\n\n" +
             "Syntax for declaring a structure:\n" +
             "struct structure_name {\n" +
             "  data_type member1;\n" +
@@ -42,26 +45,29 @@ export default function CStructures() {
         },
         {
           title: "Accessing Structure Members",
-          content: "To access a structure's member, use the dot operator (`.`).\n\n" +
+          content:
+            "To access a structure's member, use the dot operator (`.`).\n\n" +
             "Example:\n" +
             "struct Person p1;\n" +
-            "strcpy(p1.name, \"John\");\n" +
+            'strcpy(p1.name, "John");\n' +
             "p1.age = 25;\n" +
-            "printf(\"Name: %s, Age: %d\", p1.name, p1.age);",
+            'printf("Name: %s, Age: %d", p1.name, p1.age);',
         },
         {
           title: "Pointers and Structures",
-          content: "You can use pointers to access structure members using the arrow operator (`->`).\n\n" +
+          content:
+            "You can use pointers to access structure members using the arrow operator (`->`).\n\n" +
             "Example:\n" +
             "struct Person *p1_ptr = &p1;\n" +
-            "printf(\"Name: %s\", p1_ptr->name);",
+            'printf("Name: %s", p1_ptr->name);',
         },
         {
           title: "Structures and Functions",
-          content: "You can pass structures to functions either by value or by reference.\n\n" +
+          content:
+            "You can pass structures to functions either by value or by reference.\n\n" +
             "Example:\n" +
             "void printPerson(struct Person p) {\n" +
-            "  printf(\"Name: %s, Age: %d\", p.name, p.age);\n" +
+            '  printf("Name: %s, Age: %d", p.name, p.age);\n' +
             "}\n\n" +
             "In this example, the structure is passed by value.",
         },
@@ -83,7 +89,7 @@ export default function CStructures() {
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "15:20",
-        url: "https://youtu.be/XNz6UpK5mSM",  // BroCode video link
+        url: "https://youtu.be/XNz6UpK5mSM", // BroCode video link
         author: "BroCode",
       },
     ]);
@@ -139,6 +145,30 @@ export default function CStructures() {
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("persist:root"));
+    const currentUser = user ? JSON.parse(user.user).currentUser : null;
+    const userId = currentUser ? currentUser._id : null;
+
+    if (userId && lessonId) {
+      // Fetch user progress from the server
+      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // Check if the lesson is already in the completedLessons array
+          if (
+            data.progress &&
+            data.progress.completedLessons.includes(lessonId)
+          ) {
+            setIsMarkedAsRead(true); // Mark the lesson as read
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching progress:", error);
+        });
+    }
+  }, [lessonId]);
+
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -154,6 +184,7 @@ export default function CStructures() {
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
+            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
