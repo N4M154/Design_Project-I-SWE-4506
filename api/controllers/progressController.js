@@ -53,7 +53,7 @@ export const updateProgress = async (req, res) => {
 };
 
 // Update user progress when marking a lesson as read
-export const markAsReadJava = async (req, res) => {
+export const markAsRead = async (req, res) => {
   const { userId, lessonId } = req.body;
 
   if (!userId || !lessonId) {
@@ -61,29 +61,25 @@ export const markAsReadJava = async (req, res) => {
   }
 
   try {
-    // Find the user's progress in the Java course
-    let progress = await JProgressModel.findOne({ userId });
+    let progress = await Progress.findOne({ userId });
 
     if (!progress) {
-      // If no progress record exists for the user, create a new one
-      progress = new JProgressModel({
+      progress = new Progress({
         userId,
         completedLessons: [lessonId],
-        progress: (1 / 6) * 100, // Assuming 6 lessons for the Java course
+        progress: (1 / 20) * 100, // Assuming 20 lessons
       });
     } else {
-      // If progress record exists, update it by adding the completed lesson
       if (!progress.completedLessons.includes(lessonId)) {
         progress.completedLessons.push(lessonId);
       }
-      const totalLessons = 6; // Total lessons in the Java course
+      const totalLessons = 20; // Total lessons in the course
       progress.progress = (progress.completedLessons.length / totalLessons) * 100;
     }
 
-    // Save the updated progress record
     await progress.save();
 
-    return res.status(200).json({ progress, message: 'Lesson marked as read for Java' });
+    return res.status(200).json({ progress, message: 'Lesson marked as read' });
   } catch (error) {
     console.error('Error updating progress:', error);
     return res.status(500).json({ message: 'Internal server error' });
