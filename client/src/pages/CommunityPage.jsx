@@ -289,59 +289,50 @@ const CommunityPage = () => {
             <PenSquare className="w-full h-full" />
           </div>
         </div> */}
-{/* Hero Section */}
-<div className="relative overflow-hidden bg-gradient-to-br from-white to-yellow-50 py-8 px-6 rounded-xl shadow-md mx-4 mt-4 transform transition-all hover:scale-102 duration-300">
-  {/* Background Glow Effect */}
-  <div className="absolute inset-0 bg-radial-gradient from-yellow-100/20 to-transparent opacity-30 animate-pulse-slow"></div>
+        {/* Hero Section */}
+        <div className="relative overflow-hidden bg-gradient-to-br from-white to-yellow-50 py-8 px-6 rounded-xl shadow-md mx-4 mt-4 transform transition-all hover:scale-102 duration-300">
+          {/* Background Glow Effect */}
+          <div className="absolute inset-0 bg-radial-gradient from-yellow-100/20 to-transparent opacity-30 animate-pulse-slow"></div>
 
-  {/* Content */}
-  <div className="relative z-10 text-center">
-    <h1 className="text-4xl font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 to-yellow-800 animate-text-glow">
-      Share Your Story
-      <br />
-      With The World
-    </h1>
-    <p className="text-bold text-lg text-gray-700 max-w-xl mx-auto mb-6">
-      Join our vibrant community of writers, thinkers, and creators.
-      Your voice matters.
-    </p>
-    <button className="px-6 py-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all transform hover:scale-105 shadow-sm hover:shadow-yellow-500/20">
-      Get Started
-    </button>
-  </div>
+          {/* Content */}
+          <div className="relative z-10 text-center">
+            <h1 className="text-4xl font-bold mb-4 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-yellow-600 to-yellow-800 animate-text-glow">
+              Share Your Story
+              <br />
+              With The World
+            </h1>
+            <p className="text-bold text-lg text-gray-700 max-w-xl mx-auto mb-6">
+              Join our vibrant community of writers, thinkers, and creators.
+              Your voice matters.
+            </p>
+            <button className="px-6 py-2 bg-yellow-500 text-white font-semibold rounded-md hover:bg-yellow-600 transition-all transform hover:scale-105 shadow-sm hover:shadow-yellow-500/20">
+              Get Started
+            </button>
+          </div>
 
-  {/* Decorative Elements */}
-  <div className="absolute -right-12 -top-12 w-1/2 h-full opacity-15 rotate-12">
-  <PenSquare className="w-full h-full text-yellow-100" />
-</div>
-<div className="absolute -left-12 -bottom-12 w-1/2 h-full opacity-15 -rotate-12">
-  <PenSquare className="w-full h-full text-yellow-100" />
-</div>
+          {/* Decorative Elements */}
+          <div className="absolute -right-12 -top-12 w-1/2 h-full opacity-15 rotate-12">
+            <PenSquare className="w-full h-full text-yellow-100" />
+          </div>
+          <div className="absolute -left-12 -bottom-12 w-1/2 h-full opacity-15 -rotate-12">
+            <PenSquare className="w-full h-full text-yellow-100" />
+          </div>
 
-  {/* Floating Particles Animation */}
-  <div className="absolute inset-0 overflow-hidden">
-    {[...Array(10)].map((_, i) => (
-      <div
-        key={i}
-        className="absolute w-1.5 h-1.5 bg-yellow-400 rounded-full animate-float"
-        style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 5}s`,
-        }}
-      ></div>
-    ))}
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
+          {/* Floating Particles Animation */}
+          <div className="absolute inset-0 overflow-hidden">
+            {[...Array(10)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1.5 h-1.5 bg-yellow-400 rounded-full animate-float"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 5}s`,
+                }}
+              ></div>
+            ))}
+          </div>
+        </div>
 
         {/* Action Buttons */}
         <div className="flex items-center justify-center gap-6 mt-8 px-4">
@@ -522,7 +513,7 @@ const CommunityPage = () => {
                   >
                     Read More
                   </button>
-                  <div className="flex items-center justify-between mt-4">
+                  {/* <div className="flex items-center justify-between mt-4">
                     <div className="flex gap-4">
                       <motion.button
                         whileHover={{ scale: 1.1 }}
@@ -543,7 +534,7 @@ const CommunityPage = () => {
                         <span>{blog.loves}</span>
                       </motion.button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
             ))}
