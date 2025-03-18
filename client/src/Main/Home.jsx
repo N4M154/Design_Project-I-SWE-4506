@@ -545,9 +545,6 @@
 
 
 
-
-
-
 import {
   ArrowRight,
   BookOpen,
@@ -571,10 +568,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import HeatMap from "../components/HeatMap";
 import SideButtons from "../components/SideButtons";
 
 function Home() {
-  const [rank, setRank] = useState("");
   const [problems, setProblems] = useState([]);
   const [runData, setRunData] = useState([]);
   const [currentStreak, setCurrentStreak] = useState(0);
@@ -670,42 +667,56 @@ function Home() {
   };
 
   const calculateStreaks = (data) => {
+    if (!data.length) {
+      setCurrentStreak(0);
+      setLongestStreak(0);
+      return;
+    }
+
+    // Convert dates to ISO format and sort them
+    const dates = data.map(run => {
+      const [dd, mm, yyyy] = run.date.split("-");
+      return `${yyyy}-${mm.padStart(2, "0")}-${dd.padStart(2, "0")}`;
+    }).sort();
+
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    const activityDates = data.map(run => {
-      const date = new Date(run.date);
-      date.setHours(0, 0, 0, 0);
-      return date.getTime();
-    }).sort((a, b) => b - a);
-
-    let current = 0;
-    let longest = 0;
+    let currentStreak = 0;
+    let longestStreak = 0;
     let tempStreak = 0;
-    let currentDate = today.getTime();
+    let previousDate = null;
 
-    // Calculate current streak
-    for (let i = 0; i < activityDates.length; i++) {
-      if (activityDates[i] === currentDate) {
-        current++;
-        currentDate -= 86400000; // Subtract one day in milliseconds
-      } else if (activityDates[i] < currentDate - 86400000) {
-        break;
-      }
-    }
-
-    // Calculate longest streak
-    for (let i = 0; i < activityDates.length; i++) {
-      if (i === 0 || activityDates[i] === activityDates[i-1] - 86400000) {
-        tempStreak++;
-        longest = Math.max(longest, tempStreak);
-      } else {
+    // Calculate streaks
+    for (let i = 0; i < dates.length; i++) {
+      const currentDate = new Date(dates[i]);
+      
+      if (!previousDate) {
         tempStreak = 1;
+      } else {
+        const prevDate = new Date(previousDate);
+        const diffDays = Math.floor((currentDate - prevDate) / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 1) {
+          tempStreak++;
+        } else if (diffDays > 1) {
+          tempStreak = 1;
+        }
       }
+
+      longestStreak = Math.max(longestStreak, tempStreak);
+      previousDate = dates[i];
     }
 
-    setCurrentStreak(current);
-    setLongestStreak(longest);
+    // Check if the streak is still active (last activity was today or yesterday)
+    const lastDate = new Date(dates[dates.length - 1]);
+    const diffToToday = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+    
+    // Current streak is only maintained if the last activity was today or yesterday
+    const finalCurrentStreak = diffToToday <= 1 ? tempStreak : 0;
+
+    setCurrentStreak(finalCurrentStreak);
+    setLongestStreak(longestStreak);
   };
 
   const techIcons = [
@@ -843,7 +854,7 @@ function Home() {
                       Day Streak
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-yellow-700/10 to-yellow-600/5 dark:from-yellow-500/20 dark:to-yellow-600/10 rounded-xl p-6 backdrop-blur-sm border border-yellow-200/30 dark:border-yellow-400/20">
+                  <div className="bg-gradient-to-br from-yellow-900/10 to-yellow-600/5 dark:from-yellow-500/20 dark:to-yellow-600/10 rounded-xl p-6 backdrop-blur-sm border border-yellow-200/30 dark:border-yellow-400/20">
                     <div className="flex items-center justify-between mb-2">
                       <Trophy className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
                       <span className="text-sm font-medium text-yellow-700 dark:text-yellow-300">Best</span>
@@ -856,6 +867,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
+
 
                 {/* Quick Stats */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
@@ -993,6 +1005,11 @@ function Home() {
           </div>
         </div>
 
+        {/* Hidden HeatMap for Activity Tracking */}
+        <div className="hidden">
+          <HeatMap runData={runData} currentDate={currentDate} />
+        </div>
+
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -1011,5 +1028,3 @@ function Home() {
 }
 
 export default Home;
-
-
