@@ -58,7 +58,8 @@ const CollabEditor = ({ roomId, username }) => {
 
     quillRef.current = editor;
 
-    const socket = io("http://localhost:5000");
+    const socket = io("https://socket-1-pmz3.onrender.com");
+
     socketRef.current = socket;
 
     socket.emit("join-room", { roomId, username });
