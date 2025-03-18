@@ -20,7 +20,8 @@ import {
 } from "chart.js";
 import SideButtons from "../components/SideButtons";
 import Graphs from "../components/Graphs.jsx";
-import HeatMap from "../components/HeatMap.jsx";
+import HeatMap from "../components/HeatMap.jsx"; // Importing HeatMap
+import HeatMap2 from "../components/HeatMap2.jsx"; // Importing HeatMap2
 
 ChartJS.register(
   CategoryScale,
@@ -53,6 +54,7 @@ export default function Profile() {
   };
 
   const currentDate = getCurrentDate();
+
   useEffect(() => {
     fetchRunData();
   }, []);
@@ -123,7 +125,7 @@ export default function Profile() {
             </Link>
 
             {/* Profile Info */}
-            <div className="flex ">
+            <div className="flex">
               {/* Profile Picture */}
               <img
                 src={formData.profilePicture || currentUser.profilePicture}
@@ -139,10 +141,19 @@ export default function Profile() {
               </div>
             </div>
           </div>
-          <Graphs runData={runData || []} currentDate={currentDate} />{" "}
+
+          {/* Graphs Section */}
+          <Graphs runData={runData || []} currentDate={currentDate} />
         </div>
+
+        {/* HeatMap Section */}
         <div className="mt-5 mb-7">
           <HeatMap runData={runData || []} currentDate={currentDate} />
+        </div>
+
+        {/* HeatMap2 Section */}
+        <div className="mt-5 mb-7">
+          <HeatMap2 runData={runData || []} currentDate={currentDate} />
         </div>
       </div>
     </div>

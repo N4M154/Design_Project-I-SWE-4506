@@ -68,6 +68,8 @@ export const getContestProgress = async (req, res) => {
       });
     }
 
+    console.log("[DEBUG] Contest Data:", contest);
+
     res.status(200).json({
       success: true,
       data: {
@@ -75,6 +77,7 @@ export const getContestProgress = async (req, res) => {
         attemptedCount: contest.attemptedCount,
         totalSolved: contest.totalSolved,
         totalAttempted: contest.totalAttempted,
+        problemsSolved: contest.problemsSolved, // Make sure to include this
         languageStats: contest.languageStats,
       },
     });
