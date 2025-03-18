@@ -50,6 +50,7 @@ import CAdvancedPointers from "./pages/CAdvancedPointers.jsx";
 import CGraphicsProgramming from "./pages/CGraphicsProgramming.jsx";
 import CNetworkProgramming from "./pages/CNetworkProgramming.jsx";
 import Certificate from "./pages/certificate.jsx";
+import JHello from "./pages/JHello"; // Java Hello World Lesson
 
 export default function App() {
   return (
@@ -134,6 +135,7 @@ export default function App() {
               path="/courses/c/network-programming"
               element={<CNetworkProgramming />}
             />
+            <Route path="/courses/java/hello-world" element={<JHello />} />
             <Route path="/certificate" element={<Certificate />} />
             <Route path="/courses/c/:lessonId/quiz" element={<CQuizPage />} />
             <Route path="/news" element={<Content />} />
