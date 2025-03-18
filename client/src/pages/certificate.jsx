@@ -10,11 +10,7 @@ const CertificatePage = () => {
     setShowCertificate(false); // This will hide the certificate when "Close" is clicked
   };
 
-  return (
-    <div>
-      {showCertificate && <Certificate onClose={handleClose} />}
-    </div>
-  );
+  return <div>{showCertificate && <Certificate onClose={handleClose} />}</div>;
 };
 
 const Certificate = ({ onClose }) => {
@@ -128,18 +124,22 @@ const Certificate = ({ onClose }) => {
               </div>
             </div>
 
-            <h1 className="text-4xl font-serif mb-6">Certificate of Accomplishment</h1>
+            <h1 className="text-4xl font-serif mb-6">
+              Certificate of Accomplishment
+            </h1>
             <div className="bg-gray-900 text-white py-2 px-8 inline-block rounded-full mb-8">
               {rank}
             </div>
 
             <div className="mb-8">
               <p className="text-gray-600 mb-4">PRESENTED TO</p>
-              <p className="text-3xl font-serif italic mb-2">{userName}</p> {/* Display User's Name */}
+              <p className="text-3xl font-serif italic mb-2">{userName}</p>{" "}
+              {/* Display User's Name */}
             </div>
 
             <p className="text-gray-600 mb-8">
-              The bearer of this certificate has passed the problem-solving tests.
+              The bearer of this certificate has passed the problem-solving
+              tests.
             </p>
 
             <div className="flex justify-between items-end mt-16">
