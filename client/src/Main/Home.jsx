@@ -24,7 +24,9 @@ import "react-toastify/dist/ReactToastify.css";
 import SideButtons from "../components/SideButtons";
 
 function Home() {
+  const [rank, setRank] = useState("");
   const [problems, setProblems] = useState([]);
+  const [solvedProblems, setSolvedProblems] = useState(0);
   const [languages, setLanguages] = useState([
     {
       name: "C",
@@ -87,6 +89,113 @@ function Home() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(1);
   const { currentUser } = useSelector((state) => state.user);
+  const [completedCourses, setCompletedCourses] = useState(0);
+  const [linesOfCode, setLinesOfCode] = useState(0);
+
+  useEffect(() => {
+    if (currentUser) {
+      const fetchContestProgress = async () => {
+        try {
+          const response = await axios.get(
+            `/api/contest/progress/${currentUser._id}`
+          );
+          if (response.data.success) {
+            const progress = response.data.data;
+            setSolvedProblems(progress.solvedCount);
+
+            // Calculate rank based on solved problems
+            const totalSolutions = progress.solvedCount;
+            let calculatedRank = "";
+            if (totalSolutions < 5) calculatedRank = "Newbie";
+            else if (totalSolutions >= 5 && totalSolutions < 10)
+              calculatedRank = "Pupil";
+            else if (totalSolutions >= 10 && totalSolutions < 15)
+              calculatedRank = "Specialist";
+            else if (totalSolutions >= 15 && totalSolutions < 20)
+              calculatedRank = "Expert";
+            else if (totalSolutions >= 20 && totalSolutions < 25)
+              calculatedRank = "Candidate Master";
+            else if (totalSolutions >= 25 && totalSolutions < 30)
+              calculatedRank = "Master";
+            else calculatedRank = "International Master";
+            setRank(calculatedRank);
+          }
+        } catch (error) {
+          console.error("Error fetching contest progress:", error);
+          toast.error("Failed to fetch contest progress.");
+        }
+      };
+
+      fetchContestProgress();
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    // Fetch the contest progress when the component mounts
+    if (currentUser) {
+      const fetchContestProgress = async () => {
+        try {
+          const response = await axios.get(
+            `/api/contest/progress/${currentUser._id}`
+          );
+          if (response.data.success) {
+            setSolvedProblems(response.data.data.solvedCount); // Set solved problems count from API response
+          } else {
+            console.error("Error fetching contest progress.");
+          }
+        } catch (error) {
+          console.error("Error fetching contest progress:", error);
+          toast.error("Failed to fetch contest progress.");
+        }
+      };
+
+      fetchContestProgress();
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser) {
+      const fetchRuns = async () => {
+        try {
+          const response = await axios.get(
+            `/api/run?userId=${currentUser._id}`
+          );
+          if (response.data.length >= 0) {
+            setLinesOfCode(response.data.length); // Set number of runs (lines of code)
+          } else {
+            console.error("Error fetching run details.");
+          }
+        } catch (error) {
+          console.error("Error fetching run details:", error);
+          toast.error("Failed to fetch run details.");
+        }
+      };
+
+      fetchRuns();
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser) {
+      const fetchUserProgress = async () => {
+        try {
+          const response = await axios.get(
+            `/api/progress/get-progress/${currentUser._id}`
+          );
+          if (response.data.progress) {
+            setCompletedCourses(response.data.progress.completedLessons.length); // Set number of completed courses
+          } else {
+            console.error("Error fetching user progress.");
+          }
+        } catch (error) {
+          console.error("Error fetching user progress:", error);
+          toast.error("Failed to fetch user progress.");
+        }
+      };
+
+      fetchUserProgress();
+    }
+  }, [currentUser]);
 
   const techIcons = [
     { icon: Database, color: "text-blue-500" },
@@ -98,10 +207,10 @@ function Home() {
   ];
 
   const stats = [
-    { icon: Trophy, label: "Completed Courses", value: "12" },
-    { icon: Timer, label: "Learning Hours", value: "156" },
-    { icon: Brain, label: "Solved Problems", value: "483" },
-    { icon: Code2, label: "Lines of Code", value: "15,234" },
+    { icon: Timer, label: "Rank", value: rank },
+    { icon: Trophy, label: "Completed Courses", value: completedCourses },
+    { icon: Brain, label: "Solved Problems", value: solvedProblems },
+    { icon: Code2, label: "Submissions", value: linesOfCode },
   ];
 
   const features = [
@@ -174,7 +283,7 @@ function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b]">
       <SideButtons />
       <div
         id="main-content"
@@ -358,7 +467,7 @@ function Home() {
         </div>
 
         {/* Progress Section */}
-        <div className="bg-white dark:bg-black py-12">
+        {/* <div className="bg-white dark:bg-black py-12">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-yellow-100 mb-8 text-center">
               Your Progress
@@ -413,7 +522,7 @@ function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <ToastContainer
           position="top-right"

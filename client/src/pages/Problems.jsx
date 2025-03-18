@@ -359,14 +359,13 @@ const Problems = () => {
         setStats({
           solved: progress.solvedCount,
           attempted: progress.attemptedCount,
-          totalSubmissions: (progress.totalAttempted) + (progress.totalSolved ),
+          totalSubmissions: progress.totalAttempted + progress.totalSolved,
         });
       }
     } catch (error) {
       console.error("Failed to fetch contest progress:", error);
     }
   };
-
 
   useEffect(() => {
     if (selectedProblem) {
@@ -377,23 +376,23 @@ const Problems = () => {
   const evaluateCode = async () => {
     let result;
     if (!selectedProblem || !code.trim() || !currentUser) return;
-  
+
     setLoading(true);
 
     const updatedStats = {
       ...stats,
       attempted: stats.attempted + 1, // Increment attempted problems count even if error happens
-      solved: stats.solved+1,
-      totalSubmissions: stats.totalSubmissions+1
+      solved: stats.solved + 1,
+      totalSubmissions: stats.totalSubmissions + 1,
     };
 
     // Set the state immediately for UI responsiveness
     setStats(updatedStats);
-  
+
     try {
       let allTestsPassed = true;
       let testOutput = "";
-  
+
       // Run all test cases using Promise.all
       const verdicts = await Promise.all(
         selectedProblem.testCases.map(async (testCase) => {
@@ -411,9 +410,9 @@ const Problems = () => {
             model: "mixtral-8x7b-32768",
             temperature: 0.1,
           });
-  
+
           const verdict = response.choices[0].message.content?.trim();
-  
+
           if (verdict === "AC") {
             testOutput += `Test case: ${testCase.input}\nExpected: ${testCase.output}\nResult: AC\n\n`;
           } else if (verdict === "WA") {
@@ -423,15 +422,17 @@ const Problems = () => {
             allTestsPassed = false;
             testOutput += `Test case: ${testCase.input}\nExpected: ${testCase.output}\nResult: TLE\n\n`;
           } else {
-            throw new Error("Unexpected verdict received from Groq: " + verdict);
+            throw new Error(
+              "Unexpected verdict received from Groq: " + verdict
+            );
           }
-  
+
           return verdict;
         })
       );
-  
+
       result = verdicts[verdicts.length - 1];
-  
+
       // Now update the contest progress
       const response = await fetch("/api/contest/progress", {
         method: "POST",
@@ -444,16 +445,19 @@ const Problems = () => {
           problemTitle: selectedProblem.title,
           verdict: result,
           language,
-          attemptedCount: stats.attempted + 1,  // Update count here
+          attemptedCount: stats.attempted + 1, // Update count here
         }),
       });
-  
+
       const responseData = await response.json();
-  
-      console.log("[DEBUG] Contest progress updated successfully:", responseData);
-  
+
+      console.log(
+        "[DEBUG] Contest progress updated successfully:",
+        responseData
+      );
+
       setOutput(testOutput);
-  
+
       const newSubmission = {
         problemId: selectedProblem.id,
         status: allTestsPassed ? "AC" : result,
@@ -461,23 +465,22 @@ const Problems = () => {
         language,
         code,
       };
-  
+
       setSubmissions((prev) => [...prev, newSubmission]);
-  
     } catch (error) {
       // Log the error with more detailed information
       console.error("[DEBUG] Error in code evaluation:", error);
-  
+
       // Handle totalAttempted incrementation inside the catch block
       const updatedStats = {
         ...stats,
         attempted: stats.attempted + 1, // Increment attempted problems count even if error happens
-        totalSubmissions: stats.totalSubmissions+1
+        totalSubmissions: stats.totalSubmissions + 1,
       };
-  
+
       // Set the state immediately for UI responsiveness
       setStats(updatedStats);
-  
+
       // Optionally, increment totalAttempted (if you want this count incremented in the catch block too)
       const contestUpdateResponse = await fetch("/api/contest/progress", {
         method: "POST",
@@ -493,19 +496,19 @@ const Problems = () => {
           attemptedCount: updatedStats.attempted,
         }),
       });
-  
+
       // Handle the failed API response in the catch block
       const responseData = await contestUpdateResponse.json();
-      console.log("[DEBUG] Attempted contest progress updated in catch block:", responseData);
-  
+      console.log(
+        "[DEBUG] Attempted contest progress updated in catch block:",
+        responseData
+      );
+
       setOutput("Error: Failed to evaluate code. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-  
-  
-  
 
   const copyCode = () => {
     navigator.clipboard.writeText(code);
@@ -593,12 +596,13 @@ const Problems = () => {
                 </h2>
                 <div className="flex gap-2 mb-4">
                   <span
-                    className={`px-2 py-1 rounded text-sm ${selectedProblem.difficulty === "Easy"
-                      ? "bg-green-100 text-green-800"
-                      : selectedProblem.difficulty === "Medium"
+                    className={`px-2 py-1 rounded text-sm ${
+                      selectedProblem.difficulty === "Easy"
+                        ? "bg-green-100 text-green-800"
+                        : selectedProblem.difficulty === "Medium"
                         ? "bg-yellow-100 text-yellow-800"
                         : "bg-red-100 text-red-800"
-                      }`}
+                    }`}
                   >
                     {selectedProblem.difficulty}
                   </span>
@@ -699,10 +703,11 @@ const Problems = () => {
                   <button
                     onClick={evaluateCode}
                     disabled={loading}
-                    className={`w-full py-2 px-4 rounded ${loading
-                      ? "bg-yellow-600 cursor-not-allowed"
-                      : "bg-yellow-500 hover:bg-yellow-600"
-                      } text-white font-medium flex items-center justify-center gap-2`}
+                    className={`w-full py-2 px-4 rounded ${
+                      loading
+                        ? "bg-yellow-600 cursor-not-allowed"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    } text-white font-medium flex items-center justify-center gap-2`}
                   >
                     <Play size={20} />
                     {loading ? "Running..." : "Submit Solution"}
@@ -754,12 +759,13 @@ const Problems = () => {
                   </div>
                   <div className="flex gap-2 mt-2">
                     <span
-                      className={`px-2 py-1 rounded text-sm ${problem.difficulty === "Easy"
-                        ? "bg-green-100 text-green-800"
-                        : problem.difficulty === "Medium"
+                      className={`px-2 py-1 rounded text-sm ${
+                        problem.difficulty === "Easy"
+                          ? "bg-green-100 text-green-800"
+                          : problem.difficulty === "Medium"
                           ? "bg-yellow-100 text-yellow-800"
                           : "bg-red-100 text-red-800"
-                        }`}
+                      }`}
                     >
                       {problem.difficulty}
                     </span>
