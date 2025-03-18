@@ -1,8 +1,10 @@
 import Roadmap from "../models/roadmap.model.js";
 import { Groq } from "groq-sdk";
+import dotenv from "dotenv";
+dotenv.config();
 
 const groq = new Groq({
-  apiKey: "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",
+  apiKey: process.env.GROQ,
 });
 
 export const generateRoadmap = async (req, res) => {
@@ -21,7 +23,7 @@ export const generateRoadmap = async (req, res) => {
 
     const completion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
-      model: "mixtral-8x7b-32768",
+      model: "llama-3.3-70b-versatile",
       temperature: 0.3,
     });
 
