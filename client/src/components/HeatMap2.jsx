@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const customStyles = `
   .color-dark-green { fill: #388E3C; }
@@ -10,23 +12,21 @@ const customStyles = `
 `;
 
 const HeatMap2 = () => {
-  const [data, setData] = useState([]); // State to hold the formatted heatmap data
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear()); // State to store current year
+  const [data, setData] = useState([]);
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Fetching userId from localStorage
   const user = JSON.parse(localStorage.getItem("persist:root"));
   const currentUser = user ? JSON.parse(user.user).currentUser : null;
   const userId = currentUser ? currentUser._id : null;
 
-  console.log("User ID from Local Storage:", userId); // Debugging - log userId
+  console.log("User ID from Local Storage:", userId);
 
-  // Function to fetch contest progress data from the backend
   const fetchContestProgress = async () => {
     try {
       const response = await fetch(`/api/contest/progress/${userId}`);
       const data = await response.json();
 
-      console.log("Contest Progress Data:", data); // Debugging - log the fetched contest progress data
+      console.log("Contest Progress Data:", data);
 
       if (
         data.success &&
@@ -35,27 +35,24 @@ const HeatMap2 = () => {
       ) {
         const problemsSolved = data.data.problemsSolved;
 
-        console.log("Problems Solved Array:", problemsSolved); // Debugging - log problemsSolved array
+        console.log("Problems Solved Array:", problemsSolved);
 
-        // Map each problem to its solvedAt date
         const formattedData = problemsSolved
           .map((entry) => {
-            const date = entry.solvedAt; // Use 'solvedAt' as the date of solving
+            const date = entry.solvedAt;
             if (date) {
-              // Extract only the date (year-month-day)
-              const dateOnly = new Date(date).toISOString().split("T")[0]; // Format: YYYY-MM-DD
+              const dateOnly = new Date(date).toISOString().split("T")[0];
               return {
-                date: dateOnly, // The date when the problem was solved
-                count: 1, // Each entry represents one solved problem
+                date: dateOnly,
+                count: 1,
               };
             }
             return null;
           })
-          .filter(Boolean); // Removes null values
+          .filter(Boolean);
 
-        console.log("Formatted Data:", formattedData); // Debugging - log the formatted data
+        console.log("Formatted Data:", formattedData);
 
-        // Aggregate data by date and count how many problems were solved on each date
         const aggregatedData = formattedData.reduce((acc, current) => {
           const { date, count } = current;
           if (acc[date]) {
@@ -66,14 +63,12 @@ const HeatMap2 = () => {
           return acc;
         }, {});
 
-        console.log("Aggregated Data:", aggregatedData); // Debugging - log the aggregated data
+        console.log("Aggregated Data:", aggregatedData);
 
-        // Convert the aggregated data back to an array
         const finalData = Object.values(aggregatedData);
 
-        console.log("Final Data for Heatmap:", finalData); // Debugging - log final data
+        console.log("Final Data for Heatmap:", finalData);
 
-        // Set the formatted data to state for rendering
         setData(finalData);
       } else {
         console.error("Error: problemsSolved is missing or empty.");
@@ -85,19 +80,12 @@ const HeatMap2 = () => {
 
   useEffect(() => {
     if (userId) {
-      fetchContestProgress(); // Fetch data when the component mounts
+      fetchContestProgress();
     } else {
       console.log("No userId found, skipping data fetch.");
     }
   }, [userId]);
 
-  // Define color thresholds for the heatmap
-  // const getColorForCount = (count) => {
-  //   if (count >= 8) return "#388E3C"; // Dark green for high activity (solved >= 8)
-  //   if (count >= 5) return "#81C784"; // Medium green for moderate activity (solved >= 5)
-  //   if (count > 0) return "#A5D6A7"; // Light green for low activity (solved > 0)
-  //   return "#D3D3D3"; // Gray for no activity
-  // };
   const getColorClass = (value) => {
     if (!value) return "color-empty";
     if (value.count >= 8) return "color-dark-green";
@@ -105,6 +93,7 @@ const HeatMap2 = () => {
     if (value.count > 0) return "color-light-green";
     return "color-empty";
   };
+
   return (
     <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <style>{customStyles}</style>
@@ -118,12 +107,19 @@ const HeatMap2 = () => {
         gutterSize={4}
         showWeekdayLabels={true}
         classForValue={getColorClass}
-        tooltipDataAttrs={(value) => ({
-          "data-tip": value.date
-            ? `${value.date}: ${value.count} problems solved`
-            : "No activity",
-        })}
+        tooltipDataAttrs={(value) => {
+          if (!value || !value.date)
+            return { "data-tooltip-id": "heatmap-tooltip" };
+
+          return {
+            "data-tooltip-id": "heatmap-tooltip",
+            "data-tooltip-content": `${value.date}: ${value.count} ${
+              value.count === 1 ? "problem" : "problems"
+            } solved`,
+          };
+        }}
       />
+      <Tooltip id="heatmap-tooltip" />
     </div>
   );
 };
