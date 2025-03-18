@@ -3,6 +3,7 @@ import {
   BookOpen,
   ChevronLeft,
   Code2,
+  Haze,
   Laptop,
   LogOut,
   MessageSquare,
@@ -15,7 +16,6 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { signOut } from "../redux/user/userSlice";
-import { Haze } from 'lucide-react';
 
 const sidebarItems = [
   { name: "Learning Path", icon: BookOpen, route: "/home" },
@@ -413,3 +413,4 @@ const SideButtons = () => {
 };
 
 export default SideButtons;
+
