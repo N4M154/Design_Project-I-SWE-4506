@@ -640,6 +640,57 @@ const RoadmapForm = () => {
       alert(`Error: ${errorMessage}`);
     }
   };
+
+  const RoadmapContent = ({ isPDF = false }) => (
+    <div className={`${!isPDF ? "bg-white rounded-lg shadow-sm p-8" : ""}`}>
+      {!isPDF && (
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold text-amber-900">
+            Your Learning Roadmap
+          </h2>
+          <button
+            onClick={handleDownloadPDF}
+            className="flex items-center gap-2 px-4 py-2 bg-amber-50  text-amber-700  rounded-lg hover:bg-amber-100  transition-colors"
+          >
+            <Download className="w-4 h-4" />
+            Download PDF
+          </button>
+        </div>
+      )}
+
+      <div className={`${isPDF ? "" : "bg-amber-50/50 rounded-lg p-6"}`}>
+        <div
+          className={`${
+            isPDF ? "text-black" : "text-amber-900 "
+          } font-sans leading-relaxed`}
+        >
+          {isPDF && (
+            <div className="mb-8 text-center">
+              <h1 className="text-3xl font-bold mb-4">Learning Roadmap</h1>
+              <p className="text-sm text-gray-600">
+                Generated on {new Date().toLocaleDateString()}
+              </p>
+            </div>
+          )}
+          <ReactMarkdown>{String(generatedRoadmap)}</ReactMarkdown>
+        </div>
+      </div>
+
+      {!isPDF && (
+        <button
+          onClick={() => {
+            setGeneratedRoadmap(null);
+            setSuccessMessage("");
+            setStep(1);
+          }}
+          className="mt-8 px-6 py-3 bg-amber-600 dark:bg-amber-500 text-white rounded-lg hover:bg-amber-700 dark:hover:bg-amber-600 transition-colors"
+        >
+          Create New Roadmap
+        </button>
+      )}
+    </div>
+  );
+
   const handleDownloadPDF = () => {
     const element = roadmapRef.current;
     const opt = {
@@ -773,37 +824,17 @@ const RoadmapForm = () => {
             </div>
           )}
           {generatedRoadmap ? (
-            <div className="bg-white rounded-lg shadow-sm p-8" ref={roadmapRef}>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-3xl font-bold text-amber-900">
-                  Your Learning Roadmap
-                </h2>
-                <button
-                  onClick={handleDownloadPDF}
-                  className="flex items-center gap-2 px-4 py-2 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  Download PDF
-                </button>
-              </div>
+            <>
+              {/* Regular view */}
+              <RoadmapContent />
 
-              <div className="bg-amber-50/50 rounded-lg p-6">
-                <pre className="whitespace-pre-wrap font-sans text-amber-900 leading-relaxed">
-                  <ReactMarkdown>{String(generatedRoadmap)}</ReactMarkdown>
-                </pre>
+              {/* Hidden PDF view */}
+              <div className="hidden">
+                <div ref={roadmapRef}>
+                  <RoadmapContent isPDF={true} />
+                </div>
               </div>
-
-              <button
-                onClick={() => {
-                  setGeneratedRoadmap(null);
-                  setSuccessMessage("");
-                  setStep(1);
-                }}
-                className="mt-8 px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
-              >
-                Create New Roadmap
-              </button>
-            </div>
+            </>
           ) : (
             <div className="bg-white rounded-lg shadow-lg p-8">
               <form onSubmit={handleSubmit} className="space-y-8">

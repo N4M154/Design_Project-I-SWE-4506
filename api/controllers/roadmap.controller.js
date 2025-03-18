@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const groq = new Groq({
-  apiKey: process.env.GROQ,
+  apiKey: process.env.VITE_GROQ_API_KEY,
 });
 
 export const generateRoadmap = async (req, res) => {
