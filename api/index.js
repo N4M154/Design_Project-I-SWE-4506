@@ -14,7 +14,7 @@ import runRoutes from "./routes/run.route.js";
 import userRoutes from "./routes/user.route.js";
 import contestRoutes from "./routes/contest.route.js";
 import progressRoutes from "./routes/progressRoutes.js";
-import jprogressRoutes from "./routes/JJavaRoutes.js"
+//import jprogressRoutes from "./routes/JJavaRoutes.js"
 
 dotenv.config();
 
@@ -45,7 +45,7 @@ app.use("/api/contest", contestRoutes);
 app.use("/problemsTable", problemsTable);
 app.use("/problem/:id", problemDetails);
 app.use(progressRoutes);
-app.use(jprogressRoutes);
+//app.use(jprogressRoutes);
 
 app.post("/api/execute", async (req, res) => {
   const { script, language, input } = req.body; // Get the C code from the request
