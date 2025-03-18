@@ -1,22 +1,29 @@
 
 import express from 'express';
-import http from 'http';
+import https from 'https';
 import { Server } from 'socket.io';
-
+import crypto from 'crypto'
 const app = express();
-const server = http.createServer(app);
+
+const options = {
+  secureOptions: crypto.constants.SSL_OP_NO_SSLv3, // Disable SSLv3 (for security reasons)
+  ciphers: 'TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384', // Define supported ciphers
+  honorCipherOrder: true, // Make sure the server respects the cipher order
+};
+
+const server = https.createServer(options, app);
 
   const io = new Server(server, {
     cors: {
-      origin: "http://localhost:5173", // Your client URL
+      origin: ["http://localhost:5173", "https://codeera.onrender.com"], // Your client URL
       methods: ["GET", "POST"],
+      credentials: true
     },
   });
 
+  
 
   const rooms = new Map();
-  // Track connected users interested in bus updates
-  const busSubscribers = new Map();
 
   io.on("connection", (socket) => {
     console.log("A user connected");
@@ -69,7 +76,7 @@ const server = http.createServer(app);
 
 
 server.listen(5000, () => {
-  console.log("Server running on http://localhost:5000");
+  console.log("Server running on https://localhost:5000");
 });
 
 
