@@ -207,7 +207,7 @@ function Home() {
                 </div>
 
                 <div className="flex flex-wrap gap-4">
-                  <Link to="/learning-path">
+                  <Link to="/compiler">
                     <button className="group bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-2.5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center space-x-2">
                       <span>Start Coding</span>
                       <Rocket className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -215,7 +215,7 @@ function Home() {
                   </Link>
                   <Link to="/practice">
                     <button className="group bg-white dark:bg-transparent border-2 border-yellow-500 dark:border-yellow-600 text-yellow-600 dark:text-yellow-400 px-6 py-2.5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center space-x-2">
-                      <span>View Courses</span>
+                      <span>Solve Problems</span>
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </Link>
