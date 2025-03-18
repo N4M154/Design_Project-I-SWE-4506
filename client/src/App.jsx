@@ -24,33 +24,31 @@ import RoadmapForm from "./pages/RoadMap.jsx";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-import CodeLobby from "./coderoom/Lobby.jsx";
-import CodeRoom from "./coderoom/Room.jsx";
 import { SocketProvider } from "./context/SocketProvider.jsx";
-import RoomForm from "./pages/RoomForm.jsx";
-import CollabEditor from "./pages/CollabEditor.jsx";
-import Collab from "./pages/Collab.jsx";
-import Cvar from "./pages/Cvar.jsx";
-import CData from "./pages/CData.jsx";
-import CControl from "./pages/CControl.jsx";
-import CFunctions from "./pages/CFunctions.jsx";
-import CArrays from "./pages/CArrays.jsx";
-import CMemoryManagement from "./pages/CMemoryManagement.jsx";
-import CDynamicMemory from "./pages/CDynamicMemory.jsx";
-import CMultithreading from "./pages/CMultithreading.jsx";
-import CPreprocessor from "./pages/CPreprocessor.jsx";
-import CBitwiseOperations from "./pages/CBitwiseOperations.jsx";
-import CPointers from "./pages/CPointers.jsx";
-import CStrings from "./pages/CStrings.jsx";
-import CFileIO from "./pages/CFileIO.jsx";
-import CStructures from "./pages/CStructures.jsx";
-import CRecursion from "./pages/CRecursion.jsx";
-import CLinkedList from "./pages/CLinkedList.jsx";
 import CAdvancedPointers from "./pages/CAdvancedPointers.jsx";
-import CGraphicsProgramming from "./pages/CGraphicsProgramming.jsx";
-import CNetworkProgramming from "./pages/CNetworkProgramming.jsx";
+import CArrays from "./pages/CArrays.jsx";
+import CBitwiseOperations from "./pages/CBitwiseOperations.jsx";
+import CControl from "./pages/CControl.jsx";
+import CData from "./pages/CData.jsx";
+import CDynamicMemory from "./pages/CDynamicMemory.jsx";
 import Certificate from "./pages/certificate.jsx";
-import JHello from "./pages/JHello"; // Java Hello World Lesson
+import CFileIO from "./pages/CFileIO.jsx";
+import CFunctions from "./pages/CFunctions.jsx";
+import CGraphicsProgramming from "./pages/CGraphicsProgramming.jsx";
+import CLinkedList from "./pages/CLinkedList.jsx";
+import CMemoryManagement from "./pages/CMemoryManagement.jsx";
+import CMultithreading from "./pages/CMultithreading.jsx";
+import CNetworkProgramming from "./pages/CNetworkProgramming.jsx";
+import Collab from "./pages/Collab.jsx";
+import CollabEditor from "./pages/CollabEditor.jsx";
+import CPointers from "./pages/CPointers.jsx";
+import CPreprocessor from "./pages/CPreprocessor.jsx";
+import CRecursion from "./pages/CRecursion.jsx";
+import CStrings from "./pages/CStrings.jsx";
+import CStructures from "./pages/CStructures.jsx";
+import Cvar from "./pages/Cvar.jsx";
+import JHello from "./pages/JHello";
+import PyString from "./pages/PyString.jsx";
 
 export default function App() {
   return (
@@ -97,6 +95,7 @@ export default function App() {
             <Route path="/courses/c/hello-world" element={<Chello />} />
             <Route path="/courses/c/variables" element={<Cvar />} />
             <Route path="/courses/c/data-types" element={<CData />} />
+            <Route path="/courses/python/strings-manipulation" element={<PyString/>} />
             <Route
               path="/courses/c/control-structures"
               element={<CControl />}
