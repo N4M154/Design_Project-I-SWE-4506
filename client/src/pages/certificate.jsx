@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 import html2canvas from "html2canvas";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CertificatePage = () => {
   const [showCertificate, setShowCertificate] = useState(true);
+  const navigate = useNavigate();
 
   // Function to handle closing the certificate
   const handleClose = () => {
     setShowCertificate(false); // This will hide the certificate when "Close" is clicked
+    navigate('/home'); // Redirect to home page
   };
 
   return <div>{showCertificate && <Certificate onClose={handleClose} />}</div>;
@@ -133,8 +136,7 @@ const Certificate = ({ onClose }) => {
 
             <div className="mb-8">
               <p className="text-gray-600 mb-4">PRESENTED TO</p>
-              <p className="text-3xl font-serif italic mb-2">{userName}</p>{" "}
-              {/* Display User's Name */}
+              <p className="text-3xl font-serif italic mb-2">{userName}</p>
             </div>
 
             <p className="text-gray-600 mb-8">
@@ -159,13 +161,13 @@ const Certificate = ({ onClose }) => {
 
         <div className="mt-6 flex justify-end gap-4">
           <button
-            onClick={onClose} // Close the certificate modal
+            onClick={onClose}
             className="px-4 py-2 text-gray-600 hover:text-gray-800"
           >
             Close
           </button>
           <button
-            onClick={downloadCertificate} // Download the certificate image
+            onClick={downloadCertificate}
             className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
             Download Certificate
@@ -177,7 +179,7 @@ const Certificate = ({ onClose }) => {
 };
 
 Certificate.propTypes = {
-  onClose: PropTypes.func.isRequired, // Ensure onClose is passed to the Certificate component
+  onClose: PropTypes.func.isRequired,
 };
 
 export default CertificatePage;
