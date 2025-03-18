@@ -100,7 +100,7 @@ const CollabEditor = ({ roomId, username }) => {
   }, [roomId, username]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-white to-yellow-50 py-8 px-6 sm:px-8 lg:px-10">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-white to-yellow-50 dark:from-[#18181b] dark:to-black py-8 px-6 sm:px-8 lg:px-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -111,7 +111,7 @@ const CollabEditor = ({ roomId, username }) => {
           <motion.div
             initial={{ x: -20 }}
             animate={{ x: 0 }}
-            className="w-1/3 bg-white rounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
+            className="w-1/3 bg-white dark:bg-transparent rounded-2xl shadow-[0_20px_50px_rgba(237,211,14,0.5)] overflow-hidden border border-yellow-100"
           >
             <div className="h-[calc(100vh-6rem)]">
               <JitsiMeeting
@@ -155,7 +155,7 @@ const CollabEditor = ({ roomId, username }) => {
           <motion.div
             initial={{ x: 20 }}
             animate={{ x: 0 }}
-            className="w-2/3 bg-white rounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
+            className="w-2/3 bg-whiterounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
           >
             {/* Header Section */}
             <div className="px-8 py-6 border-b border-yellow-200 bg-gradient-to-r from-white via-yellow-50 to-white">

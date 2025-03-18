@@ -118,7 +118,7 @@ const Content = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#FFFDF7]">
+    <div className="flex min-h-screen bg-[#FFFDF7] dark:bg-[#18181b]">
       <SideButtons />
       <div
         id="main-content"
@@ -131,7 +131,7 @@ const Content = () => {
             <h1 className="text-4xl font-bold text-yellow-600 mb-4 text-center">
               Unlock Knowledge, One Click at a Time!
             </h1>
-            <p className="text-gray-600 text-center text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 text-center text-lg max-w-2xl mx-auto">
               Stay ahead with expertly curated articles and videos, designed to
               supercharge your programming skills.
             </p>
@@ -158,13 +158,13 @@ const Content = () => {
 
           {/* Navigation Tabs */}
           <div className="flex justify-center mb-12">
-            <div className="bg-white rounded-full shadow-sm p-1 inline-flex">
+            <div className="bg-white dark:bg-yellow-400/10 rounded-full shadow-sm p-1 inline-flex dark:border dark:border-yellow-500/40">
               <button
                 onClick={() => setActiveTab("articles")}
                 className={`flex items-center px-6 py-3 rounded-full text-sm font-medium transition-all ${
                   activeTab === "articles"
                     ? "bg-yellow-50 text-yellow-800"
-                    : "text-gray-600 hover:text-gray-900"
+                    : "text-gray-600 dark:text-gray-400 dark:hover:text-gray-500 hover:text-gray-900"
                 }`}
               >
                 <BookOpen className="w-4 h-4 mr-2" />
@@ -197,7 +197,7 @@ const Content = () => {
                   {articles.map((article, index) => (
                     <article
                       key={index}
-                      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-yellow-100/50"
+                      className="bg-white dark:bg-transparent rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-yellow-100/50"
                     >
                       {article.urlToImage && (
                         <div className="relative h-48 overflow-hidden">
@@ -210,7 +210,7 @@ const Content = () => {
                         </div>
                       )}
                       <div className="p-6">
-                        <div className="flex items-center text-sm text-gray-500 mb-3 space-x-4">
+                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-300 mb-3 space-x-4">
                           <span className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
                             {formatDate(article.publishedAt)}
@@ -220,17 +220,17 @@ const Content = () => {
                             {calculateReadTime(article.content)}
                           </span>
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-yellow-800 transition-colors">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-yellow-50 mb-3 line-clamp-2 hover:text-yellow-800 transition-colors">
                           {article.title}
                         </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-3">
+                        <p className="text-gray-600 dark:text-gray-400  mb-4 line-clamp-3">
                           {article.description}
                         </p>
                         <a
                           href={article.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-yellow-700 hover:text-yellow-800 font-medium group"
+                          className="inline-flex items-center text-yellow-700 hover:text-yellow-800 dark:hover:text-yellow-700 dark:text-yellow-400 font-medium group"
                         >
                           Read article
                           <ExternalLink className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -244,7 +244,7 @@ const Content = () => {
               <div className="text-center mt-12">
                 <button
                   onClick={fetchArticles}
-                  className="bg-white text-yellow-700 px-8 py-3 rounded-full font-medium border-2 border-yellow-100 hover:bg-yellow-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:ring-offset-2 inline-flex items-center"
+                  className="bg-white dark:bg-transparent dark:border-yellow-400/10 dark:text-yellow-400/70 dark:hover:bg-yellow-400/10 text-yellow-700 px-8 py-3 rounded-full font-medium border-2 border-yellow-300 hover:bg-yellow-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:ring-offset-2 inline-flex items-center"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Load More Articles
@@ -263,7 +263,7 @@ const Content = () => {
                   {videos.map((video, index) => (
                     <div
                       key={index}
-                      className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-yellow-100/50"
+                      className="bg-white dark:bg-transparent rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-yellow-100/50"
                     >
                       <div className="relative h-48 overflow-hidden group">
                         <img
@@ -279,21 +279,21 @@ const Content = () => {
                         </div>
                       </div>
                       <div className="p-6">
-                        <div className="flex items-center text-sm text-gray-500 mb-3">
+                        <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
                           <Calendar className="w-4 h-4 mr-1" />
                           {formatDate(video.snippet.publishedAt)}
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-yellow-800 transition-colors">
+                        <h3 className="text-xl font-semibold text-gray-900 dark:text-yellow-50 mb-3 line-clamp-2 hover:text-yellow-800 transition-colors">
                           {video.snippet.title}
                         </h3>
-                        <p className="text-gray-600 mb-4 line-clamp-2">
+                        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                           {video.snippet.description}
                         </p>
                         <a
                           href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center text-yellow-700 hover:text-yellow-800 font-medium group"
+                          className="inline-flex items-center dark:text-yellow-500 dark:hover:yellow-600 text-yellow-700 hover:text-yellow-800 font-medium group"
                         >
                           Watch video
                           <ExternalLink className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
@@ -307,7 +307,7 @@ const Content = () => {
               <div className="text-center mt-12">
                 <button
                   onClick={fetchVideos}
-                  className="bg-white text-yellow-700 px-8 py-3 rounded-full font-medium border-2 border-yellow-100 hover:bg-yellow-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:ring-offset-2 inline-flex items-center"
+                  className="bg-white dark:bg-transparent dark:border-yellow-400/10 dark:text-yellow-400/70 dark:hover:bg-yellow-400/10 text-yellow-700 px-8 py-3 rounded-full font-medium border-2 border-yellow-300 hover:bg-yellow-50 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-200 focus:ring-offset-2 inline-flex items-center"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Load More Videos

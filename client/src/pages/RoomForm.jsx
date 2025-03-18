@@ -50,15 +50,15 @@ const RoomForm = ({ onJoinRoom }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50 dark:from-[#2c2c2c] dark:to-black py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md mx-auto bg-white dark:bg-yellow-400/10 rounded-xl shadow-2xl overflow-hidden">
         <div className="px-8 pt-6 pb-8">
           <div className="text-center mb-8">
             <FaUsers className="mx-auto h-12 w-12 text-yellow-600" />
-            <h2 className="mt-4 text-3xl font-extrabold text-gray-900">
+            <h2 className="mt-4 text-3xl font-extrabold text-gray-900 dark:text-yellow-200">
               Collaborative Room
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 dark:text-yellow-300">
               Create or join a room to start collaborating
             </p>
           </div>
@@ -66,7 +66,7 @@ const RoomForm = ({ onJoinRoom }) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Username Input */}
             <div>
-              <label className="block text-sm font-medium text-gray-700">
+              <label className="block text-sm font-medium text-gray-700 dark:text-yellow-100">
                 Username
               </label>
               <div className="mt-1 relative">
@@ -77,7 +77,7 @@ const RoomForm = ({ onJoinRoom }) => {
                   onChange={handleInputChange}
                   className={`appearance-none block w-full px-3 py-2 border ${
                     errors.username ? "border-red-300" : "border-gray-300"
-                  } rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
+                  } rounded-md dark:bg-yellow-50 shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500`}
                   placeholder="Enter your display name"
                 />
                 {errors.username && (
@@ -110,7 +110,7 @@ const RoomForm = ({ onJoinRoom }) => {
                 className={`flex items-center justify-center px-4 py-3 rounded-lg border-2 transition-all duration-200 ${
                   !formData.isNewRoom
                     ? "border-yellow-500 bg-yellow-50 text-yellow-700"
-                    : "border-gray-200 hover:border-yellow-200 hover:bg-yellow-50"
+                    : "border-gray-200 hover:border-yellow-200 hover:bg-yellow-50 dark:bg-yellow-400/10 dark:text-yellow-50"
                 }`}
               >
                 <FaDoorOpen className="mr-2" />
@@ -160,7 +160,6 @@ const RoomForm = ({ onJoinRoom }) => {
           </form>
         </div>
 
-        
         <div className="px-8 py-4 bg-yellow-50 border-t border-yellow-100">
           <p className="text-xs text-gray-500 text-center">
             {formData.isNewRoom
