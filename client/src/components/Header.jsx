@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { Home } from "lucide-react";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -14,15 +15,15 @@ export default function Header() {
           {currentUser && (
             <Link
               to="/home"
-              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300"
+              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300 flex items-center gap-2 hover:scale-110 transition-transform duration-200"
             >
-              <li>Home</li>
+              <Home className="w-6 h-6" />
             </Link>
           )}
           {currentUser && (
             <Link
               to="/compiler"
-              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300"
+              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300 flex items-center gap-2 hover:scale-105 transition-transform duration-200"
             >
               <li>Try it yourself</li>
             </Link>
@@ -31,7 +32,7 @@ export default function Header() {
           {currentUser && (
             <Link
               to="/about"
-              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300"
+              className="font-semibold text-yellow-700 hover:text-yellow-600 dark:text-yellow-200 dark:hover:text-yellow-300 flex items-center gap-2 hover:scale-105 transition-transform duration-200"
             >
               <li>About</li>
             </Link>
