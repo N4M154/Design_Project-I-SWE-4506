@@ -283,7 +283,7 @@ function Home() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white dark:bg-[#18181b] font-['Poppins']">
+    <div className="flex min-h-screen bg-white dark:bg-[#18181b]">
       <SideButtons />
       <div
         id="main-content"
