@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -19,11 +18,10 @@ export default function CPointers() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define the learning content for the "C Pointers" lesson
   const learningContent = {
-    pointers: {
+    "pointers": {
       title: "C Language Pointers",
       intro:
         "Pointers in C are variables that store memory addresses. This lesson will introduce pointers, how to declare them, how they work, and how to use them in programs.",
@@ -88,7 +86,7 @@ Here, ptr points to the first element of the array, and *(ptr + 1) accesses the 
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "15:10",
-        url: "https://youtu.be/QKf2qUYP0s0", // BroCode video link
+        url: "https://youtu.be/QKf2qUYP0s0",  // BroCode video link
         author: "BroCode",
       },
       {
@@ -97,7 +95,7 @@ Here, ptr points to the first element of the array, and *(ptr + 1) accesses the 
         thumbnail:
           "https://images.unsplash.com/photo-1526374965328-7ea3c8b860aa?w=500&auto=format",
         duration: "18:25",
-        url: "https://youtu.be/dzS57z69x9Y", // BroCode video link
+        url: "https://youtu.be/dzS57z69x9Y",  // BroCode video link
         author: "BroCode",
       },
     ]);
@@ -153,30 +151,6 @@ Here, ptr points to the first element of the array, and *(ptr + 1) accesses the 
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("persist:root"));
-    const currentUser = user ? JSON.parse(user.user).currentUser : null;
-    const userId = currentUser ? currentUser._id : null;
-
-    if (userId && lessonId) {
-      // Fetch user progress from the server
-      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // Check if the lesson is already in the completedLessons array
-          if (
-            data.progress &&
-            data.progress.completedLessons.includes(lessonId)
-          ) {
-            setIsMarkedAsRead(true); // Mark the lesson as read
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching progress:", error);
-        });
-    }
-  }, [lessonId]);
-
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -192,7 +166,6 @@ Here, ptr points to the first element of the array, and *(ptr + 1) accesses the 
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
-            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -242,16 +215,9 @@ Here, ptr points to the first element of the array, and *(ptr + 1) accesses the 
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
-                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
-                  }`}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
                 >
-                  {isMarkedAsRead ? (
-                    <FaBookmark size={20} />
-                  ) : (
-                    <FaRegBookmark size={20} />
-                  )}
-                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
+                  Mark as Read
                 </button>
               </div>
             </div>

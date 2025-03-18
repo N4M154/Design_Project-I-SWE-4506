@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -19,7 +18,6 @@ export default function CFileIO() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define the learning content for the "C File I/O" lesson
   const learningContent = {
@@ -30,32 +28,28 @@ export default function CFileIO() {
       sections: [
         {
           title: "Opening a File",
-          content:
-            "To work with files in C, you need to open them using the `fopen()` function.\n\n" +
+          content: "To work with files in C, you need to open them using the `fopen()` function.\n\n" +
             "Syntax:\n" +
-            'FILE *fptr = fopen("filename", "mode");\n\n' +
+            "FILE *fptr = fopen(\"filename\", \"mode\");\n\n" +
             "Example:\n" +
-            'FILE *fptr = fopen("example.txt", "w");  // Open for writing',
+            "FILE *fptr = fopen(\"example.txt\", \"w\");  // Open for writing",
         },
         {
           title: "Reading from a File",
-          content:
-            "To read data from a file, you can use the `fscanf()` function or `fgets()`.\n\n" +
+          content: "To read data from a file, you can use the `fscanf()` function or `fgets()`.\n\n" +
             "Example:\n" +
             "char str[100];\n" +
             "fgets(str, 100, fptr);  // Reads a line from the file",
         },
         {
           title: "Writing to a File",
-          content:
-            "To write data to a file, use `fprintf()` or `fputs()`.\n\n" +
+          content: "To write data to a file, use `fprintf()` or `fputs()`.\n\n" +
             "Example:\n" +
-            'fprintf(fptr, "Hello, world!");  // Writes a string to the file',
+            "fprintf(fptr, \"Hello, world!\");  // Writes a string to the file",
         },
         {
           title: "Closing a File",
-          content:
-            "After you finish working with a file, always close it using `fclose()`.\n\n" +
+          content: "After you finish working with a file, always close it using `fclose()`.\n\n" +
             "Example:\n" +
             "fclose(fptr);  // Close the file",
         },
@@ -77,7 +71,7 @@ export default function CFileIO() {
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "15:40",
-        url: "https://youtu.be/O8i7MNkx5nQ", // BroCode video link
+        url: "https://youtu.be/O8i7MNkx5nQ",  // BroCode video link
         author: "BroCode",
       },
     ]);
@@ -133,30 +127,6 @@ export default function CFileIO() {
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("persist:root"));
-    const currentUser = user ? JSON.parse(user.user).currentUser : null;
-    const userId = currentUser ? currentUser._id : null;
-
-    if (userId && lessonId) {
-      // Fetch user progress from the server
-      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // Check if the lesson is already in the completedLessons array
-          if (
-            data.progress &&
-            data.progress.completedLessons.includes(lessonId)
-          ) {
-            setIsMarkedAsRead(true); // Mark the lesson as read
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching progress:", error);
-        });
-    }
-  }, [lessonId]);
-
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -172,7 +142,6 @@ export default function CFileIO() {
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
-            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -222,16 +191,9 @@ export default function CFileIO() {
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
-                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
-                  }`}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
                 >
-                  {isMarkedAsRead ? (
-                    <FaBookmark size={20} />
-                  ) : (
-                    <FaRegBookmark size={20} />
-                  )}
-                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
+                  Mark as Read
                 </button>
               </div>
             </div>

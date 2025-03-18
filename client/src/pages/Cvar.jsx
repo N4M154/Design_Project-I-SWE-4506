@@ -7,7 +7,6 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
@@ -19,11 +18,10 @@ export default function Cvar() {
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define learning content for the lesson
   const learningContent = {
-    variables: {
+    "variables": {
       title: "C Language Variables",
       intro:
         "Variables in C are used to store data values. This section will cover the types of variables, their declaration, and usage in C programming.",
@@ -34,7 +32,7 @@ export default function Cvar() {
 
 • A name (identifier)
 • A type (determines the size and layout of the variable)
-• A value (stored data)`,
+• A value (stored data)`
         },
         {
           title: "Declaring Variables",
@@ -46,7 +44,7 @@ Examples:
 
 int age;
 float temperature;
-char grade;`,
+char grade;`
         },
         {
           title: "Initializing Variables",
@@ -54,7 +52,7 @@ char grade;`,
 
 int age = 25;
 float temperature = 36.5;
-char grade = 'A';`,
+char grade = 'A';`
         },
         {
           title: "Scope and Lifetime of Variables",
@@ -68,7 +66,7 @@ char grade = 'A';`,
       practice: [
         "Declare an integer variable and assign a value to it.",
         "Create a float variable to store a temperature value.",
-        "Experiment with local and global variables.",
+        "Experiment with local and global variables."
       ],
     },
   };
@@ -151,30 +149,6 @@ char grade = 'A';`,
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("persist:root"));
-    const currentUser = user ? JSON.parse(user.user).currentUser : null;
-    const userId = currentUser ? currentUser._id : null;
-
-    if (userId && lessonId) {
-      // Fetch user progress from the server
-      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // Check if the lesson is already in the completedLessons array
-          if (
-            data.progress &&
-            data.progress.completedLessons.includes(lessonId)
-          ) {
-            setIsMarkedAsRead(true); // Mark the lesson as read
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching progress:", error);
-        });
-    }
-  }, [lessonId]);
-
   // Mark lesson as read and update progress
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
@@ -191,7 +165,6 @@ char grade = 'A';`,
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
-            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -241,16 +214,9 @@ char grade = 'A';`,
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
-                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
-                  }`}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
                 >
-                  {isMarkedAsRead ? (
-                    <FaBookmark size={20} />
-                  ) : (
-                    <FaRegBookmark size={20} />
-                  )}
-                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
+                  Mark as Read
                 </button>
               </div>
             </div>

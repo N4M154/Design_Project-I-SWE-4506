@@ -7,72 +7,65 @@ import {
   GraduationCap,
   Play,
 } from "lucide-react";
-import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import SideButtons from "../components/SideButtons";
 
-export default function CArrays() {
+export default function CStrings() {
   const location = useLocation();
   const navigate = useNavigate();
   const [completedQuizzes, setCompletedQuizzes] = useState(["strings"]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [relatedVideos, setRelatedVideos] = useState([]);
   const [relatedArticles, setRelatedArticles] = useState([]);
-  const [isMarkedAsRead, setIsMarkedAsRead] = useState(false);
 
   // Define the learning content for the "C Strings" lesson
   const learningContent = {
-    strings: {
+    "strings": {
       title: "C Language Strings",
       intro:
         "In C, strings are arrays of characters used to store text. This lesson will introduce strings, how to declare them, and how to manipulate them.",
       sections: [
         {
           title: "What Are Strings?",
-          content:
-            "A string is a sequence of characters stored in an array. C does not have a built-in string type, but strings are implemented using character arrays terminated by a special null character `'\0'`.\n\n" +
+          content: "A string is a sequence of characters stored in an array. C does not have a built-in string type, but strings are implemented using character arrays terminated by a special null character `'\0'`.\n\n" +
             "Syntax for declaring a string:\n" +
             "char str[100]; // Declaration of a character array\n\n" +
             "You can initialize a string like this:\n" +
-            'char str[] = "Hello, World!"; // A string literal',
+            "char str[] = \"Hello, World!\"; // A string literal",
         },
         {
           title: "String Manipulation",
-          content:
-            "You can manipulate strings using several functions from the standard library `<string.h>`.\n\n" +
+          content: "You can manipulate strings using several functions from the standard library `<string.h>`.\n\n" +
             "For example, to copy a string, you can use the `strcpy()` function:\n" +
-            'char str1[100], str2[] = "Hello";\n' +
+            "char str1[100], str2[] = \"Hello\";\n" +
             "strcpy(str1, str2); // Copies the content of str2 to str1",
         },
         {
           title: "String Length",
-          content:
-            "To find the length of a string (excluding the null character), use the `strlen()` function.\n\n" +
+          content: "To find the length of a string (excluding the null character), use the `strlen()` function.\n\n" +
             "Example:\n" +
-            'char str[] = "Hello";\n' +
+            "char str[] = \"Hello\";\n" +
             "int len = strlen(str); // len will be 5",
         },
         {
           title: "Concatenating Strings",
-          content:
-            "To concatenate two strings, use the `strcat()` function.\n\n" +
+          content: "To concatenate two strings, use the `strcat()` function.\n\n" +
             "Example:\n" +
-            'char str1[100] = "Hello ";\n' +
-            'char str2[] = "World!";\n' +
-            'strcat(str1, str2); // str1 will become "Hello World!"',
+            "char str1[100] = \"Hello \";\n" +
+            "char str2[] = \"World!\";\n" +
+            "strcat(str1, str2); // str1 will become \"Hello World!\"",
         },
         {
           title: "Comparing Strings",
-          content:
-            "To compare two strings, use the `strcmp()` function, which returns 0 if the strings are equal.\n\n" +
+          content: "To compare two strings, use the `strcmp()` function, which returns 0 if the strings are equal.\n\n" +
             "Example:\n" +
-            'char str1[] = "Hello";\n' +
-            'char str2[] = "Hello";\n' +
+            "char str1[] = \"Hello\";\n" +
+            "char str2[] = \"Hello\";\n" +
             "if (strcmp(str1, str2) == 0) {\n" +
-            '  printf("Strings are equal");\n' +
+            "  printf(\"Strings are equal\");\n" +
             "} else {\n" +
-            '  printf("Strings are different");\n' +
+            "  printf(\"Strings are different\");\n" +
             "}",
         },
       ],
@@ -94,7 +87,7 @@ export default function CArrays() {
         thumbnail:
           "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&auto=format",
         duration: "12:30",
-        url: "https://youtu.be/0T8LFSyd8BQ", // BroCode video link
+        url: "https://youtu.be/0T8LFSyd8BQ",  // BroCode video link
         author: "BroCode",
       },
     ]);
@@ -150,30 +143,6 @@ export default function CArrays() {
     doc.save(`${lesson.title.replace(/\s+/g, "_").toLowerCase()}.pdf`);
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("persist:root"));
-    const currentUser = user ? JSON.parse(user.user).currentUser : null;
-    const userId = currentUser ? currentUser._id : null;
-
-    if (userId && lessonId) {
-      // Fetch user progress from the server
-      fetch(`http://localhost:3000/api/progress/get-progress/${userId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          // Check if the lesson is already in the completedLessons array
-          if (
-            data.progress &&
-            data.progress.completedLessons.includes(lessonId)
-          ) {
-            setIsMarkedAsRead(true); // Mark the lesson as read
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching progress:", error);
-        });
-    }
-  }, [lessonId]);
-
   const handleMarkAsRead = () => {
     const user = JSON.parse(localStorage.getItem("persist:root"));
     const currentUser = user ? JSON.parse(user.user).currentUser : null;
@@ -189,7 +158,6 @@ export default function CArrays() {
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
-            setIsMarkedAsRead(true);
             console.log("Progress updated:", data.progress);
             // You can update local progress state here if needed
           }
@@ -239,16 +207,9 @@ export default function CArrays() {
                 </button>
                 <button
                   onClick={handleMarkAsRead}
-                  className={`text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2 ${
-                    isMarkedAsRead ? "bg-red-600" : "bg-green-500"
-                  }`}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center gap-2"
                 >
-                  {isMarkedAsRead ? (
-                    <FaBookmark size={20} />
-                  ) : (
-                    <FaRegBookmark size={20} />
-                  )}
-                  {isMarkedAsRead ? "Marked as Read" : "Mark as Read"}
+                  Mark as Read
                 </button>
               </div>
             </div>
