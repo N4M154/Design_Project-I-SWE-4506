@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SideButtons from "../components/SideButtons";
 
@@ -148,31 +148,7 @@ function Progress() {
           </div>
         </div>
 
-        {/* Achievements Section */}
-        <div className="mt-8 ml-10 mr-10  bg-white dark:bg-yellow-300/20 rounded-lg shadow-md dark:shadow-yellow-200/20 p-6">
-          <h2 className="text-2xl font-bold mb-4 dark:text-white">
-            Achievements
-          </h2>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 bg-yellow-50 dark:bg-transparent dark:border dark:border-black rounded-lg shadow dark:shadow-white">
-              <h3 className="text-lg font-semibold dark:text-yellow-500">
-                Problem Solving Streak
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-2">
-                You solved problems 7 days in a row!
-              </p>
-            </div>
-            <div className="p-4 bg-yellow-50 dark:bg-transparent dark:border dark:border-black rounded-lg shadow dark:shadow-white">
-              <h3 className="text-lg font-semibold dark:text-yellow-500">
-                Language Master
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mt-2">
-                Mastered problem-solving in Python.
-              </p>
-            </div>
-            {/* Add more achievements as needed */}
-          </div>
-        </div>
+       
 
          {/* Recent Activity */}
          <div className="mt-8 ml-10 mr-10 bg-white dark:bg-black rounded-lg shadow-md dark:shadow-yellow-200/20 p-6 dark:border dark:border-yellow-200">
