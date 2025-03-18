@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactCalendarHeatmap from "react-calendar-heatmap";
+import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 
 const customStyles = `
@@ -111,7 +111,7 @@ const HeatMap2 = () => {
       <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
         Contribution Heatmap
       </h2>
-      <ReactCalendarHeatmap
+      <CalendarHeatmap
         startDate={new Date(`${currentYear}-01-01`)}
         endDate={new Date(`${currentYear}-12-31`)}
         values={data}

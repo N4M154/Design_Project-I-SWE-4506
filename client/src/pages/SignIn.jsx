@@ -77,11 +77,11 @@ export default function SignIn() {
             className="bg-yellow-50 dark:bg-yellow-200 border border-gray-300 dark:border-yellow-400 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-200 dark:focus:ring-yellow-500"
             onChange={handleChange}
           />
-          <div className="flex justify-between items-center text-sm dark:text-yellow-600">
+          {/*<div className="flex justify-between items-center text-sm dark:text-yellow-600">
             <Link to="/forgot-password" className="hover:underline">
               Forgot password?
             </Link>
-          </div>
+          </div>*/}
           <button
             disabled={loading}
             className="bg-black text-yellow-50 dark:bg-yellow-600 dark:text-black p-3 rounded-lg font-semibold hover:bg-[#2c2c2c] dark:hover:bg-yellow-500 transition-colors disabled:opacity-70"
