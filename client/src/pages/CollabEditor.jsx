@@ -63,8 +63,7 @@ const CollabEditor = ({ roomId, username }) => {
   const [userCount, setUserCount] = useState(1);
   const [isCopied, setIsCopied] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [editorType, setEditorType] = useState("text"); // 'text' or 'whiteboard'
-  const [code, setCode] = useState("");
+  const [editorType, setEditorType] = useState("text");
 
  
 
