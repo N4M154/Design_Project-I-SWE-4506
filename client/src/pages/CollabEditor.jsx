@@ -65,13 +65,8 @@ const CollabEditor = ({ roomId, username }) => {
   const [saving, setSaving] = useState(false);
   const [editorType, setEditorType] = useState("text"); // 'text' or 'whiteboard'
   const [code, setCode] = useState("");
-  const [language, setLanguage] = useState("python3");
 
-  const handleLanguageChange = (event) => {
-    const selectedLanguage = event.target.value;
-    setLanguage(selectedLanguage);
-    setCode(languageExamples[selectedLanguage]);
-  };
+ 
 
   const copyRoomId = async () => {
     try {
@@ -83,12 +78,6 @@ const CollabEditor = ({ roomId, username }) => {
     }
   };
 
-  const handleEditorChange = (value) => {
-    setCode(value);
-    if (socketRef.current) {
-      socketRef.current.emit("send-changes", { delta: value, roomId });
-    }
-  };
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -303,14 +292,8 @@ const CollabEditor = ({ roomId, username }) => {
 
              {/* Editor Container */}
              <div className="relative bg-white p-4">
-              {editorType === "codeEditor" ? (
-                <MonacoEditor
-                  height="80vh"
-                  language="javascript"
-                  value={code}
-                  onChange={handleEditorChange}
-                  theme="vs-dark"
-                />
+             {editorType === "codeEditor" ? (
+                <CollabCompiler roomId={roomId} username={username}/>
               ) : editorType === "text" ? (
                 <div
                   ref={editorRef}
