@@ -2,6 +2,7 @@ import html2canvas from "html2canvas";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SideButtons from "../components/SideButtons";
 
 const CertificatePage = () => {
   const [showCertificate, setShowCertificate] = useState(true);
@@ -10,7 +11,7 @@ const CertificatePage = () => {
   // Function to handle closing the certificate
   const handleClose = () => {
     setShowCertificate(false); // This will hide the certificate when "Close" is clicked
-    navigate('/home'); // Redirect to home page
+    navigate("/home"); // Redirect to home page
   };
 
   return <div>{showCertificate && <Certificate onClose={handleClose} />}</div>;
@@ -112,7 +113,7 @@ const Certificate = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <SideButtons/>
+      <SideButtons />
       <div className="bg-white rounded-lg max-w-4xl w-full p-6">
         <div
           id="certificate"
