@@ -28,6 +28,7 @@ const CollabEditor = ({ roomId, username }) => {
   const [isCopied, setIsCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editorType, setEditorType] = useState("text"); // 'text' or 'whiteboard'
+  const [code, setCode] = useState("");
 
   const copyRoomId = async () => {
     try {
@@ -49,7 +50,6 @@ const CollabEditor = ({ roomId, username }) => {
   useEffect(() => {
     if (!editorRef.current) return;
 
-    // Add custom class to remove default toolbar
     editorRef.current.classList.add("custom-quill-editor");
 
     const editor = new Quill(editorRef.current, {
