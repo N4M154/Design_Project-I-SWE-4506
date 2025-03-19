@@ -39,6 +39,13 @@ const CollabEditor = ({ roomId, username }) => {
     }
   };
 
+  const handleEditorChange = (value) => {
+    setCode(value);
+    if (socketRef.current) {
+      socketRef.current.emit("send-changes", { delta: value, roomId });
+    }
+  };
+
   useEffect(() => {
     if (!editorRef.current) return;
 
