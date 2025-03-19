@@ -20,6 +20,42 @@ const TOOLBAR_OPTIONS = [
   ["clean"],
 ];
 
+// Language snippets for different languages
+const languageExamples = {
+  c: `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    return 0;
+}`,
+  cpp: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`,
+  java: `public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}`,
+  python3: `print("Hello, World!")`,
+  javascript: `console.log("Hello, World!");`,
+  typescript: `const greeting: string = "Hello, World!";
+console.log(greeting);`,
+  rust: `fn main() {
+    println!("Hello, World!");
+}`,
+  go: `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}`,
+};
+
 const CollabEditor = ({ roomId, username }) => {
   const editorRef = useRef(null);
   const socketRef = useRef(null);
