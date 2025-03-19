@@ -258,9 +258,17 @@ const CollabEditor = ({ roomId, username }) => {
               </div>
             </div>
 
-            {/* Editor Container */}
-            <div className="relative bg-white p-4">
-              {editorType === "text" ? (
+             {/* Editor Container */}
+             <div className="relative bg-white p-4">
+              {editorType === "codeEditor" ? (
+                <MonacoEditor
+                  height="80vh"
+                  language="javascript"
+                  value={code}
+                  onChange={handleEditorChange}
+                  theme="vs-dark"
+                />
+              ) : editorType === "text" ? (
                 <div
                   ref={editorRef}
                   className="min-h-[calc(100vh-300px)] bg-white rounded-xl"
