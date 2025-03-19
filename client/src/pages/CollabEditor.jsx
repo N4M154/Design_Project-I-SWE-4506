@@ -6,6 +6,7 @@ import { FaUsers, FaCopy, FaCheck, FaEdit, FaPaintBrush } from "react-icons/fa";
 import Whiteboard from "./Whiteboard";
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import { motion } from "framer-motion";
+import SideButtons from "../components/SideButtons";
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -140,17 +141,19 @@ const CollabEditor = ({ roomId, username }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-white to-yellow-50 dark:from-[#18181b] dark:to-black py-8 px-6 sm:px-8 lg:px-10">
+      <SideButtons/>
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-[95%] mx-auto"
       >
-        <div className="flex gap-6">
+        <div className="flex gap-6 ml-12">
           {/* Video Conference Section */}
           <motion.div
             initial={{ x: -20 }}
             animate={{ x: 0 }}
-            className="w-1/3 bg-white dark:bg-transparent rounded-2xl shadow-[0_20px_50px_rgba(237,211,14,0.5)] overflow-hidden border border-yellow-100"
+            className="w-1/2 bg-white dark:bg-transparent rounded-2xl shadow-[0_20px_50px_rgba(237,211,14,0.5)] overflow-hidden border border-yellow-100"
           >
             <div className="h-[calc(100vh-6rem)]">
               <JitsiMeeting
@@ -194,7 +197,7 @@ const CollabEditor = ({ roomId, username }) => {
           <motion.div
             initial={{ x: 20 }}
             animate={{ x: 0 }}
-            className="w-2/3 bg-whiterounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
+            className="w-10/11 bg-whiterounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
           >
             {/* Header Section */}
             <div className="px-8 py-6 border-b border-yellow-200 bg-gradient-to-r from-white via-yellow-50 to-white">
