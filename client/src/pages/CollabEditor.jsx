@@ -65,6 +65,13 @@ const CollabEditor = ({ roomId, username }) => {
   const [saving, setSaving] = useState(false);
   const [editorType, setEditorType] = useState("text"); // 'text' or 'whiteboard'
   const [code, setCode] = useState("");
+  const [language, setLanguage] = useState("python3");
+
+  const handleLanguageChange = (event) => {
+    const selectedLanguage = event.target.value;
+    setLanguage(selectedLanguage);
+    setCode(languageExamples[selectedLanguage]);
+  };
 
   const copyRoomId = async () => {
     try {
