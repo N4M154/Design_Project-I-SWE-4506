@@ -10,11 +10,11 @@ import {
   Trash2,
   Wand2,
 } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import SideButtons from "../components/SideButtons";
 import { useSelector } from "react-redux";
-
+import io from "socket.io-client";
 const languageExamples = {
   c: `#include <stdio.h>
 
@@ -50,20 +50,22 @@ func main() {
 }`,
 };
 
-export default function CodeEditor() {
+export default function CollabCompiler({roomId, username}) {
   const [code, setCode] = useState(languageExamples.python3);
+  const socketRef = useRef(null);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [groqAnalysis, setGroqAnalysis] = useState("");
-  const [language, setLanguage] = useState("c");
+  const [language, setLanguage] = useState("python3");
   const [loading, setLoading] = useState(false);
   const [inputNeeded, setInputNeeded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
   const [theme, setTheme] = useState("vs-dark");
   const [fontSize, setFontSize] = useState(14);
+  const [userCount, setUserCount] = useState(1);
   const [autoSave, setAutoSave] = useState(true);
   const [showAnalysis, setShowAnalysis] = useState(false);
-  const [panelHeight, setPanelHeight] = useState(40); // Default 40%
+  const [panelHeight, setPanelHeight] = useState(20); 
   const [isDragging, setIsDragging] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
@@ -82,16 +84,55 @@ export default function CodeEditor() {
   };
 
   useEffect(() => {
-    setCode(languageExamples[language]); // Always set to languageExamples
-  }, [language]);
+    const socket = io("https://socket-1-pmz3.onrender.com");
+    socketRef.current = socket;
+
+    // Join the room when component mounts
+    socket.emit("join-room", { roomId, username });
+
+    socket.on("user-count", (count) => {
+      setUserCount(count);
+    });
+
+    socket.on("receive-changes", (delta) => {
+      setCode(delta); // Sync the changes when received
+    });
+
+    // When changing editor type, sync the content
+    socket.on("load-document", (document) => {
+      setCode(document);
+    });
+
+    return () => {
+      if (socketRef.current) {
+        socketRef.current.disconnect();
+      }
+    };
+  }, [roomId, username]);
 
   const handleEditorChange = (value) => {
     setCode(value);
+    
+    // Emit changes to the server for collaboration
+    if (socketRef.current) {
+      socketRef.current.emit("send-changes", { delta: value, roomId });
+    }
+  
+    // Save code to localStorage (for autoSave)
     if (autoSave) {
       localStorage.setItem(`code-${language}`, value);
     }
+  
+    // Check for input functions (optional, based on your requirements)
     checkForInputFunctions();
   };
+  
+
+  useEffect(() => {
+    setCode(languageExamples[language]); // Always set to languageExamples
+  }, [language]);
+
+  
 
   const handleLanguageChange = (event) => {
     const newLanguage = event.target.value;
@@ -289,11 +330,10 @@ export default function CodeEditor() {
 
   return (
     <div className="flex min-h-screen bg-yellow-50 dark:bg-[#18181b] font-['Poppins'] overflow-hidden">
-      <SideButtons />
       <div
         id="main-content"
         className="flex-1 transition-all duration-300"
-        style={{ marginLeft: isExpanded ? "260px" : "80px" }}
+        style={{ marginLeft: isExpanded ? "0px" : "80px" }}
       >
         <div className="flex flex-col h-screen">
           {/* Header */}
@@ -361,7 +401,7 @@ export default function CodeEditor() {
           {/* Main Content Area */}
           <div className="flex flex-col flex-grow h-[calc(100vh-4rem)] overflow-hidden">
             {/* Editor Section - Fixed 60% height */}
-            <div className="h-[60%] relative">
+            <div className="h-[110%] relative">
               <MonacoEditor
                 height="100%"
                 defaultLanguage={language}
