@@ -33,8 +33,8 @@ Users can personalize their learning experience by creating a profile, which sto
     - **Analytics:** Language-specific graphs displaying coding tasks completed in different programming languages. Customizable profile settings for personal information management.
     - **Heatmaps:** Heatmap to visualize learning progress over time. Streak graph to track continuous learning achievements. Performance graph showcasing overall performance.
   
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/user%20analytics.png" alt="login" width="600"/>
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/heatmap.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/user%20analytics.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/heatmaps.png" alt="login" width="600"/>
 
 
 
@@ -43,8 +43,8 @@ Users can personalize their learning experience by creating a profile, which sto
    - **Access Materials:** Downloadable resources, lecture notes, and reference materials.
    - **Video Lectures:** Stream high-quality video lectures from directly within the platform.
   
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Chome.png" alt="login" width="600"/>
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/hellow.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Chome.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/hellow.png" alt="login" width="600"/>
 
 
 
@@ -52,65 +52,75 @@ Users can personalize their learning experience by creating a profile, which sto
 
    - **Interactive Quizzes:** Test your knowledge with topic-specific quizzes.
 
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/quiz.png" alt="login" width="600"/>
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/quiz2.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/quiz.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/qiuz2.png" alt="login" width="600"/>
    
 
 6. **AI powered Chatbot for assistance**
 
    - **Interactive Chatbot:** Get instant help and answers to your queries via an AI-powered chatbot which supports the languages of your choice.
-  <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/chat.png" alt="login" width="600"/>
-  <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Chatbot.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/chat.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Chatbot.png" alt="login" width="600"/>
 
 7. **Compiler with multiple languages and code analysis**
 
    - **Integrated code compiler:** Code directly in the browser with an embedded compiler for real-time coding and immediate feedback.
    - **AI code analysis:** Analyzes time complexity of the code to help understand efficiency.
-  <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/compiler.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/compiler.png" alt="login" width="600"/>
 
 8. **Practice Problems**
 
    - **Solve problems:** AI analyzes the user’s code solutions and checks for accuracy. Verifies test cases to ensure correct functionality. Offers suggestions for improvement based on code performance.
- <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/problempage.png" alt="login" width="600"/>
-<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/problemcode.png" alt="login" width="600"/>  
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/problempage.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/probemcode.png" alt="login" width="600"/>  
 
 9. **Progress Tracker and Language-Specific Performance**
    - **Visual Progress Indicators:**  Track recent activity and solved problems. All data is stored securely in MongoDB for easy access and updates.
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/progressrecent.png" alt="login" width="600"/>  
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/progresstracker.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/progressrecent.png" alt="login" width="600"/>  
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/progresstracker.png" alt="login" width="600"/>
 
 10. **Community Forum**
 
     - **Share and Connect:** Post and share coding experiences, ideas, and challenges. Connect with others for collaboration and peer support.
     - **Stay updated:** Updates on all tech news and competitions from organizers.
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/_com1.png" alt="login" width="600"/>
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/_com2.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/_com1.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/_com2.png" alt="login" width="600"/>
 
  
 11. **Take Notes**
     - **Keep your notes organized:**  Take notes in text and code format. Syntax highlighting and formatting for better code readability. Save notes in .doc/ .pdf format and download for offline use.
-       <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Notes.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/Notes.png" alt="login" width="600"/>
        
 12. **Interview Preparation Roadmap**
-    - **Customized roadmap:** AI-powered roadmap based on user input, including preferences, skill level, expertise, and the amount of effort the user is willing to put in. AI analyzes the user’s input and generates a detailed 4-week roadmap, offering a clear starting point and step-by-step guidance for the user’s learning journey. Download as .pdf.
-           <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/interview1.png" alt="login" width="600"/>
-                  <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/interview2.png" alt="login" width="600"/>
+    - **Customized roadmap:** AI-powered roadmap based on user input, including preferences, skill level, expertise, and the amount of effort the user is willing to put in. AI analyzes the user’s input and 
+                              generates a detailed 4-week roadmap, offering a clear starting point and step-by-step guidance for the user’s learning journey. Download as .pdf.
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/interview1.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/interview2.png" alt="login" width="600"/>
 
 13. **News Portal**
     - **Articles and Videos:** Filtered articles and videos focusing on technology-related content. Dynamically fetch all the searched items.
-           <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/article.png" alt="login" width="600"/>
-                      <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/video.png" alt="login" width="600"/>
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/article.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/video.png" alt="login" width="600"/>
 
 14. **Certificate and Performance Ranking**
 
-   Earn certificates upon completing coding challenges and achieving milestones. Users receive titles based on performance, such as ”Newbie” ,”Pupil”,”specialist” ,”Ex-pert”,”master”,”candidate master”. Download  and share as part of your portfolio.
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/certificates.png" alt="login" width="600"/>
+Earn certificates upon completing coding challenges and achieving milestones. Users receive titles based on performance, such as ”Newbie” ,”Pupil”,”specialist” ,”Ex-pert”,”master”,”candidate master”. Download  and share as part of your portfolio.
+
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/certificates.png" alt="login" width="600"/>
 
 15. **Mock Interview with Video Call and Real Time Collaboration**
 Participate in live mock interviews via **video calls**. **Real-time collaborative IDE** for coding exercises. Interactive features like **whiteboard, chat, polls, and messaging**. Simulates a realistic interview environment for users.
 
-   <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/code.png" alt="login" width="600"/>
-      <img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/whiteboard.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/code.png" alt="login" width="600"/>
+<img src="https://github.com/N4M154/Design_Project-I-SWE-4506/blob/d975f4fccd7188b948600fd0b23ea80bcedb47de/client/public/ss/whiteboard.png" alt="login" width="600"/>
 
 
 
