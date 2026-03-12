@@ -242,8 +242,19 @@ Participate in live mock interviews via **video calls**. **Real-time collaborati
 
 CodERA was created out of a passion for programming and a desire to provide an engaging and effective learning platform for enthusiasts of all levels. Our goal is to make learning programming accessible, enjoyable, and rewarding.
 
+If you want to expand on this idea please give the rightful credit to the owners of the IP
+
 Dive into the world of programming with CodERA! Let the learning begin!
 
-## Demonstration
+## Intellectual Contribution
 
-Chech out the live version of the platform here : [**CodERA**](https://codeera-j7tv.onrender.com/)
+If you build upon or extend this work, please provide proper attribution.
+
+- Zannatun Naim Sristy (IUT)
+- Maliha Noushin Raida (IUT)
+- Namisa Najah (IUT)
+- Faiza Maliat (IUT)
+- Nabila Islam (IUT)
+- Nusrat Siddique (IUT)
+- Ishmaam Iftekhar Khan (IUT)
+- Syed Rifat Raiyan (IUT)
